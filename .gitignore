@@ -1,0 +1,31 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.turbo
+
+# dependencies
+node_modules
+
+# next.js
+.next
+out
+
+# production
+build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# local env files
+.env.*.local
+
+# vercel
+.vercel
+tsconfig.tsbuildinfo
+.eslintcache
+
+# Generated files
+*/api/server/generated

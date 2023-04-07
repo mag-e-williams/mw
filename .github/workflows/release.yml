@@ -1,0 +1,45 @@
+# Releases a new version on a push to main
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install
+      - name: Release new repo version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm release
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        name: Get latest version tag
+        with:
+          semver_only: true
+        id: latest-version-tag
+      - name: Redeploy on Vercel using latest version
+        if: ${{ steps.latest-version-tag.outputs.tag != '' }}
+        run: |
+          prodRun=""
+          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
+            prodRun="--prod"
+          fi
+          echo "Latest tag: ${LATEST_TAG}"
+          npx vercel --token ${VERCEL_DEPLOY_TOKEN} $prodRun -b NEXT_PUBLIC_APP_VERSION="${LATEST_TAG}" -e NEXT_PUBLIC_APP_VERSION="${LATEST_TAG}"
+        env:
+          LATEST_TAG: ${{ steps.latest-version-tag.outputs.tag }}
+          VERCEL_DEPLOY_TOKEN: ${{ secrets.VERCEL_DEPLOY_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
