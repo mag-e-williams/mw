@@ -3,6 +3,7 @@ import { fetchIntroContent } from './server/data/fetchIntroContent';
 import { fetchCurrentLocation } from './server/data/fetchCurrentLocation';
 import { fetchProjects } from './server/data/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
+import { fetchCertifications } from './server/data/fetchCertifications';
 
 /**
  * All possible types of endpoints we could request
@@ -24,6 +25,7 @@ export const endpoints = {
   location: fetchCurrentLocation,
   projects: fetchProjects,
   footer: fetchFooterLinks,
+  certifications: fetchCertifications,
   'latest/track': fetchRecentlyPlayed,
 } as const;
 

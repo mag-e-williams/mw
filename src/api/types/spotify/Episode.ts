@@ -29,6 +29,7 @@ interface ReferenceObject {
    * Resource identifier, more readable than the id
    */
   uri: string;
+  type: string;
 }
 
 /**

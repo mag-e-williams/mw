@@ -1,5 +1,5 @@
 import type { ContentCardProps } from 'components/ContentCard';
-import { Maximize2, Minimize2 } from 'lucide-react';
+import { Maximize2, Minimize2, LocateFixed } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Map } from 'components/maps/Map';
 import { Marker } from 'components/maps/Marker';
@@ -17,10 +17,12 @@ type FullMapCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
  * Shows a canvas-based map of my current location. This should be imported ON DEMAND
  * as the mapbox maps are absolutely massive so we should delay as long as possible.
  */
-function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapCardProps) {
+export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapCardProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasMapLoaded, setHasMapLoaded] = useState(false);
+  const [centerLocation, setCenterLocation] = useState(false);
+
   const expansionControl = useMemo(
     () => (
       <Control
@@ -32,6 +34,19 @@ function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapC
       </Control>
     ),
     [isExpanded, theme],
+  );
+
+  const locationControl = useMemo(
+    () => (
+      <Control
+        onClick={centerLocation ? () => setCenterLocation(false) : undefined}
+        position="bottom-right"
+        theme={theme}
+      >
+        <LocateFixed size="1em" />
+      </Control>
+    ),
+    [centerLocation, theme],
   );
 
   return (
@@ -47,14 +62,13 @@ function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapC
           isExpanded={isExpanded}
           isLoaded={hasMapLoaded}
           setMapHasLoaded={() => setHasMapLoaded(true)}
+          setCenterLocation={() => setCenterLocation(true)}
         >
           {expansionControl}
+          {/* {locationControl} */}
           <Marker key="home" point={location.point} image={location.image} />
         </Map>
       )}
     </MapContentCard>
   );
 }
-
-// Enables dynamic import
-export default FullMapCard;

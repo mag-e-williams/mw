@@ -11,6 +11,8 @@ export type Props = {
    */
   location: MapLocation | null;
 
+  setCenterLocation: () => void;
+
   /**
    * If the map is a larger height
    */
@@ -123,7 +125,14 @@ function Wrapper({ isLoaded, children }: { isLoaded: boolean; children: React.Re
 /**
  * Uses Mapbox to show a canvas-based map of my current location.
  */
-export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded }: Props) {
+export function Map({
+  location,
+  children,
+  isExpanded,
+  isLoaded,
+  setMapHasLoaded,
+  setCenterLocation,
+}: Props) {
   const theme = useTheme();
   const mapRef = useRef<MapRef>(null);
   const { colorScheme } = useColorScheme();
@@ -174,7 +183,6 @@ export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded 
         onLoad={setMapHasLoaded}
         reuseMaps
       >
-        {isExpanded && <AttributionControl position="bottom-right" />}
         <StandardControls mapRef={mapRef} />
         {children}
       </MapGL>

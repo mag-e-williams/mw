@@ -45,7 +45,7 @@ export function AlbumImage({ album }: AlbumImageProps) {
         sx={(theme) => ({
           position: 'relative',
           alignSelf: 'flex-end',
-          borderRadius: 8,
+          borderRadius: 3,
           margin: 0,
           padding: 0,
           overflow: 'hidden',
@@ -55,11 +55,11 @@ export function AlbumImage({ album }: AlbumImageProps) {
           transition: theme.transitions.create(['max-height', 'height']),
           [theme.breakpoints.down('md')]: {
             maxHeight: `${(2 * IMAGE_SIZE) / 3}px`,
-            borderRadius: 6,
+            borderRadius: 3,
           },
           [theme.breakpoints.down('sm')]: {
             maxHeight: `${IMAGE_SIZE / 2}px`,
-            borderRadius: 4,
+            borderRadius: 3,
           },
         })}
       >

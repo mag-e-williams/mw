@@ -21,6 +21,8 @@ export type ContentCardProps = Pick<
    */
   verticalSpan?: number;
 
+  hasImage?: boolean;
+
   /**
    * If anything is specified here, it appears in an overlay on top of the card
    */
@@ -71,14 +73,16 @@ function getCardSx(
     isClickable,
     horizontalSpan,
     verticalSpan,
-  }: { isClickable: boolean; horizontalSpan: number; verticalSpan: number | null },
+    bgColor,
+  }: { isClickable: boolean; horizontalSpan: number; verticalSpan: number | null; bgColor: string },
 ) {
   return {
     position: 'relative',
     overflow: 'hidden',
     willChange: 'transform',
     transition: `${theme.transitions.create(['width', 'height', 'box-shadow', 'border-color'])}`,
-
+    // 16ac7f
+    bgcolor: bgColor,
     // Unfortunately required for the images to animate size correctly. Look into changing this!
     '& > div': {
       transform: 'none !important',
@@ -185,6 +189,7 @@ function OverlayContent({ overlay, sx }: { overlay: NonNullable<React.ReactNode>
  * Wraps content in a card for the content grid
  */
 export function ContentCard({
+  hasImage,
   horizontalSpan,
   verticalSpan,
   children,
@@ -201,7 +206,7 @@ export function ContentCard({
   const actualHSpan = isExpanded ? 3 : horizontalSpan ?? 1;
   const actualVSpan = isExpanded ? null : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
-
+  const bgColor = hasImage ? '#16ac7' : '#16ac7';
   // Swaps the expansion variable and calls the user callback
   const toggleExpansion = onExpansion
     ? () => {
@@ -215,7 +220,12 @@ export function ContentCard({
     <Card
       sx={mixinSx(
         (theme) =>
-          getCardSx(theme, { isClickable, horizontalSpan: actualHSpan, verticalSpan: actualVSpan }),
+          getCardSx(theme, {
+            isClickable,
+            horizontalSpan: actualHSpan,
+            verticalSpan: actualVSpan,
+            bgColor,
+          }),
         sx,
       )}
       onClick={toggleExpansion}

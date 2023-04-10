@@ -1,5 +1,5 @@
 // import type { Project } from 'api/types/generated/contentfulApi.generated';
-import { ProjectType as Project } from 'api/types/Project';
+import { BadgeType as Badge } from 'api/types/Badge';
 import type { ContentCardProps } from 'components/ContentCard';
 import { ContentCard } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
@@ -7,29 +7,21 @@ import { useState } from 'react';
 import { Image } from 'components/Image';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
-type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;
+type CertificationCardProps = Badge & Pick<ContentCardProps, 'turnOnAnimation'>;
 
-function notEmpty(str: string | undefined): boolean {
-  return !(str == null) && !(str === '');
-  return true;
-}
-
-/**
- * Uses the `ContentCard` to show a project's details
- */
-export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }: ProjectCardProps) {
+export function CertificationCard({ title, link, thumbnail }: CertificationCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes(layout);
+  // const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes(layout);
+  console.log('hello', title, link, thumbnail);
   return (
     <ContentCard
-      hasImage={thumbnail && notEmpty(thumbnail.url)}
-      verticalSpan={verticalSpan}
-      horizontalSpan={horizontalSpan}
+      // verticalSpan={verticalSpan}
+      // horizontalSpan={horizontalSpan}
       link={link}
       overlay={title}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
-      turnOnAnimation={turnOnAnimation}
+      // turnOnAnimation={turnOnAnimation}
       sx={(theme) => ({
         [theme.breakpoints.down('md')]: {
           maxHeight: theme.shape.gridItemSize(0.75),
@@ -40,10 +32,10 @@ export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }:
         <HoverableContainer isHovered={isHovered}>
           <Image
             url={thumbnail.url}
-            width={width}
-            height={height}
+            // width={width}
+            // height={height}
             alt={title ?? 'Project Image'}
-            sizes={sizes}
+            // sizes={sizes}
           />
         </HoverableContainer>
       )}
