@@ -36,7 +36,7 @@
       }
     ]
   },
-  "include": ["src", "scripts", "eslint-plugin-dg", "config"],
+  "include": ["src", "scripts", "eslint-plugin-mw", "config"],
   "exclude": [
     "node_modules",
     "**/*/dist",

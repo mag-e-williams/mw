@@ -1,4 +1,4 @@
-import { RawSpotifyToken, RawStravaToken } from './RawToken';
+import { RawSpotifyToken } from './RawToken';
 
 /**
  * Any API needs to return this type at the end
@@ -31,8 +31,5 @@ export type RefreshTokenConfig = {
   /**
    * Throws an error if anything's off about our data, otherwise returns the data
    */
-  validate: (
-    rawData: RawStravaToken | RawSpotifyToken,
-    existingRefreshToken: string,
-  ) => ValidatedToken;
+  validate: (rawData: RawSpotifyToken, existingRefreshToken: string) => ValidatedToken;
 };

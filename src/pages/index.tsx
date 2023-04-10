@@ -5,20 +5,15 @@ import type { GetStaticProps } from 'next/types';
 import type { GetLayout } from 'types/Page';
 
 type PageProps = {
-  fallback: FetchedFallbackData<
-    // 'version' | 'footer' | 'projects' | 'intro' | 'location' | 
-    'latest/track' 
-    // | 'latest/activity'
-  >;
+  fallback: FetchedFallbackData<'footer' | 'location' | 'intro' | 'projects' | 'latest/track'>;
 };
 
 export const getStaticProps: GetStaticProps<PageProps> = async () =>
   fetchFallbackData([
-    // 'version',
-    // 'footer',
-    // 'projects',
-    // 'intro',
-    // 'location',
+    'footer',
+    'projects',
+    'intro',
+    'location',
     'latest/track',
     // 'latest/activity',
   ]);

@@ -49,12 +49,12 @@ importers:
       dotenv:
         specifier: 16.0.3
         version: 16.0.3
-      eslint-config-dg:
-        specifier: link:./eslint-plugin-dg
-        version: link:eslint-plugin-dg
-      eslint-plugin-dg:
-        specifier: link:./eslint-plugin-dg
-        version: link:eslint-plugin-dg
+      eslint-config-mw:
+        specifier: link:./eslint-plugin-mw
+        version: link:eslint-plugin-mw
+      eslint-plugin-mw:
+        specifier: link:./eslint-plugin-mw
+        version: link:eslint-plugin-mw
       graphql:
         specifier: 16.6.0
         version: 16.6.0
@@ -860,7 +860,7 @@ packages:
     dev: false
 
   /@emotion/cache@11.10.5:
-    resolution: {integrity: sha512-dGYHWyzTdmK+f2+EnIGBpkz1lKc4Zbj2KHd4cX3Wi8/OWr5pKslNjc3yABKH4adRGCvSX4VDC0i04mrrq0aiRA==}
+    resolution: {integrity: sha512-mwYHWyzTdmK+f2+EnIGBpkz1lKc4Zbj2KHd4cX3Wi8/OWr5pKslNjc3yABKH4adRGCvSX4VDC0i04mrrq0aiRA==}
     dependencies:
       '@emotion/memoize': 0.8.0
       '@emotion/sheet': 1.2.1

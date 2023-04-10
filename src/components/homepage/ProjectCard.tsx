@@ -1,4 +1,5 @@
-import type { Project } from 'api/types/generated/contentfulApi.generated';
+// import type { Project } from 'api/types/generated/contentfulApi.generated';
+import { ProjectType as Project } from 'api/types/Project';
 import type { ContentCardProps } from 'components/ContentCard';
 import { ContentCard } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
@@ -14,7 +15,6 @@ type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;
 export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes(layout);
-
   return (
     <ContentCard
       verticalSpan={verticalSpan}

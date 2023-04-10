@@ -22,7 +22,7 @@ function Logo() {
         marginRight: 64,
       }}
     >
-      dg.
+      mw.
     </div>
   );
 }

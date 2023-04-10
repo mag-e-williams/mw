@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Button } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
+import Image from 'next/image';
 import { ScrollIndicatorContext } from './ScrollIndicatorContext';
 import { Link } from './Link';
 
@@ -56,17 +57,12 @@ export function Logo() {
   const router = useRouter();
   const isScrolled = useContext(ScrollIndicatorContext);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (router.asPath === '/') {
-    return (
-      <Button sx={logoTextStyles(isScrolled)} disableRipple onClick={scrollToTop}>
-        dg.
-      </Button>
-    );
-  }
-
+  const imageUrl = '/icons/mw-logo.svg';
   return (
     <Link
       href="/"
+      img={imageUrl}
+      layout="image"
       linkProps={{ underline: 'none' }}
       sx={mixinSx(
         {
@@ -74,8 +70,6 @@ export function Logo() {
         },
         logoTextStyles(isScrolled),
       )}
-    >
-      dg.
-    </Link>
+    />
   );
 }

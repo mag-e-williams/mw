@@ -1,5 +1,5 @@
 import { Track } from './Track';
-
+import { Episode } from './Episode';
 /**
  * This reflects what I care about from Spotify's currently playing endpoint.
  */
@@ -19,5 +19,5 @@ export type CurrentlyPlaying = {
   /**
    * The song with its related info about artist/album
    */
-  item: Track;
+  item: Track | Episode;
 };

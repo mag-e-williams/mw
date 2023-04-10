@@ -33,8 +33,8 @@ export type Props = {
   setMapHasLoaded: () => void;
 };
 
-const LIGHT_STYLE = 'mapbox://styles/dylangattey/ckyfpsonl01w014q8go5wvnh2?optimize=true';
-const DARK_STYLE = 'mapbox://styles/dylangattey/ckylbbyzc0ok916jx0bvos03d?optimize=true';
+const LIGHT_STYLE = 'mapbox://styles/margretwilliams42/clg5bwt7c000801p7ozlt32zb?optimize=true';
+const DARK_STYLE = 'mapbox://styles/margretwilliams42/clg7ot4a600bv01o2gurrfzit?optimize=true';
 
 /**
  * This wrapper ensures we pad ctrls and override button defaults, plus includes
@@ -156,7 +156,6 @@ export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded 
   const zoomLevels = location?.zoomLevels ?? [];
   const minZoom = zoomLevels[0];
   const maxZoom = zoomLevels[zoomLevels.length - 1];
-
   return (
     <Wrapper isLoaded={isLoaded}>
       <MapGL

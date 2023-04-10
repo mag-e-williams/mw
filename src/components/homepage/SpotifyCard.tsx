@@ -10,7 +10,6 @@ export function SpotifyCard() {
   if (!track) {
     return null;
   }
-
   return (
     <ContentCard
       sx={{

@@ -1,4 +1,4 @@
-import type { Link } from 'api/types/generated/contentfulApi.generated';
+import type { LinkType as Link } from 'api/types/Link';
 import { truncated } from 'helpers/truncated';
 import { useState } from 'react';
 import { Card, Theme, Typography } from '@mui/material';
@@ -31,6 +31,8 @@ export type ContentCardProps = Pick<
    * card
    */
   link?: Link;
+
+  isExpanded?: boolean;
 
   /**
    * If the card should expand to full width when clicked,

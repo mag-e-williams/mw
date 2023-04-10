@@ -2,7 +2,6 @@ import { env } from 'process';
 import { Sequelize } from 'sequelize-typescript';
 import mysql2 from 'mysql2';
 import { Token } from './models/Token';
-import { StravaActivity } from './models/StravaActivity';
 
 const SHARED_DB_OPTIONS = {
   dialect: 'mysql' as const,
@@ -34,7 +33,6 @@ if (!databaseUrl) {
  */
 export const db = {
   Token,
-  StravaActivity,
 } as const;
 
 /**

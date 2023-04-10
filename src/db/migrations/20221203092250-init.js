@@ -31,34 +31,6 @@ module.exports = {
         },
       });
 
-      await queryInterface.createTable('StravaActivity', {
-        id: {
-          allowNull: false,
-          primaryKey: true,
-          unique: true,
-          type: Sequelize.BIGINT,
-        },
-        activityStartDate: {
-          allowNull: false,
-          type: Sequelize.DATE,
-        },
-        activityData: {
-          allowNull: false,
-          type: Sequelize.JSON,
-        },
-        lastUpdate: {
-          type: Sequelize.DATE,
-        },
-        createdAt: {
-          allowNull: false,
-          type: Sequelize.DATE,
-        },
-        updatedAt: {
-          allowNull: false,
-          type: Sequelize.DATE,
-        },
-      });
-
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();
@@ -69,7 +41,6 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
     try {
       await queryInterface.dropTable('Token');
-      await queryInterface.dropTable('StravaActivity');
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();

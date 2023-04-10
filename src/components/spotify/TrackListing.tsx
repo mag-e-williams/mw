@@ -1,4 +1,5 @@
 import { Track } from 'api/types/spotify/Track';
+import { Episode } from 'api/types/spotify/Episode';
 import { Stack } from '@mui/material';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { AlbumImage } from './AlbumImage';
@@ -11,7 +12,7 @@ interface TrackListingProps {
   /**
    * Has to exist, the track to list
    */
-  track: Track;
+  track: Track | Episode;
 
   /**
    * If this is true, it puts a logo to the left of the album art
@@ -27,6 +28,17 @@ interface TrackListingProps {
 export function TrackListing({ track, hasLogo }: TrackListingProps) {
   const trackUrl = track.external_urls.spotify;
   const { name: trackTitle } = track;
+  let trackImage;
+  let artistName;
+
+  if (track.type == 'episode') {
+    trackImage = <AlbumImage album={track.show} />;
+    artistName = <ArtistList artists={[track.show]} />;
+  } else if (track.type == 'track') {
+    trackImage = <AlbumImage album={track.album} />;
+    artistName = <ArtistList artists={track.artists} />;
+  }
+
   return (
     <Stack
       sx={{
@@ -41,12 +53,12 @@ export function TrackListing({ track, hasLogo }: TrackListingProps) {
         }}
       >
         {hasLogo && <SpotifyLogo url={trackUrl} trackTitle={trackTitle} />}
-        <AlbumImage album={track.album} />
+        {trackImage}
       </HorizontalStack>
       <Stack>
         <PlaybackStatus playedAt={track.played_at} />
         <TrackTitle trackTitle={trackTitle} url={trackUrl} sx={{ marginBottom: 1 }} />
-        <ArtistList artists={track.artists} />
+        {artistName}
       </Stack>
     </Stack>
   );

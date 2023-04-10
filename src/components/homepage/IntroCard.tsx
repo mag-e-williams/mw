@@ -2,10 +2,11 @@ import { useData } from 'api/useData';
 import { ContentCard } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
 import { Image } from 'components/Image';
-import { RichText } from 'components/RichText';
 import { useLinkWithName } from 'hooks/useLinkWithName';
 import { useState } from 'react';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
+import { Typography } from '@mui/material';
+import { SxProps } from 'ui/theme';
 
 /**
  * Width of the intro image on small screens
@@ -13,20 +14,50 @@ import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 const SMALL_IMAGE_SIZE = '14em';
 
 /**
- * Creates an intro information card for use on the homepage. Technically
- * creates two cards in a fragment. Also adds meta for the whole Homepage,
- * as the data comes from the introBlock. The width/height here is for image
- * resizing, and the actual width may be smaller.
+ * Offsets for fixed header so anchor links look right
  */
+const HEADING_SX: SxProps = {
+  marginBottom: (theme) => theme.spacing(3),
+  marginTop: -12,
+  paddingTop: 12,
+};
+
+function HeadingWithId({
+  children,
+  variant,
+}: {
+  children: React.ReactNode;
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+}) {
+  let id = '';
+  if (typeof children === 'string') {
+    id = children;
+  }
+  if (Array.isArray(children)) {
+    id = children.map((child) => (typeof child === 'string' ? child : '')).join('');
+  }
+  id = id
+    .toLowerCase()
+    .replace(/[^a-z]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  return (
+    <Typography id={id} variant={variant} sx={HEADING_SX}>
+      {children}
+    </Typography>
+  );
+}
+
 export function IntroCard() {
   const { data: introBlock } = useData('intro');
+
   const linkedInLink = useLinkWithName('LinkedIn');
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
 
-  if (!introBlock?.textBlock?.content) {
-    return null;
-  }
+  // if (!introBlock?.textBlock?.content) {
+  //   return null;
+  // }
 
   return (
     <>
@@ -71,7 +102,14 @@ export function IntroCard() {
           borderRadius: 0,
         }}
       >
-        <RichText {...introBlock.textBlock.content} />
+        <HeadingWithId variant="h1">{introBlock.textBlock.content.title}</HeadingWithId>
+        {introBlock.textBlock.content.body.map(function (blockString) {
+          return (
+            <Typography variant="body1" sx={{ marginBottom: (theme) => theme.spacing(3.5) }}>
+              {blockString}
+            </Typography>
+          );
+        })}
       </ContentCard>
     </>
   );

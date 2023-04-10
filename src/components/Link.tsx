@@ -4,9 +4,10 @@ import { faGithubAlt } from '@fortawesome/free-brands-svg-icons/faGithubAlt';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons/faSpotify';
-import { faStrava } from '@fortawesome/free-brands-svg-icons/faStrava';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
 import { faQuestion } from '@fortawesome/free-solid-svg-icons/faQuestion';
+import { faFileLines } from '@fortawesome/free-solid-svg-icons/faFileLines';
+
 import NextLink from 'next/link';
 import {
   Link as MuiLink,
@@ -16,10 +17,12 @@ import {
   Button,
 } from '@mui/material';
 import { SxProps } from 'ui/theme';
+import Image from 'next/image';
 
 type BaseLinkProps = {
   title?: string;
   href: string | undefined;
+  img?: string | undefined;
   icon?: string;
 
   /**
@@ -35,7 +38,7 @@ type BaseLinkProps = {
    * 3. 'iconText' renders the icon without a tooltip, next to text
    * 5. 'children' renders just some children
    */
-  layout?: 'text' | 'icon' | 'iconText';
+  layout?: 'text' | 'icon' | 'iconText' | 'image';
 
   /**
    * Defaults to false, but can be set to true to add target="_blank" and
@@ -57,13 +60,13 @@ type LinkProps = BaseLinkProps &
  * All built in mappings for icon name to element
  */
 const BUILT_IN_ICONS: Record<string, JSX.Element> = {
-  strava: <FaIcon icon={faStrava} />,
   spotify: <FaIcon icon={faSpotify} />,
   github: <FaIcon icon={faGithubAlt} />,
   linkedin: <FaIcon icon={faLinkedinIn} />,
   instagram: <FaIcon icon={faInstagram} />,
   about: <FaIcon icon={faQuestion} />,
   email: <FaIcon icon={faPaperPlane} />,
+  resume: <FaIcon icon={faFileLines} />,
 };
 
 /**
@@ -86,6 +89,7 @@ const createIconElement = ({ icon, layout = 'text' }: Pick<BaseLinkProps, 'icon'
 export function Link({
   title,
   href,
+  img,
   icon,
   children,
   isButton,
@@ -105,6 +109,9 @@ export function Link({
     if (initialLayout === 'text' && title) {
       return 'text';
     }
+    if (['img', 'image'].includes(initialLayout) && img) {
+      return 'image';
+    }
     if (['icon', 'iconText'].includes(initialLayout) && icon) {
       return initialLayout;
     }
@@ -123,6 +130,8 @@ export function Link({
     switch (layout) {
       case 'icon':
         return createIconElement({ icon, layout });
+      case 'image':
+        return <Image src={img} alt="mw." width={200} height={50} priority />;
       case 'iconText':
         return (
           <>

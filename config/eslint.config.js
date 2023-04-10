@@ -1,4 +1,4 @@
-const BASE_EXTENSIONS = ['airbnb', 'airbnb/hooks', 'prettier', 'next', 'plugin:dg/all'];
+const BASE_EXTENSIONS = ['airbnb', 'airbnb/hooks', 'prettier', 'next', 'plugin:mw/all'];
 
 const TYPESCRIPT_EXTENSIONS = [
   ...BASE_EXTENSIONS,

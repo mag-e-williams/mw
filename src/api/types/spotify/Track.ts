@@ -1,6 +1,7 @@
 /**
  * Used for artists, albums, tracks, etc
  */
+
 interface ReferenceObject {
   external_urls: {
     /**

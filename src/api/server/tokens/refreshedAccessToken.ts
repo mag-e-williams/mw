@@ -29,7 +29,7 @@ const getLatestTokenIfValid = async ({ name }: FetchTokenProps) => {
 
   // Shouldn't happen unless invalid name, so it's a big error
   if (!token || !token.refreshToken) {
-    throw new TypeError('Missing token');
+    throw new TypeError(`Missing token ${name}`);
   }
 
   // Return either refresh + access, or just refresh if invalid

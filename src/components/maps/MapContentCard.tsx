@@ -9,7 +9,6 @@ const MIN_DIMENSION = 297;
 const EXPANDED_HEIGHT = 500;
 
 type MapContentCardProps = {
-  isExpanded?: boolean;
   backgroundImageUrl: string | null;
 };
 

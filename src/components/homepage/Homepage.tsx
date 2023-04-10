@@ -1,13 +1,12 @@
 import { useData } from 'api/useData';
 import { ContentGrid } from 'components/ContentGrid';
-// import { MapPreviewCard } from 'components/homepage/MapPreviewCard';
+import { MapPreviewCard } from 'components/homepage/MapPreviewCard';
 import { HOMEPAGE_TITLE, Meta } from 'components/Meta';
 import { useGridAnimation } from 'hooks/useGridAnimation';
 import { useMemo, useRef } from 'react';
-// import { IntroCard } from './IntroCard';
-// import { ProjectCard } from './ProjectCard';
-// import { SpotifyCard } from './SpotifyCard';
-// import { StravaCard } from './StravaCard';
+import { IntroCard } from './IntroCard';
+import { ProjectCard } from './ProjectCard';
+import { SpotifyCard } from './SpotifyCard';
 
 /**
  * Puts all projects into a grid using `projects` data,
@@ -15,8 +14,8 @@ import { useMemo, useRef } from 'react';
  * toggle.
  */
 export function Homepage() {
-  // const { data: projects } = useData('projects');
-  // const { data: introBlock } = useData('intro');
+  const { data: projects } = useData('projects');
+  const { data: introBlock } = useData('intro');
 
   // Grabs the first intro block text element, essentially.
   const firstParagraph = '';
@@ -28,31 +27,29 @@ export function Homepage() {
   const gridRef = useRef<HTMLDivElement | null>(null);
   const turnOnAnimation = useGridAnimation(gridRef);
 
-  const projectCards = null;
-    // projects?.map((project) => (
-    //   <ProjectCard key={project.title} {...project} turnOnAnimation={turnOnAnimation} />
-    // )) ?? [];
+  const projectCards =
+    projects?.map((project) => (
+      <ProjectCard key={project.title} {...project} turnOnAnimation={turnOnAnimation} />
+    )) ?? [];
 
   // These index into projectCards to splice in other cards
-  const otherCards = null;
-  // useMemo(
-  //   () => [
-  //     // { index: 0, card: <IntroCard key="intro" /> },
-  //     // { index: 0, card: <MapPreviewCard key="map" turnOnAnimation={turnOnAnimation} /> },
-  //     { index: 2, card: <SpotifyCard key="spotify" /> },
-  //     // { index: 6, card: <StravaCard key="strava" /> },
-  //   ],
-  //   [turnOnAnimation],
-  // );
+  const otherCards = useMemo(
+    () => [
+      { index: 0, card: <IntroCard key="intro" /> },
+      { index: 0, card: <MapPreviewCard key="map" turnOnAnimation={turnOnAnimation} /> },
+      { index: 2, card: <SpotifyCard key="spotify" /> },
+    ],
+    [turnOnAnimation],
+  );
 
   return (
     <>
       <Meta title={HOMEPAGE_TITLE} description={firstParagraph} />
       <ContentGrid gridRef={gridRef}>
-        {/* {otherCards.map(({ index, card }, arrayIndex) => {
+        {otherCards.map(({ index, card }, arrayIndex) => {
           const nextItem = otherCards[arrayIndex + 1];
           return [card, ...projectCards.slice(index, nextItem?.index)];
-        })} */}
+        })}
       </ContentGrid>
     </>
   );

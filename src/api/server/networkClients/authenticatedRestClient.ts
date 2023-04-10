@@ -22,9 +22,9 @@ const fetchWithAuth =
         },
       });
     };
-
     // Fetch data normally once and if there's an auth error, try again with a new token before failing
     let data = await runFetch(false);
+
     if (!isAuthedStatus(data)) {
       data = await runFetch(true);
       if (!isAuthedStatus(data)) {

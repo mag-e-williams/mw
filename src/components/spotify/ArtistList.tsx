@@ -1,4 +1,5 @@
 import type { Artist } from 'api/types/spotify/Track';
+import { Show } from 'api/types/spotify/Episode';
 import { Link } from 'components/Link';
 import { useLinkWithName } from 'hooks/useLinkWithName';
 import { Fragment } from 'react';
@@ -6,7 +7,7 @@ import { Typography } from '@mui/material';
 import { truncated } from 'helpers/truncated';
 
 type ArtistListProps = {
-  artists: Array<Artist>;
+  artists: Array<Artist> | Array<Show>;
 };
 
 interface SeparatorProps {
@@ -38,7 +39,7 @@ const separator = ({ index, fullList }: SeparatorProps) => {
  */
 export function ArtistList({ artists }: ArtistListProps) {
   const baseLink = useLinkWithName('Spotify');
-  const artistLink = ({ name, external_urls }: Artist) => {
+  const artistLink = ({ name, external_urls }: Artist | Show) => {
     if (!baseLink) {
       return null;
     }

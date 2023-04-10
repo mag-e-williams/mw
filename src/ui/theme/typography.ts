@@ -52,7 +52,7 @@ export function getTypography(theme: Theme): TypographyOptions {
       fontSize: 17,
     },
     body2: {
-      fontSize: 17,
+      fontSize: 15,
     },
     overline: {
       fontSize: 12,

@@ -6,11 +6,10 @@ import type { GetStaticProps } from 'next/types';
 import type { GetLayout } from 'types/Page';
 
 type PageProps = {
-  fallback: FetchedFallbackData<'footer' | 'version'>;
+  fallback: FetchedFallbackData<'footer'>;
 };
 
-export const getStaticProps: GetStaticProps<PageProps> = async () =>
-  fetchFallbackData(['version', 'footer']);
+export const getStaticProps: GetStaticProps<PageProps> = async () => fetchFallbackData(['footer']);
 
 /**
  * Error page, for 404s specifically

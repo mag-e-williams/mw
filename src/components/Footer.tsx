@@ -2,7 +2,7 @@ import { useData } from 'api/useData';
 import { Section } from 'ui/Section';
 import { Nav, NavGroup, NavItem } from 'ui/Nav';
 import { Container } from '@mui/material';
-import type { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
+import { LinkType } from 'api/types/Link';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { Link } from './Link';
 
@@ -39,9 +39,8 @@ function FooterLink({ link }: { link: LinkType }) {
  * Creates the site footer component - shows version data + copyright
  */
 export function Footer() {
-  const { data: version } = useData('version');
   const { data: footerLinks } = useData('footer');
-  const nonIconFooterLinks = footerLinks?.filter((link) => !link.icon);
+  // const nonIconFooterLinks = footerLinks?.filter((link) => !link.icon);
   const iconFooterLinks = footerLinks?.filter((link) => link.icon);
   return (
     <Container component={Section} sx={{ padding: 0 }}>
@@ -58,16 +57,14 @@ export function Footer() {
           })}
         >
           <NavGroup>
-            <NavItem>© {new Date().getFullYear()} Dylan Gattey</NavItem>
-            <NavItem sx={{ padding: 0 }}>•</NavItem>
-            <NavItem>{version}</NavItem>
+            <NavItem>© {new Date().getFullYear()} margret williams</NavItem>
           </NavGroup>
           <NavGroup sx={{ columnGap: 4 }} component="div">
-            <HorizontalStack component="ul" sx={{ padding: 0, margin: 0 }}>
+            {/* <HorizontalStack component="ul" sx={{ padding: 0, margin: 0 }}>
               {nonIconFooterLinks?.map((link) => (
                 <FooterLink link={link} key={link.url} />
               ))}
-            </HorizontalStack>
+            </HorizontalStack> */}
             <HorizontalStack
               component="ul"
               sx={{

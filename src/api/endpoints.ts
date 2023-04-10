@@ -1,11 +1,8 @@
-// import { fetchFooterLinks } from './server/contentful/fetchFooterLinks';
-// import { fetchIntroContent } from './server/contentful/fetchIntroContent';
-// import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
-// import { fetchPrivacyContent } from './server/contentful/fetchPrivacyContent';
-// import { fetchProjects } from './server/contentful/fetchProjects';
-// import { fetchRepoVersion } from './server/github/fetchRepoVersion';
+import { fetchFooterLinks } from './server/data/fetchFooterLinks';
+import { fetchIntroContent } from './server/data/fetchIntroContent';
+import { fetchCurrentLocation } from './server/data/fetchCurrentLocation';
+import { fetchProjects } from './server/data/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
-// import { fetchLatestStravaActivityFromDb } from './server/strava/fetchLatestStravaActivityFromDb';
 
 /**
  * All possible types of endpoints we could request
@@ -22,36 +19,12 @@ export type EndpointType<Key extends EndpointKey> = ReturnType<typeof endpoints[
  */
 export type AwaitedType<Key extends EndpointKey> = Awaited<EndpointType<Key>>;
 
-/**
- * These represent all possible endpoints our server can handle/call. To add
- * a new one, add an import for the fetcher and add a short key to identify it.
- * The keys can have slashes, representing sub paths. Use this ONLY from the
- * server or `getStaticProps`, NOT from the client!
- */
 export const endpoints = {
-  // // Intro block of content via Contentful
-  // intro: fetchIntroContent,
-
-  // // Privacy block of content via Contentful
-  // privacy: fetchPrivacyContent,
-
-  // // My current location via Contentful
-  // location: fetchCurrentLocation,
-
-  // // All projects via Contentful
-  // projects: fetchProjects,
-
-  // // Footer links via Contentful
-  // footer: fetchFooterLinks,
-
-  // // App version via Github
-  // version: fetchRepoVersion,
-
-  // Last played song via Spotify
+  intro: fetchIntroContent,
+  location: fetchCurrentLocation,
+  projects: fetchProjects,
+  footer: fetchFooterLinks,
   'latest/track': fetchRecentlyPlayed,
-
-  // Fetches the latest Strava activity I've done
-  // 'latest/activity': fetchLatestStravaActivityFromDb,
 } as const;
 
 /**

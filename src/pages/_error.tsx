@@ -17,7 +17,7 @@ type LayoutProps = PageProps & {
   /**
    * Provides SWR with fallback version data
    */
-  fallback: FetchedFallbackData<'version' | 'footer'>;
+  fallback: FetchedFallbackData<'footer'>;
 };
 
 /**
@@ -28,7 +28,7 @@ export const getStaticProps = async (context: NextPageContext) => {
   const { res, err, asPath } = context;
   const errorCode = err?.statusCode ?? 404;
   const statusCode = res ? res.statusCode : errorCode;
-  const { props: fallbackProps } = await fetchFallbackData(['version', 'footer']);
+  const { props: fallbackProps } = await fetchFallbackData(['footer']);
   const props: PageProps = {
     ...fallbackProps,
     ...errorProps,

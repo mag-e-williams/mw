@@ -1,11 +1,12 @@
 import type { Track } from 'api/types/spotify/Track';
+import type { Episode } from 'api/types/spotify/Episode';
 import { Image } from 'components/Image';
 import { Link } from 'components/Link';
 import { useLinkWithName } from 'hooks/useLinkWithName';
 import { Card } from '@mui/material';
 
 type AlbumImageProps = {
-  album: Track['album'];
+  album: Track['album'] | Episode['show'];
 };
 
 // In px, the max image size we want from the API. We should have this be as big as it supports, as Next can resize down.
@@ -22,6 +23,7 @@ export function AlbumImage({ album }: AlbumImageProps) {
     title: album.name,
     url: album.external_urls.spotify,
   });
+
   const albumImage = album.images.find((image) => image?.width === API_IMAGE_SIZE);
   if (!albumLink || !albumImage) {
     return null;
