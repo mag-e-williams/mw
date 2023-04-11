@@ -1,15 +1,15 @@
 import { useData } from 'api/useData';
 import type { ContentCardProps } from 'components/ContentCard';
-import { useColorScheme } from 'hooks/useColorScheme';
-import { FullCertCard } from 'components/certifications/FullCertCard';
+// import { useColorScheme } from 'hooks/useColorScheme';
+import { CertificationsCard } from 'components/certifications/CertificationsCard';
 
-type MapPreviewCardProps = Pick<ContentCardProps, 'turnOnAnimation'>;
+type CertPreviewCardProps = Pick<ContentCardProps, 'turnOnAnimation'>;
 
-export function CertificationPreviewCard({ turnOnAnimation }: MapPreviewCardProps) {
+export function CertificationPreviewCard({ turnOnAnimation }: CertPreviewCardProps) {
   const { data: certs } = useData('certifications');
-  const { colorScheme } = useColorScheme();
+  // const { colorScheme } = useColorScheme();
   return (
-    <FullCertCard
+    <CertificationsCard
       turnOnAnimation={turnOnAnimation}
       certifications={certs}
       // backgroundImageUrl={backgroundImageUrl}

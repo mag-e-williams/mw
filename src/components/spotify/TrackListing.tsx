@@ -34,7 +34,7 @@ export function TrackListing({ track, hasLogo }: TrackListingProps) {
   if (track.type === 'episode') {
     trackImage = <AlbumImage album={track.show} />;
     artistName = <ArtistList artists={[track.show]} />;
-  } else if (track.type == 'track') {
+  } else if (track.type === 'track') {
     trackImage = <AlbumImage album={track.album} />;
     artistName = <ArtistList artists={track.artists} />;
   }

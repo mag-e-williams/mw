@@ -1,10 +1,13 @@
 import type { LinkType as Link } from 'api/types/Link';
 import { truncated } from 'helpers/truncated';
 import { useState } from 'react';
-import { Card, Theme, Typography } from '@mui/material';
+import { Card, Theme, Typography, IconButton } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
 import { ContentWrappingLink } from './ContentWrappingLink';
+import { HorizontalStack } from 'ui/HorizontalStack';
+import { Maximize2, Minimize2 } from 'lucide-react';
+// import IconButton from '@mui/material';
 
 export type ContentCardProps = Pick<
   React.ComponentProps<'div'>,
@@ -73,16 +76,13 @@ function getCardSx(
     isClickable,
     horizontalSpan,
     verticalSpan,
-    bgColor,
-  }: { isClickable: boolean; horizontalSpan: number; verticalSpan: number | null; bgColor: string },
+  }: { isClickable: boolean; horizontalSpan: number; verticalSpan: number | null },
 ) {
   return {
     position: 'relative',
     overflow: 'hidden',
     willChange: 'transform',
     transition: `${theme.transitions.create(['width', 'height', 'box-shadow', 'border-color'])}`,
-    // 16ac7f
-    bgcolor: bgColor,
     // Unfortunately required for the images to animate size correctly. Look into changing this!
     '& > div': {
       transform: 'none !important',
@@ -169,10 +169,6 @@ function OverlayContent({ overlay, sx }: { overlay: NonNullable<React.ReactNode>
           paddingRight: theme.spacing(1.75),
           paddingTop: theme.spacing(1),
           paddingBottom: theme.spacing(1),
-          boxShadow: theme.vars.extraShadows.card.overlayHovered,
-          '&:hover': {
-            boxShadow: theme.vars.extraShadows.card.overlayHovered,
-          },
           zIndex: 1,
         }),
         sx,
@@ -212,6 +208,7 @@ export function ContentCard({
     ? () => {
         turnOnAnimation?.();
         setIsExpanded(!isExpanded);
+
         onExpansion(!isExpanded);
       }
     : undefined;
@@ -224,11 +221,10 @@ export function ContentCard({
             isClickable,
             horizontalSpan: actualHSpan,
             verticalSpan: actualVSpan,
-            bgColor,
           }),
         sx,
       )}
-      onClick={toggleExpansion}
+      // onClick={closeCard}
       {...props}
     >
       <LinkWrappedChildren

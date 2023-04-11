@@ -39,7 +39,10 @@ export function Homepage() {
       { index: 0, card: <IntroCard key="intro" /> },
       { index: 0, card: <MapPreviewCard key="mapx" turnOnAnimation={turnOnAnimation} /> },
       { index: 2, card: <SpotifyCard key="spotify" /> },
-      { index: 4, card: <CertificationPreviewCard key="certsxyc" /> },
+      {
+        index: 4,
+        card: <CertificationPreviewCard key="certsxyc" turnOnAnimation={turnOnAnimation} />,
+      },
     ],
     [turnOnAnimation],
   );

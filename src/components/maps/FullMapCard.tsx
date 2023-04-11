@@ -1,5 +1,5 @@
 import type { ContentCardProps } from 'components/ContentCard';
-import { Maximize2, Minimize2, LocateFixed } from 'lucide-react';
+import { Maximize2, Minimize2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Map } from 'components/maps/Map';
 import { Marker } from 'components/maps/Marker';
@@ -36,19 +36,6 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
     [isExpanded, theme],
   );
 
-  const locationControl = useMemo(
-    () => (
-      <Control
-        onClick={centerLocation ? () => setCenterLocation(false) : undefined}
-        position="bottom-right"
-        theme={theme}
-      >
-        <LocateFixed size="1em" />
-      </Control>
-    ),
-    [centerLocation, theme],
-  );
-
   return (
     <MapContentCard
       isExpanded={isExpanded}
@@ -65,7 +52,6 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
           setCenterLocation={() => setCenterLocation(true)}
         >
           {expansionControl}
-          {/* {locationControl} */}
           <Marker key="home" point={location.point} image={location.image} />
         </Map>
       )}

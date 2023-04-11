@@ -27,6 +27,11 @@ export const footerLinks: LinkType[] = [
     url: 'https://www.instagram.com/35mmagoo/',
   },
   {
+    title: 'Letterboxd',
+    icon: 'film',
+    url: 'https://letterboxd.com/magoo_willems/',
+  },
+  {
     title: 'Spotify',
     icon: 'spotify',
     url: 'https://open.spotify.com/user/1235648358',
