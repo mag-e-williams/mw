@@ -1,5 +1,4 @@
 import { Track } from './Track';
-import { Episode } from './Episode';
 /**
  * Represents the return value of the recently played endpoint from Spotify
  */
