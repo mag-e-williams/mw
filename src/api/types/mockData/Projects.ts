@@ -6,8 +6,8 @@ export const Projects: Array<ProjectType> = [
     type: 'string',
     creationDate: 'hwllo',
     link: {
-      title: 'hello',
-      url: 'https://google.com',
+      title: 'Palantie',
+      url: 'https://www.palantir.com/',
     },
     layout: 'wide',
     thumbnail: {
@@ -24,12 +24,11 @@ export const Projects: Array<ProjectType> = [
     type: 'string',
     creationDate: 'hwllo',
     link: {
-      title: 'hello',
+      title: 'The Tie',
       url: 'https://www.thetie.io/',
     },
-    // layout: 'string',
     thumbnail: {
-      url: '/',
+      url: '/projectBanners/Tie.png',
       width: 30,
       height: 30,
     },
@@ -60,7 +59,7 @@ export const Projects: Array<ProjectType> = [
     type: 'string',
     creationDate: 'hwllo',
     link: {
-      title: 'hello',
+      title: 'LinkeIn',
       url: 'https://www.linkedin.com/in/margret-williams/',
     },
     layout: 'tall',
@@ -78,7 +77,7 @@ export const Projects: Array<ProjectType> = [
     type: 'string',
     creationDate: 'hwllo',
     link: {
-      title: 'hello',
+      title: 'Resume',
       url: '/MargretWilliamsResume2023.pdf',
     },
     // layout: string,

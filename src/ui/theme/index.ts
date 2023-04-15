@@ -206,7 +206,7 @@ export function getTheme(): Theme {
         styleOverrides: {
           root: ({ theme }) => ({
             background: theme.vars.palette.card.background,
-            borderRadius: theme.spacing(6),
+            borderRadius: theme.spacing(5),
             borderColor: theme.vars.palette.card.border,
             borderWidth: 1,
             borderStyle: 'solid',
@@ -223,7 +223,6 @@ export function getTheme(): Theme {
             borderColor: theme.vars.palette.card.border,
             borderWidth: 1,
             borderStyle: 'solid',
-            boxShadow: theme.shadows[2],
             padding: theme.spacing(0.5, 1.5),
             color: theme.vars.palette.text.primary,
           }),

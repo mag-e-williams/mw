@@ -165,10 +165,6 @@ function OverlayContent({ overlay, sx }: { overlay: NonNullable<React.ReactNode>
           paddingRight: theme.spacing(1.75),
           paddingTop: theme.spacing(1),
           paddingBottom: theme.spacing(1),
-          boxShadow: theme.vars.extraShadows.card.overlayHovered,
-          '&:hover': {
-            boxShadow: theme.vars.extraShadows.card.overlayHovered,
-          },
           zIndex: 1,
         }),
         sx,
