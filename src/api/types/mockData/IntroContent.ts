@@ -9,7 +9,7 @@ export const introContent: IntroContentType = {
     content: {
       title: '👋 Hi friends!',
       body: [
-        "I'm Maggie, an engineer & compassionate problem solver.",
+        "I'm Maggie, an engineer & creative problem solver.",
         'Huge fan of building human-centered applications, doing pottery, fostering dogs, and taking photos 📸',
       ],
     },
