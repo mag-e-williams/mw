@@ -16,7 +16,7 @@ import { SpotifyCard } from './SpotifyCard';
  */
 export function Homepage() {
   const { data: projects } = useData('projects');
-  const { data: introBlock } = useData('intro');
+  // const { data: introBlock } = useData('intro');
 
   // Grabs the first intro block text element, essentially.
   const firstParagraph = '';
@@ -36,12 +36,12 @@ export function Homepage() {
   // These index into projectCards to splice in other cards
   const otherCards = useMemo(
     () => [
-      { index: 0, card: <IntroCard key="intro" /> },
+      { index: 0, card: <IntroCard key="introCard" /> },
       { index: 0, card: <MapPreviewCard key="mapx" turnOnAnimation={turnOnAnimation} /> },
       { index: 2, card: <SpotifyCard key="spotify" /> },
       {
         index: 4,
-        card: <CertificationPreviewCard key="certsxyc" turnOnAnimation={turnOnAnimation} />,
+        card: <CertificationPreviewCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
     ],
     [turnOnAnimation],

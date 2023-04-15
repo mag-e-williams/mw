@@ -1,13 +1,10 @@
 import type { LinkType as Link } from 'api/types/Link';
 import { truncated } from 'helpers/truncated';
 import { useState } from 'react';
-import { Card, Theme, Typography, IconButton } from '@mui/material';
+import { Card, Theme, Typography } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
 import { ContentWrappingLink } from './ContentWrappingLink';
-import { HorizontalStack } from 'ui/HorizontalStack';
-import { Maximize2, Minimize2 } from 'lucide-react';
-// import IconButton from '@mui/material';
 
 export type ContentCardProps = Pick<
   React.ComponentProps<'div'>,
@@ -23,8 +20,6 @@ export type ContentCardProps = Pick<
    * How many rows the card spans, defaults to 1
    */
   verticalSpan?: number;
-
-  hasImage?: boolean;
 
   /**
    * If anything is specified here, it appears in an overlay on top of the card
@@ -83,6 +78,7 @@ function getCardSx(
     overflow: 'hidden',
     willChange: 'transform',
     transition: `${theme.transitions.create(['width', 'height', 'box-shadow', 'border-color'])}`,
+
     // Unfortunately required for the images to animate size correctly. Look into changing this!
     '& > div': {
       transform: 'none !important',
@@ -169,6 +165,10 @@ function OverlayContent({ overlay, sx }: { overlay: NonNullable<React.ReactNode>
           paddingRight: theme.spacing(1.75),
           paddingTop: theme.spacing(1),
           paddingBottom: theme.spacing(1),
+          boxShadow: theme.vars.extraShadows.card.overlayHovered,
+          '&:hover': {
+            boxShadow: theme.vars.extraShadows.card.overlayHovered,
+          },
           zIndex: 1,
         }),
         sx,
@@ -185,7 +185,6 @@ function OverlayContent({ overlay, sx }: { overlay: NonNullable<React.ReactNode>
  * Wraps content in a card for the content grid
  */
 export function ContentCard({
-  hasImage,
   horizontalSpan,
   verticalSpan,
   children,
@@ -202,13 +201,12 @@ export function ContentCard({
   const actualHSpan = isExpanded ? 3 : horizontalSpan ?? 1;
   const actualVSpan = isExpanded ? null : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
-  const bgColor = hasImage ? '#16ac7' : '#16ac7';
+
   // Swaps the expansion variable and calls the user callback
   const toggleExpansion = onExpansion
     ? () => {
         turnOnAnimation?.();
         setIsExpanded(!isExpanded);
-
         onExpansion(!isExpanded);
       }
     : undefined;
@@ -217,14 +215,10 @@ export function ContentCard({
     <Card
       sx={mixinSx(
         (theme) =>
-          getCardSx(theme, {
-            isClickable,
-            horizontalSpan: actualHSpan,
-            verticalSpan: actualVSpan,
-          }),
+          getCardSx(theme, { isClickable, horizontalSpan: actualHSpan, verticalSpan: actualVSpan }),
         sx,
       )}
-      // onClick={closeCard}
+      onClick={toggleExpansion}
       {...props}
     >
       <LinkWrappedChildren

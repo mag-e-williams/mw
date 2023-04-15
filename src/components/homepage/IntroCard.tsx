@@ -55,9 +55,9 @@ export function IntroCard() {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
 
-  // if (!introBlock?.textBlock?.content) {
-  //   return null;
-  // }
+  if (!introBlock?.textBlock?.content) {
+    return null;
+  }
 
   return (
     <>

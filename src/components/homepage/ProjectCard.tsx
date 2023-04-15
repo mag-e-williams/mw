@@ -22,7 +22,6 @@ export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }:
   const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes(layout);
   return (
     <ContentCard
-      hasImage={thumbnail && notEmpty(thumbnail.url)}
       verticalSpan={verticalSpan}
       horizontalSpan={horizontalSpan}
       link={link}
