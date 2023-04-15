@@ -1,3 +1,1 @@
-Closes
-
-## What changed? Why?
+## Describe your changes

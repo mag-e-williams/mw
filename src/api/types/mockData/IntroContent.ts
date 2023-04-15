@@ -8,7 +8,10 @@ export const introContent: IntroContentType = {
   textBlock: {
     content: {
       title: '👋 Hi friends!',
-      body: ["I'm Maggie", 'intro content'],
+      body: [
+        "I'm Maggie, an engineer & compassionate problem solver.",
+        'Huge fan of building human-centered applications, doing pottery, fostering dogs, and taking photos 📸',
+      ],
     },
   },
 };

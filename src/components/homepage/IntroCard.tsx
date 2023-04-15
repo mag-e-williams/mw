@@ -95,7 +95,7 @@ export function IntroCard() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'left',
           background: 'none',
           border: 'none',
           boxShadow: 'none',
