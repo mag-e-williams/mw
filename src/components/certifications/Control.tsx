@@ -23,11 +23,6 @@ const CLASSNAME = 'mapboxgl-ctrl';
  */
 class MWControl {
   /**
-   * What Mapbox uses for the map itself - needs to be named this
-   */
-  _map: Map | undefined;
-
-  /**
    * What Mapbox uses for the container for the element we're adding -
    * needs to be named this
    */
@@ -55,8 +50,7 @@ class MWControl {
    * Creates a new div that holds a `ControlContainer` for the contents. Pass
    * onClick if there are not multiple children.
    */
-  onAdd(map: Map) {
-    this._map = map;
+  onAdd() {
     this._container?.parentNode?.removeChild(this._container);
     this._container = document.createElement('div');
     this.#root = createRoot(this._container);
@@ -95,7 +89,6 @@ class MWControl {
     this._container?.parentNode?.removeChild(this._container);
     this._container = undefined;
     this.#root = null;
-    this._map = undefined;
   }
 }
 
@@ -115,18 +108,5 @@ export function Control({ position, ...props }: ControlProps) {
     [props, theme],
   );
 
-  // Make sure to update the children/etc when they change
-  useEffect(() => control.current?.onPropsUpdate(properProps), [properProps]);
-
-  useControl(
-    () => {
-      const newControl = new MWControl(properProps);
-      control.current = newControl;
-      return newControl;
-    },
-    {
-      position,
-    },
-  );
-  return null;
+  return <ControlContainer {...properProps} />;
 }

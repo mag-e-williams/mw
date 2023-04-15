@@ -9,4 +9,5 @@ export type BadgeType = {
   };
   type: string | undefined;
   link: Link;
+  visible: boolean;
 };

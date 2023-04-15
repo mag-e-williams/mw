@@ -9,6 +9,11 @@ import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
 type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;
 
+function notEmpty(str: string | undefined): boolean {
+  return !(str == null) && !(str === '');
+  return true;
+}
+
 /**
  * Uses the `ContentCard` to show a project's details
  */
@@ -36,7 +41,7 @@ export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }:
             url={thumbnail.url}
             width={width}
             height={height}
-            alt={title ?? 'Project image'}
+            alt={title ?? 'Project Image'}
             sizes={sizes}
           />
         </HoverableContainer>

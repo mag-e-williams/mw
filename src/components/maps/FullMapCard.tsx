@@ -17,10 +17,12 @@ type FullMapCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
  * Shows a canvas-based map of my current location. This should be imported ON DEMAND
  * as the mapbox maps are absolutely massive so we should delay as long as possible.
  */
-function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapCardProps) {
+export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapCardProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasMapLoaded, setHasMapLoaded] = useState(false);
+  const [centerLocation, setCenterLocation] = useState(false);
+
   const expansionControl = useMemo(
     () => (
       <Control
@@ -47,6 +49,7 @@ function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapC
           isExpanded={isExpanded}
           isLoaded={hasMapLoaded}
           setMapHasLoaded={() => setHasMapLoaded(true)}
+          setCenterLocation={() => setCenterLocation(true)}
         >
           {expansionControl}
           <Marker key="home" point={location.point} image={location.image} />
@@ -55,6 +58,3 @@ function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapC
     </MapContentCard>
   );
 }
-
-// Enables dynamic import
-export default FullMapCard;

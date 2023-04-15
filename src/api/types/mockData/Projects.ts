@@ -83,7 +83,7 @@ export const Projects: Array<ProjectType> = [
     },
     // layout: string,
     thumbnail: {
-      url: '/',
+      url: '/projectBanners/Resume.png',
       width: 30,
       height: 30,
     },
@@ -109,22 +109,22 @@ export const Projects: Array<ProjectType> = [
   //         json: 'string'
   //     }
   // },
-  {
-    title: 'Certifications',
-    type: 'string',
-    creationDate: 'hwllo',
-    link: {
-      title: 'hello',
-      url: 'https://google.com',
-    },
-    // layout: string,
-    thumbnail: {
-      url: '/',
-      width: 30,
-      height: 30,
-    },
-    description: {
-      json: 'string',
-    },
-  },
+  // {
+  //   title: 'Certifications',
+  //   type: 'string',
+  //   creationDate: 'hwllo',
+  //   link: {
+  //     title: 'hello',
+  //     url: 'https://google.com',
+  //   },
+  //   // layout: string,
+  //   thumbnail: {
+  //     url: '/',
+  //     width: 30,
+  //     height: 30,
+  //   },
+  //   description: {
+  //     json: 'string',
+  //   },
+  // },
 ];
