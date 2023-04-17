@@ -4,7 +4,10 @@ export type ProjectType = {
   title: string | undefined;
   creationDate: string | undefined;
   type: string | undefined;
-  link: LinkType;
+  link: {
+    title: string | undefined;
+    url: string | undefined;
+  };
   layout: string | undefined;
   thumbnail: {
     url: string | undefined;
