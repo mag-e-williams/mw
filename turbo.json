@@ -10,7 +10,6 @@
     ".sequelizerc",
     ".pretterrc.js",
     ".pretterignore",
-    "codegen.ts",
     "next.config.js",
     "tsconfig.json"
   ],
@@ -49,11 +48,6 @@
     },
     "lint:types": {
       "outputs": []
-    },
-    "codegen": {
-      "cache": false,
-      "inputs": ["src/api/server/*"],
-      "outputs": ["src/api/types/generated/*"]
     },
     "db": {
       "cache": false

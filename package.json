@@ -17,7 +17,6 @@
     "format": "prettier --loglevel warn --write \"**/*.{js,ts,tsx,mjs,cjs,css,md,json,yml,yaml}\"",
     "lint": "eslint . --cache --fix --ext .js,.ts,.tsx,.mjs,.cjs --no-eslintrc -c config/eslint.config.js",
     "lint:types": "tsc",
-    "codegen": "DOTENV_CONFIG_PATH='.env.development.local' graphql-codegen --require dotenv/config --config codegen.ts",
     "db": "sequelize",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:status": "sequelize db:migrate:status",
@@ -70,10 +69,6 @@
     "webpack": "5.75.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "2.15.0",
-    "@graphql-codegen/near-operation-file-preset": "2.4.4",
-    "@graphql-codegen/typescript": "2.8.3",
-    "@graphql-codegen/typescript-operations": "2.5.8",
     "@semantic-release/changelog": "6.0.2",
     "@types/mapbox-gl": "2.7.10",
     "@types/micromatch": "4.0.2",

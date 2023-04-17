@@ -22,7 +22,7 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
  */
 export function CertificationsCard({ certifications, turnOnAnimation }: CertificationCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes();
+  const { verticalSpan, horizontalSpan } = useCurrentImageSizes();
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const expansionControl = useMemo(

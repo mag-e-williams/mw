@@ -1,30 +1,30 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { CodegenConfig } from '@graphql-codegen/cli';
+// // eslint-disable-next-line import/no-extraneous-dependencies
+// import { CodegenConfig } from '@graphql-codegen/cli';
 
-require('dotenv').config();
+// require('dotenv').config();
 
-// Where all our documents to parse live by default
-const BASE_FOLDER = 'src/api/server';
+// // Where all our documents to parse live by default
+// const BASE_FOLDER = 'src/api/server';
 
-// Relative to BASE_FOLDER, where our generated files live
-const GENERATED_FOLDER = '../types/generated';
+// // Relative to BASE_FOLDER, where our generated files live
+// const GENERATED_FOLDER = '../types/generated';
 
-// Standard options for the files generated from operations or the main api file
-const SHARED_CONFIG = {
-  avoidOptionals: true,
-  immutableTypes: true,
-  skipTypename: true,
-  useTypeImports: true,
-  maybeValue: 'T | undefined',
-};
+// // Standard options for the files generated from operations or the main api file
+// const SHARED_CONFIG = {
+//   avoidOptionals: true,
+//   immutableTypes: true,
+//   skipTypename: true,
+//   useTypeImports: true,
+//   maybeValue: 'T | undefined',
+// };
 
-// Standard options for the *api.generated.ts files
-const API_CONFIG = {
-  ...SHARED_CONFIG,
-  constEnums: true,
-  enumsAsTypes: true,
-  defaultScalarType: 'unknown',
-};
+// // Standard options for the *api.generated.ts files
+// const API_CONFIG = {
+//   ...SHARED_CONFIG,
+//   constEnums: true,
+//   enumsAsTypes: true,
+//   defaultScalarType: 'unknown',
+// };
 
 /**
  * Hi! Complicated file, read me to understand! This creates generators for
@@ -39,69 +39,69 @@ const API_CONFIG = {
  * You'll notice that every API has the same configuration except for the name,
  * scalars, and endpoint/authorization. That's intentional!
  */
-const createApiGenerator = (
-  name: string,
-  {
-    schemaEndpoint,
-    token,
-    scalars,
-    onlyOperationTypes,
-  }: {
-    schemaEndpoint: string;
-    token: string;
-    scalars: Record<string, unknown>;
-    onlyOperationTypes: boolean;
-  },
-): CodegenConfig['generates'] => {
-  const documents = `${BASE_FOLDER}/${name}/*.ts`;
-  const baseTypesPath = `${GENERATED_FOLDER}/${name}Api.generated.ts`;
-  const schemas = [
-    {
-      [schemaEndpoint]: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    },
-  ];
+// const createApiGenerator = (
+//   name: string,
+//   {
+//     schemaEndpoint,
+//     token,
+//     scalars,
+//     onlyOperationTypes,
+//   }: {
+//     schemaEndpoint: string;
+//     token: string;
+//     scalars: Record<string, unknown>;
+//     onlyOperationTypes: boolean;
+//   },
+// ): CodegenConfig['generates'] => {
+//   const documents = `${BASE_FOLDER}/${name}/*.ts`;
+//   const baseTypesPath = `${GENERATED_FOLDER}/${name}Api.generated.ts`;
+//   const schemas = [
+//     {
+//       [schemaEndpoint]: {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       },
+//     },
+//   ];
 
-  return {
-    // Creates the main `${name}Api.generated.ts` file
-    [`${BASE_FOLDER}/${baseTypesPath}`]: {
-      documents,
-      schema: schemas,
-      plugins: ['typescript'],
-      config: {
-        ...API_CONFIG,
-        onlyOperationTypes,
-        scalars,
-      },
-    },
+//   return {
+//     // Creates the main `${name}Api.generated.ts` file
+//     [`${BASE_FOLDER}/${baseTypesPath}`]: {
+//       documents,
+//       schema: schemas,
+//       plugins: ['typescript'],
+//       config: {
+//         ...API_CONFIG,
+//         onlyOperationTypes,
+//         scalars,
+//       },
+//     },
 
-    // Creates individual `.generated.ts` files for each .ts file that has operations
-    [`${BASE_FOLDER}/${name}/`]: {
-      documents,
-      schema: schemas,
-      plugins: ['typescript-operations'],
-      preset: 'near-operation-file',
-      presetConfig: {
-        baseTypesPath: `../${baseTypesPath}`,
-        folder: `../${GENERATED_FOLDER}`,
-      },
-      config: {
-        ...SHARED_CONFIG,
-        preResolveTypes: true,
-      },
-    },
-  };
-};
+//     // Creates individual `.generated.ts` files for each .ts file that has operations
+//     [`${BASE_FOLDER}/${name}/`]: {
+//       documents,
+//       schema: schemas,
+//       plugins: ['typescript-operations'],
+//       preset: 'near-operation-file',
+//       presetConfig: {
+//         baseTypesPath: `../${baseTypesPath}`,
+//         folder: `../${GENERATED_FOLDER}`,
+//       },
+//       config: {
+//         ...SHARED_CONFIG,
+//         preResolveTypes: true,
+//       },
+//     },
+//   };
+// };
 
-const config: CodegenConfig = {
-  overwrite: true,
-  hooks: {
-    afterAllFileWrite: ['prettier --write'],
-  },
-  generates: {},
-};
+// const config: CodegenConfig = {
+//   overwrite: true,
+//   hooks: {
+//     afterAllFileWrite: ['prettier --write'],
+//   },
+//   generates: {},
+// };
 
-export default config;
+// export default config;

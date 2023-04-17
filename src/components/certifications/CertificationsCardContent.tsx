@@ -8,10 +8,7 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   certifications: Array<Badge>;
 };
 
-export function CertificationsCardContent({
-  certifications,
-  turnOnAnimation,
-}: CertificationCardProps) {
+export function CertificationsCardContent({ certifications }: CertificationCardProps) {
   return (
     <Stack
       direction="row"

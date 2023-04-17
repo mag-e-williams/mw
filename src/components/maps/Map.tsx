@@ -1,6 +1,6 @@
 import type { MapLocation } from 'api/types/MapLocation';
 import { useEffect, useMemo, useRef } from 'react';
-import { AttributionControl, Map as MapGL, MapRef } from 'react-map-gl';
+import { Map as MapGL, MapRef } from 'react-map-gl';
 import { Box, useTheme } from '@mui/material';
 import { useColorScheme } from 'hooks/useColorScheme';
 import { StandardControls } from './StandardControls';
@@ -10,8 +10,6 @@ export type Props = {
    * Where we're centered and zoomed
    */
   location: MapLocation | null;
-
-  setCenterLocation: () => void;
 
   /**
    * If the map is a larger height
@@ -125,14 +123,7 @@ function Wrapper({ isLoaded, children }: { isLoaded: boolean; children: React.Re
 /**
  * Uses Mapbox to show a canvas-based map of my current location.
  */
-export function Map({
-  location,
-  children,
-  isExpanded,
-  isLoaded,
-  setMapHasLoaded,
-  setCenterLocation,
-}: Props) {
+export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded }: Props) {
   const theme = useTheme();
   const mapRef = useRef<MapRef>(null);
   const { colorScheme } = useColorScheme();

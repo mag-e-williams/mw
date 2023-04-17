@@ -21,7 +21,7 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasMapLoaded, setHasMapLoaded] = useState(false);
-  const [centerLocation, setCenterLocation] = useState(false);
+  // const [, setCenterLocation] = useState(false);
 
   const expansionControl = useMemo(
     () => (
@@ -49,7 +49,7 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
           isExpanded={isExpanded}
           isLoaded={hasMapLoaded}
           setMapHasLoaded={() => setHasMapLoaded(true)}
-          setCenterLocation={() => setCenterLocation(true)}
+          // setCenterLocation={() => setCenterLocation(true)}
         >
           {expansionControl}
           <Marker key="home" point={location.point} image={location.image} />
