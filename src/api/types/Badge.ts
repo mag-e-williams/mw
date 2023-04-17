@@ -4,7 +4,7 @@ export type BadgeType = {
     url: string | undefined;
   };
   link: {
-    url: string | undefined;
+    url: string;
   };
   visible: boolean;
 };

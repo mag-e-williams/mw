@@ -5,7 +5,7 @@ import { Stack } from '@mui/material';
 import { Certification } from './Certification';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge>;
+  certifications: Array<Badge> | undefined;
 };
 
 export function CertificationsCardContent({ certifications }: CertificationCardProps) {

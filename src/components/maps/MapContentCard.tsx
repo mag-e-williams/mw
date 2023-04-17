@@ -9,7 +9,7 @@ const MIN_DIMENSION = 297;
 const EXPANDED_HEIGHT = 500;
 
 type MapContentCardProps = {
-  backgroundImageUrl: string | null;
+  // backgroundImageUrl: string | null;
 };
 
 /**
@@ -18,7 +18,7 @@ type MapContentCardProps = {
  */
 export function MapContentCard({
   isExpanded,
-  backgroundImageUrl,
+  // backgroundImageUrl,
   sx,
   ...props
 }: MapContentCardProps & ContentCardProps & CardProps) {
@@ -34,12 +34,6 @@ export function MapContentCard({
             minHeight: isExpanded ? 360 : 200,
             height: isExpanded ? 360 : 200,
           },
-          ...(backgroundImageUrl && {
-            backgroundImage: `url('${backgroundImageUrl}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-          }),
         }),
         sx,
       )}

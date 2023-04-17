@@ -10,14 +10,13 @@ import { MapContentCard } from './MapContentCard';
 
 type FullMapCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   location: MapLocation;
-  backgroundImageUrl: string | null;
 };
 
 /**
  * Shows a canvas-based map of my current location. This should be imported ON DEMAND
  * as the mapbox maps are absolutely massive so we should delay as long as possible.
  */
-export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: FullMapCardProps) {
+export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasMapLoaded, setHasMapLoaded] = useState(false);
@@ -40,7 +39,6 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
     <MapContentCard
       isExpanded={isExpanded}
       onExpansion={!isExpanded ? setIsExpanded : undefined}
-      backgroundImageUrl={backgroundImageUrl}
       turnOnAnimation={turnOnAnimation}
     >
       {location.point && (
@@ -49,7 +47,6 @@ export function FullMapCard({ turnOnAnimation, location, backgroundImageUrl }: F
           isExpanded={isExpanded}
           isLoaded={hasMapLoaded}
           setMapHasLoaded={() => setHasMapLoaded(true)}
-          // setCenterLocation={() => setCenterLocation(true)}
         >
           {expansionControl}
           <Marker key="home" point={location.point} image={location.image} />

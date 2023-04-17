@@ -14,7 +14,7 @@ import { Control } from 'components/certifications/Control';
 import { CertificationsCardContent } from './CertificationsCardContent';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge>;
+  certifications: Array<Badge> | undefined;
 };
 
 /**
