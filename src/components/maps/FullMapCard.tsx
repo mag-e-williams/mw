@@ -9,7 +9,7 @@ import { useTheme } from '@mui/material';
 import { MapContentCard } from './MapContentCard';
 
 type FullMapCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  location: MapLocation;
+  location: MapLocation | undefined | null;
 };
 
 /**
@@ -41,7 +41,7 @@ export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
       onExpansion={!isExpanded ? setIsExpanded : undefined}
       turnOnAnimation={turnOnAnimation}
     >
-      {location.point && (
+      {location && location.point && (
         <Map
           location={location}
           isExpanded={isExpanded}
