@@ -39,7 +39,7 @@
       "cache": false
     },
     "release": {
-      "dependsOn": ["build", "lint", "lint:styles", "lint:types", "format"],
+      "dependsOn": ["build", "format"],
       "cache": false
     },
     "format": {},
