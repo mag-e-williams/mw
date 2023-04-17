@@ -1,5 +1,3 @@
-import { LinkType } from './Link';
-
 export type ProjectType = {
   title: string | undefined;
   creationDate: string | undefined;
