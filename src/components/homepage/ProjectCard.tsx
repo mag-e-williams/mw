@@ -12,14 +12,14 @@ type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;
 /**
  * Uses the `ContentCard` to show a project's details
  */
-export function ProjectCard({ title, layout, link, thumbnail, turnOnAnimation }: ProjectCardProps) {
+export function ProjectCard({ title, layout, thumbnail, turnOnAnimation }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes(layout);
   return (
     <ContentCard
       verticalSpan={verticalSpan}
       horizontalSpan={horizontalSpan}
-      link={link}
+      // link={link}
       overlay={title}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
