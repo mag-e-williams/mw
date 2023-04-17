@@ -17,11 +17,6 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   certifications: Array<Badge>;
 };
 
-function notEmpty(str: string | undefined): boolean {
-  return !(str == null) && !(str === '');
-  return true;
-}
-
 /**
  * Uses the `ContentCard` to show a project's details
  */
@@ -63,10 +58,7 @@ export function CertificationsCard({ certifications, turnOnAnimation }: Certific
       {expansionControl}
 
       {isExpanded ? (
-        <CertificationsCardContent
-          turnOnAnimation={turnOnAnimation}
-          certifications={certifications}
-        />
+        <CertificationsCardContent certifications={certifications} />
       ) : (
         <HoverableContainer isHovered={isHovered}>
           <Stack

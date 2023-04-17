@@ -25,7 +25,7 @@ export function CertificationsCardContent({
       {certifications
         ?.filter((cert) => cert.visible)
         .map((cert) => (
-          <Certification key={cert.title} turnOnAnimation={turnOnAnimation} certification={cert} />
+          <Certification key={cert.title} certification={cert} />
         ))}
     </Stack>
   );
