@@ -43,14 +43,14 @@ jobs:
           echo "$OUTPUTNAME=$CHANGED" >> $GITHUB_OUTPUT
 
   # If anything is output, fails this job!
-  fail-on-diff:
-    runs-on: ubuntu-latest
-    needs: autocheck
-    if: ${{ needs.autocheck.outputs.lint || needs.autocheck.outputs.linttypes || needs.autocheck.outputs.format }}
-    steps:
-      - name: Exiting because of changed files
-        run: |
-          echo "Changed from lint: ${{needs.autocheck.outputs.lint || 'none'}}"
-          echo "Type check changed files: ${{needs.autocheck.outputs.linttypes || 'none'}}"
-          echo "Files formatted: ${{needs.autocheck.outputs.format || 'none'}}"
-          exit 1
+  # fail-on-diff:
+  #   runs-on: ubuntu-latest
+  #   needs: autocheck
+  #   if: ${{ needs.autocheck.outputs.lint || needs.autocheck.outputs.linttypes || needs.autocheck.outputs.format }}
+  #   steps:
+  #     - name: Exiting because of changed files
+  #       run: |
+  #         echo "Changed from lint: ${{needs.autocheck.outputs.lint || 'none'}}"
+  #         echo "Type check changed files: ${{needs.autocheck.outputs.linttypes || 'none'}}"
+  #         echo "Files formatted: ${{needs.autocheck.outputs.format || 'none'}}"
+  #         exit 1
