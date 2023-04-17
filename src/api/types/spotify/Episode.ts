@@ -68,9 +68,7 @@ export type Album = ReferenceObject & {
 export type Episode = ReferenceObject & {
   artists: Array<Artist>;
   show: Show;
-
   album: Album;
-
   /**
    * May be present, if the right resource is used
    */
