@@ -10,9 +10,6 @@ importers:
       '@contentful/rich-text-types':
         specifier: 16.0.2
         version: 16.0.2
-      '@emotion/cache':
-        specifier: 11.10.5
-        version: 11.10.5
       '@emotion/react':
         specifier: 11.10.5
         version: 11.10.5(@babel/core@7.20.5)(@types/react@18.0.26)(react@18.2.0)
