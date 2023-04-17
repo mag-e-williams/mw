@@ -24,7 +24,7 @@ export const data: MyLocationQuery = {
   },
 };
 
-export async function fetchCurrentLocation(): Promise<MapLocation | null> {
+export function fetchCurrentLocation(): MapLocation | null {
   const location = data?.contentTypeLocation;
   if (!location || !data?.lightImage?.url || !data?.darkImage?.url) {
     return null;

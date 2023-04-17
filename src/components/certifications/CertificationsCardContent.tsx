@@ -5,13 +5,10 @@ import { Stack } from '@mui/material';
 import { Certification } from './Certification';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge>;
+  certifications: Array<Badge> | undefined;
 };
 
-export function CertificationsCardContent({
-  certifications,
-  turnOnAnimation,
-}: CertificationCardProps) {
+export function CertificationsCardContent({ certifications }: CertificationCardProps) {
   return (
     <Stack
       direction="row"
@@ -25,7 +22,7 @@ export function CertificationsCardContent({
       {certifications
         ?.filter((cert) => cert.visible)
         .map((cert) => (
-          <Certification key={cert.title} turnOnAnimation={turnOnAnimation} certification={cert} />
+          <Certification key={cert.title} certification={cert} />
         ))}
     </Stack>
   );

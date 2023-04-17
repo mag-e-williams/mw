@@ -6,7 +6,7 @@ export const Projects: Array<ProjectType> = [
     type: 'string',
     creationDate: 'hwllo',
     link: {
-      title: 'Palantie',
+      title: 'Palantir',
       url: 'https://www.palantir.com/',
     },
     layout: 'wide',
@@ -27,6 +27,7 @@ export const Projects: Array<ProjectType> = [
       title: 'The Tie',
       url: 'https://www.thetie.io/',
     },
+    layout: '',
     thumbnail: {
       url: '/projectBanners/Tie.png',
       width: 30,
@@ -80,7 +81,7 @@ export const Projects: Array<ProjectType> = [
       title: 'Resume',
       url: '/MargretWilliamsResume2023.pdf',
     },
-    // layout: string,
+    layout: '',
     thumbnail: {
       url: '/projectBanners/Resume.png',
       width: 30,

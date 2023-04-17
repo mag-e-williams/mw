@@ -14,20 +14,15 @@ import { Control } from 'components/certifications/Control';
 import { CertificationsCardContent } from './CertificationsCardContent';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge>;
+  certifications: Array<Badge> | undefined;
 };
-
-function notEmpty(str: string | undefined): boolean {
-  return !(str == null) && !(str === '');
-  return true;
-}
 
 /**
  * Uses the `ContentCard` to show a project's details
  */
 export function CertificationsCard({ certifications, turnOnAnimation }: CertificationCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const { width, height, sizes, verticalSpan, horizontalSpan } = useCurrentImageSizes();
+  const { verticalSpan, horizontalSpan } = useCurrentImageSizes();
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
   const expansionControl = useMemo(
@@ -63,10 +58,7 @@ export function CertificationsCard({ certifications, turnOnAnimation }: Certific
       {expansionControl}
 
       {isExpanded ? (
-        <CertificationsCardContent
-          turnOnAnimation={turnOnAnimation}
-          certifications={certifications}
-        />
+        <CertificationsCardContent certifications={certifications} />
       ) : (
         <HoverableContainer isHovered={isHovered}>
           <Stack

@@ -103,13 +103,16 @@ export function IntroCard() {
         }}
       >
         <HeadingWithId variant="h1">{introBlock.textBlock.content.title}</HeadingWithId>
-        {introBlock.textBlock.content.body.map(function (blockString) {
-          return (
-            <Typography variant="body1" sx={{ marginBottom: (theme) => theme.spacing(3.5) }}>
+        {introBlock.textBlock.content.body &&
+          introBlock.textBlock.content.body.map((blockString) => (
+            <Typography
+              key={blockString}
+              variant="body1"
+              sx={{ marginBottom: (theme) => theme.spacing(3.5) }}
+            >
               {blockString}
             </Typography>
-          );
-        })}
+          ))}
       </ContentCard>
     </>
   );

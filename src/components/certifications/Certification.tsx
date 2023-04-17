@@ -4,14 +4,14 @@ import type { ContentCardProps } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
 import { useState } from 'react';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
-import { Card, useTheme } from '@mui/material';
+import { Card } from '@mui/material';
 import { Image } from 'components/Image';
 
 type CertificationProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   certification: Badge;
 };
 
-export function Certification({ certification, turnOnAnimation }: CertificationProps) {
+export function Certification({ certification }: CertificationProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
 

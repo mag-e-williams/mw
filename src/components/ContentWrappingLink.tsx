@@ -1,4 +1,4 @@
-import type { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
+import type { LinkType } from 'api/types/Link';
 import { Link } from 'components/Link';
 import { SxProps } from 'ui/theme';
 

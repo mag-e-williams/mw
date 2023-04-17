@@ -1,4 +1,4 @@
-// import type { Project, TextBlock } from 'api/types/generated/contentfulApi.generated';
+import type { TextBlock } from 'api/types/generated/contentfulApi.generated';
 import { ProjectType as Project } from './types/Project';
 import { LinkType as Link } from './types/Link';
 /**

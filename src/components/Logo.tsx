@@ -1,9 +1,6 @@
-import { useRouter } from 'next/router';
 import { useContext } from 'react';
-import { Button } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
-import Image from 'next/image';
 import { ScrollIndicatorContext } from './ScrollIndicatorContext';
 import { Link } from './Link';
 
@@ -54,15 +51,16 @@ const logoTextStyles =
  * scroll.
  */
 export function Logo() {
-  const router = useRouter();
+  // const router = useRouter();
   const isScrolled = useContext(ScrollIndicatorContext);
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  // const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   const imageUrl = '/icons/mw-logo.svg';
   return (
     <Link
       href="/"
       img={imageUrl}
       layout="image"
+      // onClick={scrollToTop}
       linkProps={{ underline: 'none' }}
       sx={mixinSx(
         {

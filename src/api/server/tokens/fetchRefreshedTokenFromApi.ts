@@ -36,8 +36,7 @@ const REFRESH_TOKEN_CONFIGS: Record<string, RefreshTokenConfig> = {
       Authorization: `Basic ${Buffer.from(SPOTIFY_CLIENT_AUTH).toString('base64')}`,
     },
     validate: (rawData, refreshToken) => {
-      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-      const { token_type, access_token, expires_in } = rawData as RawSpotifyToken;
+      const { token_type, access_token, expires_in } = rawData;
       if (token_type !== 'Bearer' || !access_token) {
         throw new TypeError('Missing data from Spotify to refresh token');
       }

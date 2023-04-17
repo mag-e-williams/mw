@@ -7,11 +7,6 @@ import { useTheme } from '@mui/material';
 import { ControlContainer, ControlContainerProps } from './ControlContainer';
 
 type ControlProps = ControlContainerProps & {
-  /**
-   * Which corner of the map the control appears within. Thanks to quirks of
-   * the sizing of the map, no controls but `top-left` appear when the map is
-   * collapsed.
-   */
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
