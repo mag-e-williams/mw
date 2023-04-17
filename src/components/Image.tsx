@@ -4,7 +4,7 @@ import { BREAKPOINT_MAX_SIZES } from 'constants/imageSizes';
 import NextImage from 'next/image';
 
 type ImageProps = Partial<Asset> & {
-  url: Asset['url'];
+  url: string | undefined;
 
   /**
    * Alt text, required, but defaults to title
