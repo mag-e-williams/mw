@@ -9,11 +9,6 @@ import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
 type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;
 
-function notEmpty(str: string | undefined): boolean {
-  return !(str == null) && !(str === '');
-  return true;
-}
-
 /**
  * Uses the `ContentCard` to show a project's details
  */
