@@ -58,13 +58,18 @@ export type Album = ReferenceObject & {
   release_date: string;
 };
 
+export type Show = ReferenceObject & {
+  images: [AlbumImage<640>, AlbumImage<300>, AlbumImage<64>];
+  // release_date: string;
+};
+
 /**
  * One song/track is a reference object with artists and an album
  */
 export type Track = ReferenceObject & {
   artists: Array<Artist>;
   album: Album;
-
+  show: Show;
   /**
    * May be present, if the right resource is used
    */
