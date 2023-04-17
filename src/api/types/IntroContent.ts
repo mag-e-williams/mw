@@ -7,8 +7,6 @@ export type IntroContentType = {
   };
   image: {
     url: string | undefined;
-    width: number | undefined;
-    height: number | undefined;
     title: string | undefined;
   };
 };
