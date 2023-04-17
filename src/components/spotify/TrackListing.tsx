@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Track } from 'api/types/spotify/Track';
 import { Episode } from 'api/types/spotify/Episode';
 import { Stack } from '@mui/material';
@@ -31,13 +32,10 @@ export function TrackListing({ track, hasLogo }: TrackListingProps) {
   let trackImage;
   let artistName;
   if (track.type === 'episode') {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     trackImage = <AlbumImage album={track.show} />;
     artistName = <ArtistList artists={[track.show]} />;
   } else if (track.type === 'track') {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     trackImage = <AlbumImage album={track.album} />;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     artistName = <ArtistList artists={track.artists} />;
   }
 

@@ -2,8 +2,8 @@ import { useTheme } from '@mui/material';
 import { Minus, Plus, LocateFixed } from 'lucide-react';
 import type { RefObject } from 'react';
 import type { MapRef } from 'react-map-gl';
-import { Control } from './Control';
 import { Location } from 'api/types/mockData/Location';
+import { Control } from './Control';
 
 interface Props {
   /**

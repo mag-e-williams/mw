@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { useMemo } from 'react';
 import { useTheme } from '@mui/material';
 import { ControlContainer, ControlContainerProps } from './ControlContainer';
