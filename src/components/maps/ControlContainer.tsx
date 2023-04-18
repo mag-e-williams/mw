@@ -8,7 +8,6 @@ export type ControlContainerProps = Pick<React.ComponentProps<'div'>, 'className
          * Called when the control itself is clicked
          */
         onClick: (() => void) | undefined;
-
         /**
          * Children need to be defined and not be clickable
          */
@@ -28,7 +27,9 @@ export type ControlContainerProps = Pick<React.ComponentProps<'div'>, 'className
         /**
          * If children is an array, they're each responsible for passing their own onClicks!
          */
-        children: Array<React.ReactElement<{ onClick: () => void }>>;
+        children:
+          | Array<React.ReactElement<{ onClick: () => void }>>
+          | React.ReactElement<{ onClick?: never }>;
 
         /**
          * We have to pass it through this way because of how we nest the controls
