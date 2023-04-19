@@ -69,7 +69,7 @@ export function Footer() {
           <NavGroup sx={{ columnGap: 4 }} component="div">
             <HorizontalStack
               component="ul"
-              sx={(theme) => ({
+              sx={() => ({
                 padding: 0,
                 margin: 0,
                 flex: 1,
