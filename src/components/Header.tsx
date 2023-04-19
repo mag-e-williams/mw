@@ -53,9 +53,7 @@ export function Header({ headerRef }: Props) {
               <NavItem>
                 <Logo />
               </NavItem>
-              <NavItem>
-                <ScrollUpButton />
-              </NavItem>
+              <NavItem>{/* <ScrollUpButton /> */}</NavItem>
             </NavGroup>
             <NavGroup>
               <NavItem>
