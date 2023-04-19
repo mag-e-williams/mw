@@ -2,8 +2,8 @@ import { useData } from 'api/useData';
 import { Section } from 'ui/Section';
 import { Nav, NavGroup, NavItem } from 'ui/Nav';
 import { Container } from '@mui/material';
-import { LinkType } from 'api/types/Link';
 import { HorizontalStack } from 'ui/HorizontalStack';
+import { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
 import { Link } from './Link';
 
 /**

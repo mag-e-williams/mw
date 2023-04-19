@@ -3,8 +3,8 @@ import micromatch from 'micromatch';
 const migrationsPath = '**/migrations/*';
 
 const format = 'turbo format -- ';
-// const lint = 'turbo lint -- ';
-// const lintTypes = 'turbo lint:types';
+const lint = 'turbo lint -- ';
+const lintTypes = 'turbo lint:types';
 
 const jobs = {
   /**
@@ -16,8 +16,8 @@ const jobs = {
     const match = micromatch.not(files, migrationsPath);
     const filteredFiles = match.join(' ');
     return [
-      // lintTypes, // don't need the files here
-      // `${lint} ${filteredFiles}`,
+      lintTypes, // don't need the files here
+      `${lint} ${filteredFiles}`,
       `${format} ${filteredFiles}`,
     ];
   },

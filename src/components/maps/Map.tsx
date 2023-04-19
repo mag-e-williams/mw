@@ -144,7 +144,6 @@ export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded 
     };
   }, [isExpanded, theme.transitions.duration.standard]);
 
-  // This will be used to set zoom levels, eventually
   const initialViewState = useMemo(
     () => ({
       latitude: location?.point?.latitude ?? 0,
@@ -153,6 +152,7 @@ export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded 
     }),
     [location?.initialZoom, location?.point?.latitude, location?.point?.longitude],
   );
+
   const zoomLevels = location?.zoomLevels ?? [];
   const minZoom = zoomLevels[0];
   const maxZoom = zoomLevels[zoomLevels.length - 1];
@@ -174,7 +174,7 @@ export function Map({ location, children, isExpanded, isLoaded, setMapHasLoaded 
         onLoad={setMapHasLoaded}
         reuseMaps
       >
-        <StandardControls mapRef={mapRef} />
+        <StandardControls mapRef={mapRef} {...initialViewState} />
         {children}
       </MapGL>
     </Wrapper>
