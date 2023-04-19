@@ -4,43 +4,19 @@ import { Children } from 'react';
 export type ControlContainerProps = Pick<React.ComponentProps<'div'>, 'className'> &
   (
     | {
-        /**
-         * Called when the control itself is clicked
-         */
         onClick: (() => void) | undefined;
-        /**
-         * Children need to be defined and not be clickable
-         */
         children: React.ReactElement<{ onClick?: never }> | string | boolean;
-
-        /**
-         * We have to pass it through this way because of how we nest the controls
-         */
         theme: Theme;
       }
     | {
-        /**
-         * Children each provide their own onClick
-         */
         onClick?: never;
-
-        /**
-         * If children is an array, they're each responsible for passing their own onClicks!
-         */
         children:
           | Array<React.ReactElement<{ onClick: () => void }>>
           | React.ReactElement<{ onClick?: never }>;
-
-        /**
-         * We have to pass it through this way because of how we nest the controls
-         */
         theme: Theme;
       }
   );
 
-/**
- * Renders one single control
- */
 function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme }) {
   return (
     <Box
@@ -59,11 +35,6 @@ function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme })
   );
 }
 
-/**
- * This is what surrounds any control to contain it, automatically responding
- * to the color scheme. Circular and same width/height. Returns either a single
- * container, or a larger container with multiple children in it if necessary.
- */
 export function ControlContainer({ onClick, children, className, theme }: ControlContainerProps) {
   const controlSx = {
     display: 'flex',
