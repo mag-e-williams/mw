@@ -1,5 +1,5 @@
 import { ScrollIndicatorContext } from 'components/ScrollIndicatorContext';
-import { ScrollUpButton } from 'components/ScrollUpButton';
+// import { ScrollUpButton } from 'components/ScrollUpButton';
 import { useContext } from 'react';
 import { Box, alpha } from '@mui/material';
 import { Section } from 'ui/Section';

@@ -1,4 +1,4 @@
-import type { LinkType as Link } from 'api/types/Link';
+import { Link } from 'api/types/generated/contentfulApi.generated';
 import { truncated } from 'helpers/truncated';
 import { useState } from 'react';
 import { Card, Theme, Typography } from '@mui/material';

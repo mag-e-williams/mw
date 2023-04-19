@@ -7,7 +7,7 @@ export type FooterQuery = {
     | {
         readonly items: ReadonlyArray<
           | {
-              readonly blocksCollection:
+              readonly contentCollection:
                 | {
                     readonly items: ReadonlyArray<
                       | {

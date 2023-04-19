@@ -1,6 +1,6 @@
-import { fetchFooterLinks } from './server/data/fetchFooterLinks';
+import { fetchFooterLinks } from './server/contentful/fetchFooterLinks';
 import { fetchIntroContent } from './server/data/fetchIntroContent';
-import { fetchCurrentLocation } from './server/data/fetchCurrentLocation';
+import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
 import { fetchProjects } from './server/data/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
 import { fetchCertifications } from './server/data/fetchCertifications';
