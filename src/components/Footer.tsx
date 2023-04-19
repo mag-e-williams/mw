@@ -51,30 +51,32 @@ export function Footer() {
             flexWrap: 'wrap-reverse',
             columnGap: 3,
             marginTop: 8,
-            [theme.breakpoints.down('sm')]: {
+            [theme.breakpoints.down('md')]: {
               flexDirection: 'column-reverse',
             },
           })}
         >
-          <NavGroup>
+          <NavGroup
+            sx={(theme) => ({
+              [theme.breakpoints.down('md')]: {
+                flexDirection: 'column-reverse',
+              },
+            })}
+          >
             <NavItem>© {new Date().getFullYear()} margret williams</NavItem>
           </NavGroup>
+
           <NavGroup sx={{ columnGap: 4 }} component="div">
-            {/* <HorizontalStack component="ul" sx={{ padding: 0, margin: 0 }}>
-              {nonIconFooterLinks?.map((link) => (
-                <FooterLink link={link} key={link.url} />
-              ))}
-            </HorizontalStack> */}
             <HorizontalStack
               component="ul"
-              sx={{
+              sx={(theme) => ({
                 padding: 0,
                 margin: 0,
                 flex: 1,
                 marginLeft: -1.5,
                 marginRight: -1.5,
                 justifyContent: 'space-between',
-              }}
+              })}
             >
               {iconFooterLinks?.map((link) => (
                 <FooterLink link={link} key={link.url} />
