@@ -60,7 +60,17 @@ export function Footer() {
             <NavItem>© {new Date().getFullYear()} Maggie Williams</NavItem>
             <NavItem sx={{ padding: 0 }}>•</NavItem>
             <NavItem>
-              <FooterLink link="https://github.com/mag-e-williams/mw" />
+              <Link
+                href="https://github.com/mag-e-williams/mw"
+                linkProps={{ underline: 'none' }}
+                sx={{
+                  '&&': {
+                    fontSize: 15,
+                  },
+                }}
+              >
+                {version}
+              </Link>
             </NavItem>
           </NavGroup>
           <NavGroup sx={{ columnGap: 4 }} component="div">
