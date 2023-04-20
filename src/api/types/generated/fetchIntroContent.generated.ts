@@ -22,25 +22,36 @@ export type IntroContentQuery = {
                             | {
                                 readonly json: any;
                                 readonly links: {
-                                  readonly assets: {
+                                  readonly entries: {
+                                    readonly inline: ReadonlyArray<
+                                      | {
+                                          readonly title: string | undefined;
+                                          readonly url: string | undefined;
+                                          readonly icon: string | undefined;
+                                        }
+                                      | {}
+                                      | undefined
+                                    >;
                                     readonly block: ReadonlyArray<
                                       | {
                                           readonly title: string | undefined;
                                           readonly url: string | undefined;
+                                          readonly icon: string | undefined;
                                         }
+                                      | {}
                                       | undefined
                                     >;
                                   };
-                                  readonly entries: {
-                                    readonly inline: ReadonlyArray<
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
-                                      | { readonly sys: { readonly id: string } }
+                                  readonly assets: {
+                                    readonly block: ReadonlyArray<
+                                      | {
+                                          readonly url: string | undefined;
+                                          readonly title: string | undefined;
+                                          readonly width: number | undefined;
+                                          readonly height: number | undefined;
+                                          readonly description: string | undefined;
+                                          readonly sys: { readonly id: string };
+                                        }
                                       | undefined
                                     >;
                                   };

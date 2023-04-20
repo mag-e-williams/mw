@@ -259,9 +259,9 @@ export type CertificationBadge = Entry & {
   readonly contentfulMetadata: ContentfulMetadata;
   readonly description: Maybe<Scalars['String']>;
   readonly level: Maybe<Scalars['String']>;
-  readonly link: Maybe<Entry>;
+  readonly link: Maybe<Link>;
   readonly linkedFrom: Maybe<CertificationBadgeLinkingCollections>;
-  readonly org: Maybe<Entry>;
+  readonly org: Maybe<CertificationOrg>;
   readonly sys: Sys;
   readonly thumbnail: Maybe<Asset>;
   readonly title: Maybe<Scalars['String']>;
@@ -336,7 +336,9 @@ export type CertificationBadgeFilter = {
   readonly level_not: InputMaybe<Scalars['String']>;
   readonly level_not_contains: InputMaybe<Scalars['String']>;
   readonly level_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly link: InputMaybe<CfLinkNestedFilter>;
   readonly link_exists: InputMaybe<Scalars['Boolean']>;
+  readonly org: InputMaybe<CfCertificationOrgNestedFilter>;
   readonly org_exists: InputMaybe<Scalars['Boolean']>;
   readonly sys: InputMaybe<SysFilter>;
   readonly thumbnail_exists: InputMaybe<Scalars['Boolean']>;
@@ -440,7 +442,15 @@ export type CertificationOrgFilter = {
 };
 
 export type CertificationOrgLinkingCollections = {
+  readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type CertificationOrgLinkingCollectionsCertificationBadgeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export type CertificationOrgLinkingCollectionsEntryCollectionArgs = {
@@ -881,7 +891,15 @@ export type LinkFilter = {
 };
 
 export type LinkLinkingCollections = {
+  readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type LinkLinkingCollectionsCertificationBadgeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export type LinkLinkingCollectionsEntryCollectionArgs = {
@@ -1413,3 +1431,53 @@ export type TextBlockOrder =
   | 'sys_publishedAt_DESC'
   | 'sys_publishedVersion_ASC'
   | 'sys_publishedVersion_DESC';
+
+export type CfCertificationOrgNestedFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<CfCertificationOrgNestedFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<CfCertificationOrgNestedFilter>>>;
+  readonly abbreviation: InputMaybe<Scalars['String']>;
+  readonly abbreviation_contains: InputMaybe<Scalars['String']>;
+  readonly abbreviation_exists: InputMaybe<Scalars['Boolean']>;
+  readonly abbreviation_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly abbreviation_not: InputMaybe<Scalars['String']>;
+  readonly abbreviation_not_contains: InputMaybe<Scalars['String']>;
+  readonly abbreviation_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly link_exists: InputMaybe<Scalars['Boolean']>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+export type CfLinkNestedFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<CfLinkNestedFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<CfLinkNestedFilter>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly icon: InputMaybe<Scalars['String']>;
+  readonly icon_contains: InputMaybe<Scalars['String']>;
+  readonly icon_exists: InputMaybe<Scalars['Boolean']>;
+  readonly icon_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly icon_not: InputMaybe<Scalars['String']>;
+  readonly icon_not_contains: InputMaybe<Scalars['String']>;
+  readonly icon_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly url: InputMaybe<Scalars['String']>;
+  readonly url_contains: InputMaybe<Scalars['String']>;
+  readonly url_exists: InputMaybe<Scalars['Boolean']>;
+  readonly url_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly url_not: InputMaybe<Scalars['String']>;
+  readonly url_not_contains: InputMaybe<Scalars['String']>;
+  readonly url_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};

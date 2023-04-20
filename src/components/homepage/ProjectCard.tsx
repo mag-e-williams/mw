@@ -1,5 +1,4 @@
-// import type { Project } from 'api/types/generated/contentfulApi.generated';
-import { ProjectType as Project } from 'api/types/Project';
+import type { Project } from 'api/types/generated/contentfulApi.generated';
 import type { ContentCardProps } from 'components/ContentCard';
 import { ContentCard } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
