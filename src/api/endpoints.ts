@@ -3,7 +3,7 @@ import { fetchIntroContent } from './server/data/fetchIntroContent';
 import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
 import { fetchProjects } from './server/contentful/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
-import { fetchCertifications } from './server/data/fetchCertifications';
+import { fetchCertifications } from './server/contentful/fetchCertifications';
 
 /**
  * All possible types of endpoints we could request

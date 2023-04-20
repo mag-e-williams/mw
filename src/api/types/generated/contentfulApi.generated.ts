@@ -156,9 +156,17 @@ export type AssetFilter = {
 };
 
 export type AssetLinkingCollections = {
+  readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly contentTypeLocationCollection: Maybe<ContentTypeLocationCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
   readonly projectCollection: Maybe<ProjectCollection>;
+};
+
+export type AssetLinkingCollectionsCertificationBadgeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export type AssetLinkingCollectionsContentTypeLocationCollectionArgs = {
@@ -203,6 +211,216 @@ export type AssetOrder =
   | 'url_DESC'
   | 'width_ASC'
   | 'width_DESC';
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadge = Entry & {
+  readonly contentfulMetadata: ContentfulMetadata;
+  readonly description: Maybe<Scalars['String']>;
+  readonly level: Maybe<Scalars['String']>;
+  readonly link: Maybe<Entry>;
+  readonly linkedFrom: Maybe<CertificationBadgeLinkingCollections>;
+  readonly org: Maybe<Entry>;
+  readonly sys: Sys;
+  readonly thumbnail: Maybe<Asset>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly visible: Maybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeLevelArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeLinkArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeLinkedFromArgs = {
+  allowedLocales: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeOrgArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeThumbnailArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationBadge) */
+export type CertificationBadgeVisibleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+export type CertificationBadgeCollection = {
+  readonly items: ReadonlyArray<Maybe<CertificationBadge>>;
+  readonly limit: Scalars['Int'];
+  readonly skip: Scalars['Int'];
+  readonly total: Scalars['Int'];
+};
+
+export type CertificationBadgeFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<CertificationBadgeFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<CertificationBadgeFilter>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly description: InputMaybe<Scalars['String']>;
+  readonly description_contains: InputMaybe<Scalars['String']>;
+  readonly description_exists: InputMaybe<Scalars['Boolean']>;
+  readonly description_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly description_not: InputMaybe<Scalars['String']>;
+  readonly description_not_contains: InputMaybe<Scalars['String']>;
+  readonly description_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly level: InputMaybe<Scalars['String']>;
+  readonly level_contains: InputMaybe<Scalars['String']>;
+  readonly level_exists: InputMaybe<Scalars['Boolean']>;
+  readonly level_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly level_not: InputMaybe<Scalars['String']>;
+  readonly level_not_contains: InputMaybe<Scalars['String']>;
+  readonly level_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly link_exists: InputMaybe<Scalars['Boolean']>;
+  readonly org_exists: InputMaybe<Scalars['Boolean']>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly thumbnail_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly visible: InputMaybe<Scalars['Boolean']>;
+  readonly visible_exists: InputMaybe<Scalars['Boolean']>;
+  readonly visible_not: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CertificationBadgeLinkingCollections = {
+  readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type CertificationBadgeLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type CertificationBadgeOrder =
+  | 'level_ASC'
+  | 'level_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'visible_ASC'
+  | 'visible_DESC';
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationOrg) */
+export type CertificationOrg = Entry & {
+  readonly abbreviation: Maybe<Scalars['String']>;
+  readonly contentfulMetadata: ContentfulMetadata;
+  readonly link: Maybe<Entry>;
+  readonly linkedFrom: Maybe<CertificationOrgLinkingCollections>;
+  readonly sys: Sys;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationOrg) */
+export type CertificationOrgAbbreviationArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationOrg) */
+export type CertificationOrgLinkArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationOrg) */
+export type CertificationOrgLinkedFromArgs = {
+  allowedLocales: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/certificationOrg) */
+export type CertificationOrgTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+export type CertificationOrgCollection = {
+  readonly items: ReadonlyArray<Maybe<CertificationOrg>>;
+  readonly limit: Scalars['Int'];
+  readonly skip: Scalars['Int'];
+  readonly total: Scalars['Int'];
+};
+
+export type CertificationOrgFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<CertificationOrgFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<CertificationOrgFilter>>>;
+  readonly abbreviation: InputMaybe<Scalars['String']>;
+  readonly abbreviation_contains: InputMaybe<Scalars['String']>;
+  readonly abbreviation_exists: InputMaybe<Scalars['Boolean']>;
+  readonly abbreviation_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly abbreviation_not: InputMaybe<Scalars['String']>;
+  readonly abbreviation_not_contains: InputMaybe<Scalars['String']>;
+  readonly abbreviation_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly link_exists: InputMaybe<Scalars['Boolean']>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+export type CertificationOrgLinkingCollections = {
+  readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type CertificationOrgLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type CertificationOrgOrder =
+  | 'abbreviation_ASC'
+  | 'abbreviation_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
 
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/location) */
 export type ContentTypeLocation = Entry & {
@@ -563,6 +781,7 @@ export type Project = Entry & {
   readonly sys: Sys;
   readonly thumbnail: Maybe<Asset>;
   readonly title: Maybe<Scalars['String']>;
+  readonly visible: Maybe<Scalars['Boolean']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
@@ -599,6 +818,11 @@ export type ProjectThumbnailArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
 export type ProjectTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectVisibleArgs = {
   locale: InputMaybe<Scalars['String']>;
 };
 
@@ -646,6 +870,9 @@ export type ProjectFilter = {
   readonly title_not: InputMaybe<Scalars['String']>;
   readonly title_not_contains: InputMaybe<Scalars['String']>;
   readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly visible: InputMaybe<Scalars['Boolean']>;
+  readonly visible_exists: InputMaybe<Scalars['Boolean']>;
+  readonly visible_not: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ProjectLinkingCollections = {
@@ -673,11 +900,17 @@ export type ProjectOrder =
   | 'sys_publishedVersion_ASC'
   | 'sys_publishedVersion_DESC'
   | 'title_ASC'
-  | 'title_DESC';
+  | 'title_DESC'
+  | 'visible_ASC'
+  | 'visible_DESC';
 
 export type Query = {
   readonly asset: Maybe<Asset>;
   readonly assetCollection: Maybe<AssetCollection>;
+  readonly certificationBadge: Maybe<CertificationBadge>;
+  readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
+  readonly certificationOrg: Maybe<CertificationOrg>;
+  readonly certificationOrgCollection: Maybe<CertificationOrgCollection>;
   readonly contentTypeLocation: Maybe<ContentTypeLocation>;
   readonly contentTypeLocationCollection: Maybe<ContentTypeLocationCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
@@ -702,6 +935,36 @@ export type QueryAssetCollectionArgs = {
   preview: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where: InputMaybe<AssetFilter>;
+};
+
+export type QueryCertificationBadgeArgs = {
+  id: Scalars['String'];
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+export type QueryCertificationBadgeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<ReadonlyArray<InputMaybe<CertificationBadgeOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CertificationBadgeFilter>;
+};
+
+export type QueryCertificationOrgArgs = {
+  id: Scalars['String'];
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+export type QueryCertificationOrgCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<ReadonlyArray<InputMaybe<CertificationOrgOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CertificationOrgFilter>;
 };
 
 export type QueryContentTypeLocationArgs = {
