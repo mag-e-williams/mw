@@ -15,8 +15,10 @@ export function Certification({ certification }: CertificationProps) {
   const { width, height, sizes } = useCurrentImageSizes();
 
   const openInNewTab = (url: string | undefined) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.opener = null;
+    if (url) {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (newWindow) newWindow.opener = null;
+    }
   };
 
   return (

@@ -1,18 +1,16 @@
-// import type { Project } from 'api/types/generated/contentfulApi.generated';
-import { BadgeType as Badge } from 'api/types/Badge';
+import type { CertificationBadge } from 'api/types/generated/contentfulApi.generated';
 import type { ContentCardProps } from 'components/ContentCard';
 import { Stack } from '@mui/material';
 import { Certification } from './Certification';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge> | undefined;
+  certifications: Array<CertificationBadge> | undefined;
 };
 
 export function CertificationsCardContent({ certifications }: CertificationCardProps) {
   return (
     <Stack
       direction="row"
-      // spacing={{ xs: 1, sm: 2, md: 4 }}
       sx={{
         padding: 4,
         justifyContent: 'center',
