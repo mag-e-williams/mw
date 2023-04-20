@@ -6,7 +6,7 @@ import { contentfulClient } from '../networkClients/contentfulClient';
 
 const QUERY = gql`
   query Footer {
-    sectionCollection(limit: 1, where: { title: "footer" }) {
+    sectionCollection(limit: 1, where: { title: "Footer" }) {
       items {
         contentCollection(limit: 100) {
           items {

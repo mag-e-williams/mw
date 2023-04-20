@@ -6,16 +6,13 @@ import { HorizontalStack } from 'ui/HorizontalStack';
 import { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
 import { Link } from './Link';
 
-/**
- * Creates a singular footer link
- */
 function FooterLink({ link }: { link: LinkType }) {
   return (
     <NavItem sx={{ padding: 0 }}>
       <Link
         title={link.title}
         icon={link.icon}
-        layout="icon" // the ones that have no icon will resolve to just text
+        layout="icon"
         href={link.url}
         isExternal={link.url?.startsWith('http')}
         aria-label={link.title}
@@ -23,7 +20,6 @@ function FooterLink({ link }: { link: LinkType }) {
           color: 'secondary',
         }}
         sx={{
-          // Min tap target size
           minWidth: 48,
           minHeight: 48,
           display: 'flex',
@@ -35,12 +31,8 @@ function FooterLink({ link }: { link: LinkType }) {
   );
 }
 
-/**
- * Creates the site footer component - shows version data + copyright
- */
 export function Footer() {
   const { data: footerLinks } = useData('footer');
-  // const nonIconFooterLinks = footerLinks?.filter((link) => !link.icon);
   const iconFooterLinks = footerLinks?.filter((link) => link.icon);
   return (
     <Container component={Section} sx={{ padding: 0 }}>
@@ -51,20 +43,22 @@ export function Footer() {
             flexWrap: 'wrap-reverse',
             columnGap: 3,
             marginTop: 8,
-            [theme.breakpoints.down('sm')]: {
+            [theme.breakpoints.down('md')]: {
               flexDirection: 'column-reverse',
             },
           })}
         >
-          <NavGroup>
+          <NavGroup
+            sx={(theme) => ({
+              justifyContent: 'left',
+              [theme.breakpoints.down('md')]: {
+                justifyContent: 'center',
+              },
+            })}
+          >
             <NavItem>© {new Date().getFullYear()} margret williams</NavItem>
           </NavGroup>
           <NavGroup sx={{ columnGap: 4 }} component="div">
-            {/* <HorizontalStack component="ul" sx={{ padding: 0, margin: 0 }}>
-              {nonIconFooterLinks?.map((link) => (
-                <FooterLink link={link} key={link.url} />
-              ))}
-            </HorizontalStack> */}
             <HorizontalStack
               component="ul"
               sx={{
