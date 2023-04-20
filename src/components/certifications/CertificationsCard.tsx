@@ -1,5 +1,4 @@
-// import type { Project } from 'api/types/generated/contentfulApi.generated';
-import { BadgeType as Badge } from 'api/types/Badge';
+import type { CertificationBadge } from 'api/types/generated/contentfulApi.generated';
 import type { ContentCardProps } from 'components/ContentCard';
 import { ContentCard } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
@@ -14,7 +13,7 @@ import { Control } from 'components/certifications/Control';
 import { CertificationsCardContent } from './CertificationsCardContent';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certifications: Array<Badge> | undefined;
+  certifications: Array<CertificationBadge> | undefined;
 };
 
 /**

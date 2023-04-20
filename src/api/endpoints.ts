@@ -1,9 +1,9 @@
 import { fetchFooterLinks } from './server/contentful/fetchFooterLinks';
-import { fetchIntroContent } from './server/data/fetchIntroContent';
+import { fetchIntroContent } from './server/contentful/fetchIntroContent';
 import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
-import { fetchProjects } from './server/data/fetchProjects';
+import { fetchProjects } from './server/contentful/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
-import { fetchCertifications } from './server/data/fetchCertifications';
+import { fetchCertifications } from './server/contentful/fetchCertifications';
 
 /**
  * All possible types of endpoints we could request

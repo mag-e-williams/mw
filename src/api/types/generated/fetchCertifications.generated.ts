@@ -1,8 +1,8 @@
 import type * as Types from './contentfulApi.generated';
 
-export type ProjectsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type CertificationsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-export type ProjectsQuery = {
+export type CertificationsQuery = {
   readonly sectionCollection:
     | {
         readonly items: ReadonlyArray<
@@ -12,10 +12,20 @@ export type ProjectsQuery = {
                     readonly items: ReadonlyArray<
                       | {
                           readonly title: string | undefined;
+                          readonly level: string | undefined;
                           readonly description: string | undefined;
-                          readonly layout: string | undefined;
-                          readonly creationDate: any | undefined;
-                          readonly link: { readonly url: string | undefined } | {} | undefined;
+                          readonly visible: boolean | undefined;
+                          readonly org:
+                            | {
+                                readonly title: string | undefined;
+                                readonly abbreviation: string | undefined;
+                                readonly link:
+                                  | { readonly url: string | undefined }
+                                  | {}
+                                  | undefined;
+                              }
+                            | undefined;
+                          readonly link: { readonly url: string | undefined } | undefined;
                           readonly thumbnail:
                             | {
                                 readonly url: string | undefined;

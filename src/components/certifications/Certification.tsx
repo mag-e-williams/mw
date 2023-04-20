@@ -1,5 +1,4 @@
-// import type { Project } from 'api/types/generated/contentfulApi.generated';
-import { BadgeType as Badge } from 'api/types/Badge';
+import type { CertificationBadge } from 'api/types/generated/contentfulApi.generated';
 import type { ContentCardProps } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
 import { useState } from 'react';
@@ -8,23 +7,25 @@ import { Card } from '@mui/material';
 import { Image } from 'components/Image';
 
 type CertificationProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  certification: Badge;
+  certification: CertificationBadge;
 };
 
 export function Certification({ certification }: CertificationProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
 
-  const openInNewTab = (url: string) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.opener = null;
+  const openInNewTab = (url: string | undefined) => {
+    if (url) {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (newWindow) newWindow.opener = null;
+    }
   };
 
   return (
     <Card
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
-      onClick={() => openInNewTab(certification.link.url)}
+      onClick={() => openInNewTab(certification?.link?.url)}
       sx={() => ({
         padding: 2,
         bgcolor: 'transparent',
@@ -33,7 +34,7 @@ export function Certification({ certification }: CertificationProps) {
     >
       <HoverableContainer isHovered={isHovered}>
         <Image
-          url={certification.thumbnail.url}
+          url={certification?.thumbnail?.url}
           width={width}
           height={height}
           alt={certification.title ?? 'Certification Badge'}
