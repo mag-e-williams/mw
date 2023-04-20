@@ -1,8 +1,9 @@
-// import type { Link, Project, TextBlock } from 'api/types/generated/contentfulApi.generated';
 import type {
   CertificationBadge,
+  IntroBlock,
   Link,
   Project,
+  TextBlock,
 } from 'api/types/generated/contentfulApi.generated';
 
 /**
@@ -26,15 +27,23 @@ export const isCertification = (
   item: CertificationBadge | undefined | Record<string, unknown>,
 ): item is CertificationBadge =>
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  !!(item as CertificationBadge)?.org?.title && !!(item as CertificationBadge)?.thumbnail;
+  !!(item as CertificationBadge)?.org && !!(item as CertificationBadge)?.thumbnail;
 
-// /**
-//  * Type guard to get a text block out
-//  */
-// export const isTextBlock = (
-//   item: TextBlock | undefined | Record<string, unknown>,
-//   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-// ): item is TextBlock => !!(item as TextBlock)?.content?.json;
+/**
+ * Type guard to get a text block out
+ */
+export const isTextBlock = (
+  item: TextBlock | undefined | Record<string, unknown>,
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+): item is TextBlock => !!(item as TextBlock)?.content?.json;
+
+/**
+ * Type guard to get a text block out
+ */
+export const isIntroBlock = (
+  item: IntroBlock | undefined | Record<string, unknown>,
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+): item is IntroBlock => !!(item as IntroBlock)?.headshot;
 
 /**
  * Type guard to filter out null or undefined items

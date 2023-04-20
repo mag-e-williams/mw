@@ -1,5 +1,5 @@
 import { fetchFooterLinks } from './server/contentful/fetchFooterLinks';
-import { fetchIntroContent } from './server/data/fetchIntroContent';
+import { fetchIntroContent } from './server/contentful/fetchIntroContent';
 import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
 import { fetchProjects } from './server/contentful/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
