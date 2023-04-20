@@ -158,6 +158,7 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   readonly contentTypeLocationCollection: Maybe<ContentTypeLocationCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+  readonly projectCollection: Maybe<ProjectCollection>;
 };
 
 export type AssetLinkingCollectionsContentTypeLocationCollectionArgs = {
@@ -168,6 +169,13 @@ export type AssetLinkingCollectionsContentTypeLocationCollectionArgs = {
 };
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type AssetLinkingCollectionsProjectCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;
@@ -544,6 +552,129 @@ export type Location = {
   readonly lon: Maybe<Scalars['Float']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type Project = Entry & {
+  readonly contentfulMetadata: ContentfulMetadata;
+  readonly creationDate: Maybe<Scalars['DateTime']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly layout: Maybe<Scalars['String']>;
+  readonly link: Maybe<Entry>;
+  readonly linkedFrom: Maybe<ProjectLinkingCollections>;
+  readonly sys: Sys;
+  readonly thumbnail: Maybe<Asset>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectCreationDateArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectLayoutArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectLinkArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectLinkedFromArgs = {
+  allowedLocales: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectThumbnailArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectCollection = {
+  readonly items: ReadonlyArray<Maybe<Project>>;
+  readonly limit: Scalars['Int'];
+  readonly skip: Scalars['Int'];
+  readonly total: Scalars['Int'];
+};
+
+export type ProjectFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<ProjectFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<ProjectFilter>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly creationDate: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_exists: InputMaybe<Scalars['Boolean']>;
+  readonly creationDate_gt: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_gte: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['DateTime']>>>;
+  readonly creationDate_lt: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_lte: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_not: InputMaybe<Scalars['DateTime']>;
+  readonly creationDate_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['DateTime']>>>;
+  readonly description: InputMaybe<Scalars['String']>;
+  readonly description_contains: InputMaybe<Scalars['String']>;
+  readonly description_exists: InputMaybe<Scalars['Boolean']>;
+  readonly description_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly description_not: InputMaybe<Scalars['String']>;
+  readonly description_not_contains: InputMaybe<Scalars['String']>;
+  readonly description_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly layout: InputMaybe<Scalars['String']>;
+  readonly layout_contains: InputMaybe<Scalars['String']>;
+  readonly layout_exists: InputMaybe<Scalars['Boolean']>;
+  readonly layout_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly layout_not: InputMaybe<Scalars['String']>;
+  readonly layout_not_contains: InputMaybe<Scalars['String']>;
+  readonly layout_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly link_exists: InputMaybe<Scalars['Boolean']>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly thumbnail_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+export type ProjectLinkingCollections = {
+  readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type ProjectLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type ProjectOrder =
+  | 'creationDate_ASC'
+  | 'creationDate_DESC'
+  | 'layout_ASC'
+  | 'layout_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
+
 export type Query = {
   readonly asset: Maybe<Asset>;
   readonly assetCollection: Maybe<AssetCollection>;
@@ -552,6 +683,8 @@ export type Query = {
   readonly entryCollection: Maybe<EntryCollection>;
   readonly link: Maybe<Link>;
   readonly linkCollection: Maybe<LinkCollection>;
+  readonly project: Maybe<Project>;
+  readonly projectCollection: Maybe<ProjectCollection>;
   readonly section: Maybe<Section>;
   readonly sectionCollection: Maybe<SectionCollection>;
 };
@@ -608,6 +741,21 @@ export type QueryLinkCollectionArgs = {
   preview: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where: InputMaybe<LinkFilter>;
+};
+
+export type QueryProjectArgs = {
+  id: Scalars['String'];
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+export type QueryProjectCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<ReadonlyArray<InputMaybe<ProjectOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ProjectFilter>;
 };
 
 export type QuerySectionArgs = {
