@@ -33,6 +33,7 @@ function FooterLink({ link }: { link: LinkType }) {
 
 export function Footer() {
   const { data: footerLinks } = useData('footer');
+  const { data: version } = useData('version');
   const iconFooterLinks = footerLinks?.filter((link) => link.icon);
   return (
     <Container component={Section} sx={{ padding: 0 }}>
@@ -56,7 +57,21 @@ export function Footer() {
               },
             })}
           >
-            <NavItem>© {new Date().getFullYear()} margret williams</NavItem>
+            <NavItem>© {new Date().getFullYear()} Maggie Williams</NavItem>
+            <NavItem sx={{ padding: 0 }}>•</NavItem>
+            <NavItem>
+              <Link
+                href="https://github.com/mag-e-williams/mw"
+                linkProps={{ underline: 'none' }}
+                sx={{
+                  '&&': {
+                    fontSize: 15,
+                  },
+                }}
+              >
+                {version}
+              </Link>
+            </NavItem>
           </NavGroup>
           <NavGroup sx={{ columnGap: 4 }} component="div">
             <HorizontalStack

@@ -4,6 +4,7 @@ import { fetchCurrentLocation } from './server/contentful/fetchCurrentLocation';
 import { fetchProjects } from './server/contentful/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
 import { fetchCertifications } from './server/contentful/fetchCertifications';
+import { fetchRepoVersion } from './server/github/fetchRepoVersion';
 
 /**
  * All possible types of endpoints we could request
@@ -27,6 +28,7 @@ export const endpoints = {
   footer: fetchFooterLinks,
   certifications: fetchCertifications,
   'latest/track': fetchRecentlyPlayed,
+  version: fetchRepoVersion,
 } as const;
 
 /**
