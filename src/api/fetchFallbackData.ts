@@ -6,7 +6,7 @@ export type FetchedFallbackData<Keys extends EndpointKey> = { [Key in Keys]: End
 /**
  * Fetches all fallback data specified by the array of endpoint keys.
  * IMPORTANT: can't be used from client, needs to be called from
- * `getStaticProps` or equivalent only, in order to create a fallback
+ * `c` or equivalent only, in order to create a fallback
  * object for a specific page.
  */
 export const fetchFallbackData = async <Key extends EndpointKey>(keys: Array<Key>) => {

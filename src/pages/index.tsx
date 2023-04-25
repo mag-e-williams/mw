@@ -6,7 +6,14 @@ import type { GetLayout } from 'types/Page';
 
 type PageProps = {
   fallback: FetchedFallbackData<
-    'footer' | 'location' | 'intro' | 'projects' | 'certifications' | 'latest/track' | 'version'
+    | 'footer'
+    | 'location'
+    | 'intro'
+    | 'projects'
+    | 'certifications'
+    | 'latest/track'
+    | 'version'
+    | 'photos'
   >;
 };
 
@@ -19,6 +26,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () =>
     'certifications',
     'latest/track',
     'version',
+    'photos',
   ]);
 
 function Page() {

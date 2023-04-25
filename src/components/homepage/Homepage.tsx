@@ -8,6 +8,7 @@ import { CertificationPreviewCard } from 'components/homepage/CertificationPrevi
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
+import { PhotosCard } from './PhotosCard';
 
 /**
  * Puts all projects into a grid using `projects` data,
@@ -43,6 +44,7 @@ export function Homepage() {
         index: 4,
         card: <CertificationPreviewCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
+      { index: 4, card: <PhotosCard key="photos" /> },
     ],
     [turnOnAnimation],
   );
