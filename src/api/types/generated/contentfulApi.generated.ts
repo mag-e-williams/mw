@@ -893,6 +893,7 @@ export type LinkFilter = {
 export type LinkLinkingCollections = {
   readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+  readonly projectCollection: Maybe<ProjectCollection>;
 };
 
 export type LinkLinkingCollectionsCertificationBadgeCollectionArgs = {
@@ -903,6 +904,13 @@ export type LinkLinkingCollectionsCertificationBadgeCollectionArgs = {
 };
 
 export type LinkLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type LinkLinkingCollectionsProjectCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;
@@ -936,7 +944,7 @@ export type Project = Entry & {
   readonly creationDate: Maybe<Scalars['DateTime']>;
   readonly description: Maybe<Scalars['String']>;
   readonly layout: Maybe<Scalars['String']>;
-  readonly link: Maybe<Entry>;
+  readonly link: Maybe<Link>;
   readonly linkedFrom: Maybe<ProjectLinkingCollections>;
   readonly sys: Sys;
   readonly thumbnail: Maybe<Asset>;
@@ -1020,6 +1028,7 @@ export type ProjectFilter = {
   readonly layout_not: InputMaybe<Scalars['String']>;
   readonly layout_not_contains: InputMaybe<Scalars['String']>;
   readonly layout_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly link: InputMaybe<CfLinkNestedFilter>;
   readonly link_exists: InputMaybe<Scalars['Boolean']>;
   readonly sys: InputMaybe<SysFilter>;
   readonly thumbnail_exists: InputMaybe<Scalars['Boolean']>;
