@@ -5,31 +5,23 @@ import { HOMEPAGE_TITLE, Meta } from 'components/Meta';
 import { useGridAnimation } from 'hooks/useGridAnimation';
 import { useMemo, useRef } from 'react';
 import { CertificationPreviewCard } from 'components/homepage/CertificationPreviewCard';
+import { Project } from 'api/types/generated/contentfulApi.generated';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
+import { PhotosCard } from './PhotosCard';
 
-/**
- * Puts all projects into a grid using `projects` data,
- * interspersed with `introBlock` data, and dark/light mode
- * toggle.
- */
 export function Homepage() {
   const { data: projects } = useData('projects');
-  // const { data: introBlock } = useData('intro');
 
-  // Grabs the first intro block text element, essentially.
-  const firstParagraph = '';
-  // introBlock?.textBlock?.content?.json.content
-  //   ?.find((item) => item.nodeType === 'paragraph')
-  //   ?.content?.find((item) => item.nodeType === 'text')?.value;
+  const pageDescription = '';
 
   // For animating grid items
   const gridRef = useRef<HTMLDivElement | null>(null);
   const turnOnAnimation = useGridAnimation(gridRef);
 
   const projectCards =
-    projects?.map((project) => (
+    projects?.map((project: Project) => (
       <ProjectCard key={project.title} {...project} turnOnAnimation={turnOnAnimation} />
     )) ?? [];
 
@@ -43,13 +35,14 @@ export function Homepage() {
         index: 4,
         card: <CertificationPreviewCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
+      { index: 4, card: <PhotosCard key="photos" /> },
     ],
     [turnOnAnimation],
   );
 
   return (
     <>
-      <Meta title={HOMEPAGE_TITLE} description={firstParagraph} />
+      <Meta title={HOMEPAGE_TITLE} description={pageDescription} />
       <ContentGrid gridRef={gridRef}>
         {otherCards.map(({ index, card }, arrayIndex) => {
           const nextItem = otherCards[arrayIndex + 1];

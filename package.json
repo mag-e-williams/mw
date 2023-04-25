@@ -44,6 +44,7 @@
     "@next/bundle-analyzer": "13.0.6",
     "@vercel/og": "0.0.21",
     "animate-css-grid": "1.4.3",
+    "aws-sdk": "2.1362.0",
     "cmd-ts": "0.11.0",
     "dotenv": "16.0.3",
     "eslint-config-mw": "link:./eslint-plugin-mw",

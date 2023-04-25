@@ -15,7 +15,7 @@ export type ProjectsQuery = {
                           readonly description: string | undefined;
                           readonly layout: string | undefined;
                           readonly creationDate: any | undefined;
-                          readonly link: { readonly url: string | undefined } | {} | undefined;
+                          readonly link: { readonly url: string | undefined } | undefined;
                           readonly thumbnail:
                             | {
                                 readonly url: string | undefined;

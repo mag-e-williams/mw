@@ -62,7 +62,6 @@ export function Footer() {
             <NavItem>
               <Link
                 href="https://github.com/mag-e-williams/mw"
-                linkProps={{ underline: 'none' }}
                 sx={{
                   '&&': {
                     fontSize: 15,

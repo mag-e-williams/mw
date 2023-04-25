@@ -5,6 +5,7 @@ import { fetchProjects } from './server/contentful/fetchProjects';
 import { fetchRecentlyPlayed } from './server/spotify/fetchRecentlyPlayed';
 import { fetchCertifications } from './server/contentful/fetchCertifications';
 import { fetchRepoVersion } from './server/github/fetchRepoVersion';
+import { fetchPhotos } from './server/aws/fetchPhotos';
 
 /**
  * All possible types of endpoints we could request
@@ -29,6 +30,7 @@ export const endpoints = {
   certifications: fetchCertifications,
   'latest/track': fetchRecentlyPlayed,
   version: fetchRepoVersion,
+  photos: fetchPhotos,
 } as const;
 
 /**
