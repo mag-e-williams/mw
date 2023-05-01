@@ -193,6 +193,7 @@ export type AssetLinkingCollections = {
   readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly contentTypeLocationCollection: Maybe<ContentTypeLocationCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+  readonly imageCollection: Maybe<ImageCollection>;
   readonly introBlockCollection: Maybe<IntroBlockCollection>;
   readonly projectCollection: Maybe<ProjectCollection>;
 };
@@ -212,6 +213,13 @@ export type AssetLinkingCollectionsContentTypeLocationCollectionArgs = {
 };
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type AssetLinkingCollectionsImageCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;
@@ -385,7 +393,7 @@ export type CertificationBadgeOrder =
 export type CertificationOrg = Entry & {
   readonly abbreviation: Maybe<Scalars['String']>;
   readonly contentfulMetadata: ContentfulMetadata;
-  readonly link: Maybe<Entry>;
+  readonly link: Maybe<Link>;
   readonly linkedFrom: Maybe<CertificationOrgLinkingCollections>;
   readonly sys: Sys;
   readonly title: Maybe<Scalars['String']>;
@@ -430,6 +438,7 @@ export type CertificationOrgFilter = {
   readonly abbreviation_not_contains: InputMaybe<Scalars['String']>;
   readonly abbreviation_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
   readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly link: InputMaybe<CfLinkNestedFilter>;
   readonly link_exists: InputMaybe<Scalars['Boolean']>;
   readonly sys: InputMaybe<SysFilter>;
   readonly title: InputMaybe<Scalars['String']>;
@@ -633,6 +642,76 @@ export type EntryOrder =
   | 'sys_publishedVersion_ASC'
   | 'sys_publishedVersion_DESC';
 
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type Image = Entry & {
+  readonly contentfulMetadata: ContentfulMetadata;
+  readonly image: Maybe<Asset>;
+  readonly imageId: Maybe<Scalars['String']>;
+  readonly linkedFrom: Maybe<ImageLinkingCollections>;
+  readonly sys: Sys;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type ImageImageArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type ImageImageIdArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type ImageLinkedFromArgs = {
+  allowedLocales: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type ImageTagsArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/image) */
+export type ImageTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+export type ImageCollection = {
+  readonly items: ReadonlyArray<Maybe<Image>>;
+  readonly limit: Scalars['Int'];
+  readonly skip: Scalars['Int'];
+  readonly total: Scalars['Int'];
+};
+
+export type ImageFilter = {
+  readonly AND: InputMaybe<ReadonlyArray<InputMaybe<ImageFilter>>>;
+  readonly OR: InputMaybe<ReadonlyArray<InputMaybe<ImageFilter>>>;
+  readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  readonly imageId: InputMaybe<Scalars['String']>;
+  readonly imageId_contains: InputMaybe<Scalars['String']>;
+  readonly imageId_exists: InputMaybe<Scalars['Boolean']>;
+  readonly imageId_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly imageId_not: InputMaybe<Scalars['String']>;
+  readonly imageId_not_contains: InputMaybe<Scalars['String']>;
+  readonly imageId_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly image_exists: InputMaybe<Scalars['Boolean']>;
+  readonly sys: InputMaybe<SysFilter>;
+  readonly tags_contains_all: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly tags_contains_none: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly tags_contains_some: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly tags_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title: InputMaybe<Scalars['String']>;
+  readonly title_contains: InputMaybe<Scalars['String']>;
+  readonly title_exists: InputMaybe<Scalars['Boolean']>;
+  readonly title_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly title_not: InputMaybe<Scalars['String']>;
+  readonly title_not_contains: InputMaybe<Scalars['String']>;
+  readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
 export type ImageFormat =
   | 'AVIF'
   /** JPG image format. */
@@ -653,6 +732,31 @@ export type ImageFormat =
   | 'PNG8'
   /** WebP image format. */
   | 'WEBP';
+
+export type ImageLinkingCollections = {
+  readonly entryCollection: Maybe<EntryCollection>;
+};
+
+export type ImageLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type ImageOrder =
+  | 'imageId_ASC'
+  | 'imageId_DESC'
+  | 'sys_firstPublishedAt_ASC'
+  | 'sys_firstPublishedAt_DESC'
+  | 'sys_id_ASC'
+  | 'sys_id_DESC'
+  | 'sys_publishedAt_ASC'
+  | 'sys_publishedAt_DESC'
+  | 'sys_publishedVersion_ASC'
+  | 'sys_publishedVersion_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
 
 export type ImageResizeFocus =
   /** Focus the resizing on the bottom. */
@@ -892,11 +996,19 @@ export type LinkFilter = {
 
 export type LinkLinkingCollections = {
   readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
+  readonly certificationOrgCollection: Maybe<CertificationOrgCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
   readonly projectCollection: Maybe<ProjectCollection>;
 };
 
 export type LinkLinkingCollectionsCertificationBadgeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type LinkLinkingCollectionsCertificationOrgCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;
@@ -1083,6 +1195,8 @@ export type Query = {
   readonly contentTypeLocation: Maybe<ContentTypeLocation>;
   readonly contentTypeLocationCollection: Maybe<ContentTypeLocationCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+  readonly image: Maybe<Image>;
+  readonly imageCollection: Maybe<ImageCollection>;
   readonly introBlock: Maybe<IntroBlock>;
   readonly introBlockCollection: Maybe<IntroBlockCollection>;
   readonly link: Maybe<Link>;
@@ -1162,6 +1276,21 @@ export type QueryEntryCollectionArgs = {
   preview: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where: InputMaybe<EntryFilter>;
+};
+
+export type QueryImageArgs = {
+  id: Scalars['String'];
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+export type QueryImageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<ReadonlyArray<InputMaybe<ImageOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ImageFilter>;
 };
 
 export type QueryIntroBlockArgs = {

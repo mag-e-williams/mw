@@ -1,5 +1,11 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { responsiveFontSizes, Theme, SxProps as MuiSxProps } from '@mui/material';
+import {
+  responsiveFontSizes,
+  Theme,
+  SxProps as MuiSxProps,
+  alpha,
+  decomposeColor,
+} from '@mui/material';
 import {
   CssVarsTheme,
   CssVarsThemeOptions,
@@ -164,6 +170,19 @@ export function getTheme(): Theme {
           },
         },
       },
+      MuiGrid: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            width: '100%',
+            boxShadow: 'none',
+            '& [role="separator"]': {
+              margin: theme.spacing(0, 2),
+            },
+            // borderRadius: theme.spacing(6),
+            padding: theme.spacing(2, 3),
+          }),
+        },
+      },
       MuiLink: {
         defaultProps: {
           variant: 'body1',
@@ -211,6 +230,14 @@ export function getTheme(): Theme {
             borderWidth: 1,
             borderStyle: 'solid',
             boxShadow: theme.vars.extraShadows.card.main,
+          }),
+        },
+      },
+      MuiModal: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            background: (theme.vars.palette.card.background, 0.5),
+            backdropFilter: 'blur(2px)',
           }),
         },
       },

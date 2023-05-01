@@ -3,45 +3,60 @@ import type { ContentCardProps } from 'components/ContentCard';
 import { HoverableContainer } from 'components/HoverableContainer';
 import { useState } from 'react';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
-import { Card } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Image } from 'components/Image';
+import { Link } from 'components/Link';
 
 type CertificationProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   certification: CertificationBadge;
 };
 
-export function Certification({ certification }: CertificationProps) {
+function GridImage({ certification }: CertificationProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
-
-  const openInNewTab = (url: string | undefined) => {
-    if (url) {
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-      if (newWindow) newWindow.opener = null;
-    }
-  };
-
   return (
-    <Card
+    <Grid
+      item
+      xs={3}
+      md={1}
+      sx={{ padding: 2, alignItems: 'center' }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
-      onClick={() => openInNewTab(certification?.link?.url)}
-      sx={() => ({
-        padding: 2,
-        bgcolor: 'transparent',
-        border: 'none',
-      })}
     >
       <HoverableContainer isHovered={isHovered}>
-        <Image
-          url={certification?.thumbnail?.url}
-          width={width}
-          height={height}
-          alt={certification.title ?? 'Certification Badge'}
-          priority
-          sizes={sizes}
-        />
+        <Link href={certification?.link?.url} isExternal>
+          <Image
+            url={certification?.thumbnail?.url}
+            width={width}
+            height={height}
+            alt={certification.title ?? 'Certification Badge'}
+            priority
+            sizes={sizes}
+          />
+        </Link>
       </HoverableContainer>
-    </Card>
+    </Grid>
+  );
+}
+
+function GridText({ certification }: CertificationProps) {
+  return (
+    <Grid item xs={3} md={2} sx={{ padding: 2 }}>
+      <Link href={certification?.link?.url} isExternal linkProps={{ underline: 'none' }}>
+        <Typography variant="h6">
+          {certification.title} | {certification.level}
+        </Typography>
+      </Link>
+      <Typography variant="caption">{certification.description}</Typography>
+    </Grid>
+  );
+}
+
+export function Certification({ certification }: CertificationProps) {
+  return (
+    <>
+      <GridImage certification={certification} />
+      <GridText certification={certification} />
+    </>
   );
 }

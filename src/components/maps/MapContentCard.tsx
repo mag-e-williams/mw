@@ -8,20 +8,7 @@ const MIN_DIMENSION = 297;
 // In px, the height of the expanded card
 const EXPANDED_HEIGHT = 500;
 
-type MapContentCardProps = {
-  // backgroundImageUrl: string | null;
-};
-
-/**
- * MapContentCard is a ContentCard that has a background image and
- * expandable support.
- */
-export function MapContentCard({
-  isExpanded,
-  // backgroundImageUrl,
-  sx,
-  ...props
-}: MapContentCardProps & ContentCardProps & CardProps) {
+export function MapContentCard({ isExpanded, sx, ...props }: ContentCardProps & CardProps) {
   return (
     <ContentCard
       {...props}

@@ -9,7 +9,7 @@ import { faAward } from '@fortawesome/free-solid-svg-icons/faAward';
 import { FaIcon } from 'components/FaIcon';
 import { Typography, useTheme, Stack } from '@mui/material';
 import { Minimize2 } from 'lucide-react';
-import { Control } from 'components/certifications/Control';
+import { Control } from 'components/baseControls/Control';
 import { CertificationsCardContent } from './CertificationsCardContent';
 
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
@@ -19,11 +19,14 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
 /**
  * Uses the `ContentCard` to show a project's details
  */
+
 export function CertificationsCard({ certifications, turnOnAnimation }: CertificationCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { verticalSpan, horizontalSpan } = useCurrentImageSizes();
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
+  const expandedWidth = 2;
+  const expandedHeight = 3;
   const expansionControl = useMemo(
     () =>
       isExpanded && (
@@ -42,13 +45,15 @@ export function CertificationsCard({ certifications, turnOnAnimation }: Certific
     <ContentCard
       verticalSpan={verticalSpan}
       horizontalSpan={horizontalSpan}
+      isExpanded={isExpanded}
       onExpansion={!isExpanded ? setIsExpanded : undefined}
       overlay="Certifications"
+      expandedWidth={expandedWidth}
+      expandedHeight={expandedHeight}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       turnOnAnimation={turnOnAnimation}
       sx={() => ({
-        bgcolor: COLORS.PRIMARY,
         [theme.breakpoints.down('md')]: {
           maxHeight: theme.shape.gridItemSize(0.75),
         },
@@ -70,7 +75,7 @@ export function CertificationsCard({ certifications, turnOnAnimation }: Certific
           >
             <Typography
               sx={{
-                color: COLORS.LIGHT.CARD_BACKGROUND,
+                color: COLORS.SECONDARY,
                 paddingTop: 2,
                 paddingRight: isExpanded ? 3 : undefined,
               }}

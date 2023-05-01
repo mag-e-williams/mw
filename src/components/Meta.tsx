@@ -22,7 +22,7 @@ interface Props {
 type Graph = Record<string, string | undefined>;
 
 const MAX_DESC_LENGTH = 300;
-const SITE_NAME = 'margret williams';
+const SITE_NAME = 'creative engineer';
 export const HOMEPAGE_TITLE = 'margret williams';
 const OG_IMAGE_API_ROUTE = 'api/og';
 const GRAPH_PREFIXES = ['og', 'twitter'] as const;

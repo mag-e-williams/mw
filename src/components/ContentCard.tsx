@@ -1,49 +1,37 @@
 import { Link } from 'api/types/generated/contentfulApi.generated';
 import { truncated } from 'helpers/truncated';
-import { useState } from 'react';
-import { Card, Theme, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
+import { Card, Theme, Typography, useTheme } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
 import { ContentWrappingLink } from './ContentWrappingLink';
+import { Control } from './baseControls/Control';
+import { Minimize2 } from 'lucide-react';
 
 export type ContentCardProps = Pick<
   React.ComponentProps<'div'>,
   'onMouseOver' | 'onMouseOut' | 'onTouchStart'
 > & {
   children?: React.ReactNode;
-  /**
-   * How many columns the card spans, defaults to 1
-   */
+
   horizontalSpan?: number;
 
-  /**
-   * How many rows the card spans, defaults to 1
-   */
   verticalSpan?: number;
 
-  /**
-   * If anything is specified here, it appears in an overlay on top of the card
-   */
   overlay?: React.ReactNode;
 
-  /**
-   * If provided, a link to follow upon click anywhere on the
-   * card
-   */
   link?: Link;
 
   isExpanded?: boolean;
 
-  /**
-   * If the card should expand to full width when clicked,
-   * provide a function that gets called when that happens.
-   */
+  expandedWidth?: number;
+
+  expandedHeight?: number;
+
   onExpansion?: (isExpanded: boolean) => void;
 
-  /**
-   * Function that starts an animation when the card is expanded
-   * and removes the animation once finished.
-   */
+  Animation?: () => void;
+
   turnOnAnimation?: () => void;
 
   sx?: SxProps;
@@ -51,20 +39,10 @@ export type ContentCardProps = Pick<
 };
 
 type LinkWrappedChildrenProps = Pick<ContentCardProps, 'link' | 'children'> & {
-  /**
-   * If the card expands when clicked
-   */
   expandOnClick: boolean;
-
-  /**
-   * The element that overlays the card
-   */
   overlayContents: React.ReactNode;
 };
 
-/**
- * Returns style props for the card component, based on
- */
 function getCardSx(
   theme: Theme,
   {
@@ -186,6 +164,8 @@ export function ContentCard({
   children,
   overlay,
   link,
+  expandedHeight,
+  expandedWidth,
   onExpansion,
   turnOnAnimation,
   sx,
@@ -194,10 +174,24 @@ export function ContentCard({
 }: ContentCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const expandOnClick = !!onExpansion;
-  const actualHSpan = isExpanded ? 3 : horizontalSpan ?? 1;
-  const actualVSpan = isExpanded ? null : verticalSpan ?? 1;
+  const actualHSpan = isExpanded ? expandedWidth || 1 : horizontalSpan ?? 1;
+  const actualVSpan = isExpanded ? expandedHeight || 1 : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
+  // const uitheme = useTheme();
 
+  // const expansionControl = useMemo(
+  //   () =>
+  //     isExpanded && (
+  //       <Control
+  //         onClick={isExpanded ? () => setIsExpanded(false) : undefined}
+  //         position="top-right"
+  //         theme={uitheme}
+  //       >
+  //         <Minimize2 size="1em" />
+  //       </Control>
+  //     ),
+  //   [isExpanded, uitheme],
+  // );
   // Swaps the expansion variable and calls the user callback
   const toggleExpansion = onExpansion
     ? () => {
@@ -217,6 +211,8 @@ export function ContentCard({
       onClick={toggleExpansion}
       {...props}
     >
+      {/* {expansionControl} */}
+
       <LinkWrappedChildren
         expandOnClick={expandOnClick}
         overlayContents={overlay && <OverlayContent overlay={overlay} sx={overlaySx} />}

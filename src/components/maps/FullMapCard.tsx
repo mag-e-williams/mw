@@ -20,7 +20,8 @@ export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasMapLoaded, setHasMapLoaded] = useState(false);
-  // const [, setCenterLocation] = useState(false);
+  const expandedWidth = 3;
+  const expandedHeight = 1;
 
   const expansionControl = useMemo(
     () => (
@@ -40,6 +41,8 @@ export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
       isExpanded={isExpanded}
       onExpansion={!isExpanded ? setIsExpanded : undefined}
       turnOnAnimation={turnOnAnimation}
+      expandedWidth={expandedWidth}
+      expandedHeight={expandedHeight}
     >
       {location && location.point && (
         <Map
