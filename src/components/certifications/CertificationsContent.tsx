@@ -7,7 +7,7 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   certifications: Array<CertificationBadge> | undefined;
 };
 
-export function CertificationsCardContent({ certifications }: CertificationCardProps) {
+export function CertificationsContent({ certifications }: CertificationCardProps) {
   return (
     <Grid
       container

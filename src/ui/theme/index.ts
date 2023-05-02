@@ -1,17 +1,11 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import {
-  responsiveFontSizes,
-  Theme,
-  SxProps as MuiSxProps,
-  alpha,
-  decomposeColor,
-} from '@mui/material';
+import { responsiveFontSizes, Theme, SxProps as MuiSxProps } from '@mui/material';
 import {
   CssVarsTheme,
   CssVarsThemeOptions,
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles';
-import { getShape } from 'ui/theme/shape';
+import { getShape, getShapeXS } from 'ui/theme/shape';
 import { getTypography } from 'ui/theme/typography';
 import { getShadows } from './extraShadows';
 import { getPalette } from './palette';
@@ -40,6 +34,7 @@ export function getTheme(): Theme {
       },
     },
     shape: getShape(),
+    shapeXS: getShapeXS(),
     breakpoints: {
       values: {
         xs: 0,

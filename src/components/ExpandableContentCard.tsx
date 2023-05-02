@@ -3,16 +3,13 @@ import { ContentCard, ContentCardProps } from 'components/ContentCard';
 import { mixinSx } from 'ui/helpers/mixinSx';
 
 // In px, the min/max size of the card - matches standard size
-const MIN_DIMENSION = 297;
+// const MIN_DIMENSION = 297;
+const MIN_DIMENSION = undefined;
 
 // In px, the height of the expanded card
 const EXPANDED_HEIGHT = 500;
 
-export function CertificationsContentCard({
-  isExpanded,
-  sx,
-  ...props
-}: ContentCardProps & CardProps) {
+export function ExpandableContentCard({ isExpanded, sx, ...props }: ContentCardProps & CardProps) {
   return (
     <ContentCard
       {...props}

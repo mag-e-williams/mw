@@ -1,12 +1,10 @@
 import { Link } from 'api/types/generated/contentfulApi.generated';
 import { truncated } from 'helpers/truncated';
-import { useMemo, useState } from 'react';
-import { Card, Theme, Typography, useTheme } from '@mui/material';
+import { useState } from 'react';
+import { Card, Theme, Typography } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
 import { ContentWrappingLink } from './ContentWrappingLink';
-import { Control } from './baseControls/Control';
-import { Minimize2 } from 'lucide-react';
 
 export type ContentCardProps = Pick<
   React.ComponentProps<'div'>,
@@ -30,7 +28,7 @@ export type ContentCardProps = Pick<
 
   expandedHeight?: number;
 
-  onExpansion?: (isExpanded: boolean) => void;
+  onExpansion: (isExpanded: boolean) => void;
 
   Animation?: () => void;
 
@@ -178,11 +176,7 @@ export function ContentCard({
   const actualHSpan = isExpanded ? expandedWidth || 1 : horizontalSpan ?? 1;
   const actualVSpan = isExpanded ? expandedHeight || 1 : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
-  // const isClickable = true;
 
-  if (overlay === 'certifications') {
-    console.log(expandOnClick, onExpansion, isClickable, isExpanded);
-  }
   const toggleExpansion = expandable
     ? () => {
         turnOnAnimation?.();

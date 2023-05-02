@@ -4,7 +4,7 @@ import { MapPreviewCard } from 'components/homepage/MapPreviewCard';
 import { HOMEPAGE_TITLE, Meta } from 'components/Meta';
 import { useGridAnimation } from 'hooks/useGridAnimation';
 import { useMemo, useRef } from 'react';
-import { CertificationsPreviewCard } from 'components/homepage/CertificationsPreviewCard';
+import { CertificationsCard } from 'components/homepage/CertificationsCard';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
@@ -33,7 +33,7 @@ export function Homepage() {
       { index: 2, card: <SpotifyCard key="spotify" /> },
       {
         index: 4,
-        card: <CertificationsPreviewCard key="certs" turnOnAnimation={turnOnAnimation} />,
+        card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
       { index: 4, card: <PhotosCard key="photos" /> },
     ],

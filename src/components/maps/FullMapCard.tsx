@@ -41,7 +41,7 @@ export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
     <MapContentCard
       expandable={isExpandable}
       isExpanded={isExpanded}
-      onExpansion={!isExpanded ? setIsExpanded : undefined}
+      onExpansion={setIsExpanded}
       turnOnAnimation={turnOnAnimation}
       expandedWidth={expandedWidth}
       expandedHeight={expandedHeight}

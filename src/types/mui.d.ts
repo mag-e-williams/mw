@@ -59,6 +59,12 @@ declare module '@mui/material/styles' {
       gridItemDimension: number;
       gridItemSize?: (span: number) => string;
     };
+    shapeXS: {
+      gridGap: number;
+      gridGapLarge: number;
+      gridItemDimension: number;
+      gridItemSize?: (span: number) => string;
+    };
   }
 
   interface ThemeVars {
