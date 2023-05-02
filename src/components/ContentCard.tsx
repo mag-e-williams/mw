@@ -22,6 +22,8 @@ export type ContentCardProps = Pick<
 
   link?: Link;
 
+  expandable?: boolean;
+
   isExpanded?: boolean;
 
   expandedWidth?: number;
@@ -104,9 +106,7 @@ function LinkWrappedChildren({
       link={link}
       sx={(theme) => ({
         display: 'block',
-        // Prevents overflowing links
         height: '100%',
-        // By default the focus ring is hidden, so pseudo element it
         '&:focus-visible:before': {
           content: '""',
           position: 'absolute',
@@ -164,6 +164,7 @@ export function ContentCard({
   children,
   overlay,
   link,
+  expandable,
   expandedHeight,
   expandedWidth,
   onExpansion,
@@ -177,23 +178,12 @@ export function ContentCard({
   const actualHSpan = isExpanded ? expandedWidth || 1 : horizontalSpan ?? 1;
   const actualVSpan = isExpanded ? expandedHeight || 1 : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
-  // const uitheme = useTheme();
+  // const isClickable = true;
 
-  // const expansionControl = useMemo(
-  //   () =>
-  //     isExpanded && (
-  //       <Control
-  //         onClick={isExpanded ? () => setIsExpanded(false) : undefined}
-  //         position="top-right"
-  //         theme={uitheme}
-  //       >
-  //         <Minimize2 size="1em" />
-  //       </Control>
-  //     ),
-  //   [isExpanded, uitheme],
-  // );
-  // Swaps the expansion variable and calls the user callback
-  const toggleExpansion = onExpansion
+  if (overlay === 'certifications') {
+    console.log(expandOnClick, onExpansion, isClickable, isExpanded);
+  }
+  const toggleExpansion = expandable
     ? () => {
         turnOnAnimation?.();
         setIsExpanded(!isExpanded);
@@ -211,8 +201,6 @@ export function ContentCard({
       onClick={toggleExpansion}
       {...props}
     >
-      {/* {expansionControl} */}
-
       <LinkWrappedChildren
         expandOnClick={expandOnClick}
         overlayContents={overlay && <OverlayContent overlay={overlay} sx={overlaySx} />}
