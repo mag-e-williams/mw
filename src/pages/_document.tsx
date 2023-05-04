@@ -14,6 +14,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script src="https://documentservices.adobe.com/view-sdk/viewer.js" async />
       </Html>
     );
   }

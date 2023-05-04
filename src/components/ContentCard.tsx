@@ -94,7 +94,7 @@ function LinkWrappedChildren({
   const safelyWrappedChildren = !overlayContents ? (
     children
   ) : (
-    <div>
+    <div style={{ height: '100%' }}>
       {overlayContents}
       {children}
     </div>

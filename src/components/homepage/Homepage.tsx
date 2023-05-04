@@ -10,6 +10,7 @@ import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
 import { PhotosCard } from './PhotosCard';
+import { ResumeCard } from './ResumeCard';
 
 export function Homepage() {
   const { data: projects } = useData('projects');
@@ -31,6 +32,7 @@ export function Homepage() {
       { index: 0, card: <IntroCard key="introCard" /> },
       { index: 0, card: <MapPreviewCard key="mapx" turnOnAnimation={turnOnAnimation} /> },
       { index: 2, card: <SpotifyCard key="spotify" /> },
+      { index: 2, card: <ResumeCard key="resume2" turnOnAnimation={turnOnAnimation} /> },
       {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,

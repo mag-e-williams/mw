@@ -12,10 +12,6 @@ type FullMapCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   location: MapLocation | undefined | null;
 };
 
-/**
- * Shows a canvas-based map of my current location. This should be imported ON DEMAND
- * as the mapbox maps are absolutely massive so we should delay as long as possible.
- */
 export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
