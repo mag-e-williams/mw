@@ -37,11 +37,6 @@ function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme })
   );
 }
 
-/**
- * This is what surrounds any control to contain it, automatically responding
- * to the color scheme. Circular and same width/height. Returns either a single
- * container, or a larger container with multiple children in it if necessary.
- */
 export function ControlContainer({ onClick, children, className, theme }: ControlContainerProps) {
   const controlSx = {
     display: 'flex',
