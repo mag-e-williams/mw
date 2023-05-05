@@ -8,12 +8,14 @@ import { ExpandableContentCard } from 'components/ExpandableContentCard';
 type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   bannerContent: React.ReactNode;
   expandedContent: React.ReactNode;
+  additionalControls?: React.ReactNode;
   overlay: string | undefined;
 };
 
 export function FullExpandableCard({
   bannerContent,
   expandedContent,
+  additionalControls,
   overlay,
   turnOnAnimation,
 }: CertificationCardProps) {
@@ -26,15 +28,25 @@ export function FullExpandableCard({
   const expansionControl = useMemo(
     () =>
       isExpanded ? (
-        <Control
-          onClick={isExpanded ? () => setIsExpanded(!isExpanded) : undefined}
-          position="top-right"
-          theme={theme}
-        >
-          <Minimize2 size="1em" />
-        </Control>
+        additionalControls ? (
+          <Control position="top-right" theme={theme}>
+            {additionalControls}
+            <Minimize2
+              size="1em"
+              onClick={isExpanded ? () => setIsExpanded(!isExpanded) : undefined}
+            />
+          </Control>
+        ) : (
+          <Control
+            onClick={isExpanded ? () => setIsExpanded(!isExpanded) : undefined}
+            position="top-right"
+            theme={theme}
+          >
+            <Minimize2 size="1em" />
+          </Control>
+        )
       ) : undefined,
-    [isExpanded, theme],
+    [additionalControls, isExpanded, theme],
   );
 
   return (

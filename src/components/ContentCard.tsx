@@ -28,7 +28,7 @@ export type ContentCardProps = Pick<
 
   expandedHeight?: number;
 
-  onExpansion: (isExpanded: boolean) => void;
+  onExpansion?: (isExpanded: boolean) => void;
 
   Animation?: () => void;
 
@@ -177,13 +177,14 @@ export function ContentCard({
   const actualVSpan = isExpanded ? expandedHeight || 1 : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
 
-  const toggleExpansion = expandable
-    ? () => {
-        turnOnAnimation?.();
-        setIsExpanded(!isExpanded);
-        onExpansion(!isExpanded);
-      }
-    : undefined;
+  const toggleExpansion =
+    expandable && onExpansion
+      ? () => {
+          turnOnAnimation?.();
+          setIsExpanded(!isExpanded);
+          onExpansion(!isExpanded);
+        }
+      : undefined;
 
   return (
     <Card

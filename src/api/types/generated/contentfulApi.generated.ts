@@ -1055,6 +1055,7 @@ export type Project = Entry & {
   readonly contentfulMetadata: ContentfulMetadata;
   readonly creationDate: Maybe<Scalars['DateTime']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly file: Maybe<Asset>;
   readonly layout: Maybe<Scalars['String']>;
   readonly link: Maybe<Link>;
   readonly linkedFrom: Maybe<ProjectLinkingCollections>;
@@ -1072,6 +1073,12 @@ export type ProjectCreationDateArgs = {
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
 export type ProjectDescriptionArgs = {
   locale: InputMaybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
+export type ProjectFileArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/project) */
@@ -1133,6 +1140,7 @@ export type ProjectFilter = {
   readonly description_not: InputMaybe<Scalars['String']>;
   readonly description_not_contains: InputMaybe<Scalars['String']>;
   readonly description_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly file_exists: InputMaybe<Scalars['Boolean']>;
   readonly layout: InputMaybe<Scalars['String']>;
   readonly layout_contains: InputMaybe<Scalars['String']>;
   readonly layout_exists: InputMaybe<Scalars['Boolean']>;

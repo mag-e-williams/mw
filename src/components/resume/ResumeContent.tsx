@@ -1,29 +1,20 @@
 import { Box } from '@mui/material';
+import { Project } from 'api/types/generated/contentfulApi.generated';
 import React, { useMemo } from 'react';
 import ReactViewAdobe from 'react-adobe-embed';
 
-const resumeURL = '/MargretWilliamsResume2023.pdf';
 const ADOBE_CLIENT_ID = 'e27e45c3ad08494daca6109061436878';
 const divId = 'pdf-div';
 
-const adobePreviewConfig = {
-  embedMode: 'IN_LINE',
-  showAnnotationTools: false,
-  showLeftHandPanel: false,
-  showDownloadPDF: false,
+type ResumeCardProps = {
+  resume?: Project;
 };
 
-const reactViewConfig = {
-  clientId: ADOBE_CLIENT_ID,
-  divId,
-  url: resumeURL,
-  fileMeta: {
-    fileName: '23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf',
-    title: "23andMe's Legal Notice",
-  },
-};
+export function ResumeContent({ resume }: ResumeCardProps) {
+  const url = resume?.file?.url || '';
+  const fileName = resume?.file?.fileName || '';
+  const title = resume?.file?.title || '';
 
-export function ResumeContent() {
   const resumeContainer = useMemo(
     () => (
       <ReactViewAdobe
@@ -34,11 +25,24 @@ export function ResumeContent() {
           justifyContent: 'center',
           flexDirection: 'column',
         }}
-        previewConfig={adobePreviewConfig}
-        config={reactViewConfig}
+        previewConfig={{
+          embedMode: 'IN_LINE',
+          showAnnotationTools: false,
+          showLeftHandPanel: false,
+          showDownloadPDF: false,
+        }}
+        config={{
+          clientId: ADOBE_CLIENT_ID,
+          divId,
+          url,
+          fileMeta: {
+            fileName,
+            title,
+          },
+        }}
       />
     ),
-    [],
+    [fileName, title, url],
   );
 
   return (
