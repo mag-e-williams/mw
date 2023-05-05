@@ -16,7 +16,7 @@
 //   params: { Bucket: BUCKET_NAME },
 // });
 
-export function fetchPhotos(): undefined {
+export function fetchPhotos(): null {
   // const photoUrls = new Promise<string[] | undefined>((resolve, reject) => {
   //   s3.listObjects((err: AWSError, data: ListObjectsOutput) => {
   //     if (err) {
@@ -31,5 +31,5 @@ export function fetchPhotos(): undefined {
   //     return resolve(photos);
   //   });
   // });
-  return undefined;
+  return null;
 }
