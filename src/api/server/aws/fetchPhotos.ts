@@ -6,7 +6,7 @@ const BUCKET_NAME = process.env.S3_BUCKET;
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
   region: process.env.AWS_BUCKET_REGION,
   signatureVersion: AWS_CONFIG_VERSION,
 });
