@@ -28,7 +28,7 @@ export type ControlContainerProps = Pick<React.ComponentProps<'div'>, 'className
         /**
          * If children is an array, they're each responsible for passing their own onClicks!
          */
-        children: Array<React.ReactElement<{ onClick: () => void }>>;
+        children: Array<React.ReactElement<{ onClick: () => void }>> | Array<any>;
 
         /**
          * We have to pass it through this way because of how we nest the controls
@@ -91,6 +91,7 @@ export function ControlContainer({ onClick, children, className, theme }: Contro
     >
       {Array.isArray(children) ? (
         Children.map(children, (child) => (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           <Box sx={controlSx} onClick={child.props.onClick}>
             {child}
           </Box>
