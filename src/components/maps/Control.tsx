@@ -16,7 +16,7 @@ const CLASSNAME = 'mapboxgl-ctrl';
  * This class wraps `ControlContainer` to add/remove elements from
  * the map when the library decides.
  */
-class MWControl {
+class MapControl {
   /**
    * What Mapbox uses for the map itself - needs to be named this
    */
@@ -100,7 +100,7 @@ class MWControl {
  */
 export function Control({ position, ...props }: ControlProps) {
   const theme = useTheme(); // as much of this is class based, we need to grab the theme this way
-  const control = useRef<MWControl | null>(null);
+  const control = useRef<MapControl | null>(null);
   const properProps = useMemo(
     () => ({
       ...props,
@@ -115,7 +115,7 @@ export function Control({ position, ...props }: ControlProps) {
 
   useControl(
     () => {
-      const newControl = new MWControl(properProps);
+      const newControl = new MapControl(properProps);
       control.current = newControl;
       return newControl;
     },

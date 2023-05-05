@@ -19,10 +19,7 @@ export type CertificationsQuery = {
                             | {
                                 readonly title: string | undefined;
                                 readonly abbreviation: string | undefined;
-                                readonly link:
-                                  | { readonly url: string | undefined }
-                                  | {}
-                                  | undefined;
+                                readonly link: { readonly url: string | undefined } | undefined;
                               }
                             | undefined;
                           readonly link: { readonly url: string | undefined } | undefined;

@@ -15,12 +15,20 @@ const QUERY = gql`
               description
               layout
               creationDate
+              visible
               link {
                 ... on Link {
                   url
                 }
               }
               thumbnail {
+                url(transform: { quality: 90, format: WEBP })
+                width
+                height
+              }
+              file {
+                title
+                fileName
                 url(transform: { quality: 90, format: WEBP })
                 width
                 height

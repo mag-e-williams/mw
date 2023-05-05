@@ -5,7 +5,7 @@ import {
   CssVarsThemeOptions,
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles';
-import { getShape } from 'ui/theme/shape';
+import { getShape, getShapeXS } from 'ui/theme/shape';
 import { getTypography } from 'ui/theme/typography';
 import { getShadows } from './extraShadows';
 import { getPalette } from './palette';
@@ -34,6 +34,7 @@ export function getTheme(): Theme {
       },
     },
     shape: getShape(),
+    shapeXS: getShapeXS(),
     breakpoints: {
       values: {
         xs: 0,
@@ -164,6 +165,19 @@ export function getTheme(): Theme {
           },
         },
       },
+      MuiGrid: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            width: '100%',
+            boxShadow: 'none',
+            '& [role="separator"]': {
+              margin: theme.spacing(0, 2),
+            },
+            // borderRadius: theme.spacing(6),
+            padding: theme.spacing(2, 3),
+          }),
+        },
+      },
       MuiLink: {
         defaultProps: {
           variant: 'body1',
@@ -211,6 +225,14 @@ export function getTheme(): Theme {
             borderWidth: 1,
             borderStyle: 'solid',
             boxShadow: theme.vars.extraShadows.card.main,
+          }),
+        },
+      },
+      MuiModal: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            background: (theme.vars.palette.card.background, 0.5),
+            backdropFilter: 'blur(2px)',
           }),
         },
       },

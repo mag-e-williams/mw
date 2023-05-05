@@ -9,7 +9,7 @@ const MIN_DIMENSION = undefined;
 // In px, the height of the expanded card
 const EXPANDED_HEIGHT = 500;
 
-export function MapContentCard({ isExpanded, sx, ...props }: ContentCardProps & CardProps) {
+export function ExpandableContentCard({ isExpanded, sx, ...props }: ContentCardProps & CardProps) {
   return (
     <ContentCard
       {...props}

@@ -11,39 +11,27 @@ export type ContentCardProps = Pick<
   'onMouseOver' | 'onMouseOut' | 'onTouchStart'
 > & {
   children?: React.ReactNode;
-  /**
-   * How many columns the card spans, defaults to 1
-   */
+
   horizontalSpan?: number;
 
-  /**
-   * How many rows the card spans, defaults to 1
-   */
   verticalSpan?: number;
 
-  /**
-   * If anything is specified here, it appears in an overlay on top of the card
-   */
   overlay?: React.ReactNode;
 
-  /**
-   * If provided, a link to follow upon click anywhere on the
-   * card
-   */
   link?: Link;
+
+  expandable?: boolean;
 
   isExpanded?: boolean;
 
-  /**
-   * If the card should expand to full width when clicked,
-   * provide a function that gets called when that happens.
-   */
+  expandedWidth?: number;
+
+  expandedHeight?: number;
+
   onExpansion?: (isExpanded: boolean) => void;
 
-  /**
-   * Function that starts an animation when the card is expanded
-   * and removes the animation once finished.
-   */
+  Animation?: () => void;
+
   turnOnAnimation?: () => void;
 
   sx?: SxProps;
@@ -51,20 +39,10 @@ export type ContentCardProps = Pick<
 };
 
 type LinkWrappedChildrenProps = Pick<ContentCardProps, 'link' | 'children'> & {
-  /**
-   * If the card expands when clicked
-   */
   expandOnClick: boolean;
-
-  /**
-   * The element that overlays the card
-   */
   overlayContents: React.ReactNode;
 };
 
-/**
- * Returns style props for the card component, based on
- */
 function getCardSx(
   theme: Theme,
   {
@@ -116,7 +94,7 @@ function LinkWrappedChildren({
   const safelyWrappedChildren = !overlayContents ? (
     children
   ) : (
-    <div>
+    <div style={{ height: '100%' }}>
       {overlayContents}
       {children}
     </div>
@@ -126,9 +104,7 @@ function LinkWrappedChildren({
       link={link}
       sx={(theme) => ({
         display: 'block',
-        // Prevents overflowing links
         height: '100%',
-        // By default the focus ring is hidden, so pseudo element it
         '&:focus-visible:before': {
           content: '""',
           position: 'absolute',
@@ -186,6 +162,9 @@ export function ContentCard({
   children,
   overlay,
   link,
+  expandable,
+  expandedHeight,
+  expandedWidth,
   onExpansion,
   turnOnAnimation,
   sx,
@@ -194,18 +173,18 @@ export function ContentCard({
 }: ContentCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const expandOnClick = !!onExpansion;
-  const actualHSpan = isExpanded ? 3 : horizontalSpan ?? 1;
-  const actualVSpan = isExpanded ? null : verticalSpan ?? 1;
+  const actualHSpan = isExpanded ? expandedWidth || 1 : horizontalSpan ?? 1;
+  const actualVSpan = isExpanded ? expandedHeight || 1 : verticalSpan ?? 1;
   const isClickable = !!link || expandOnClick;
 
-  // Swaps the expansion variable and calls the user callback
-  const toggleExpansion = onExpansion
-    ? () => {
-        turnOnAnimation?.();
-        setIsExpanded(!isExpanded);
-        onExpansion(!isExpanded);
-      }
-    : undefined;
+  const toggleExpansion =
+    expandable && onExpansion
+      ? () => {
+          turnOnAnimation?.();
+          setIsExpanded(!isExpanded);
+          onExpansion(!isExpanded);
+        }
+      : undefined;
 
   return (
     <Card
