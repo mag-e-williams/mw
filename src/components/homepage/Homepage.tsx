@@ -10,6 +10,8 @@ import { findProjectWithName } from 'api/parsers';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
+import { LetterboxdCard } from './LetterboxdCard';
+
 // import { PhotosCard } from './PhotosCard';
 import { ResumeCard } from './ResumeCard';
 
@@ -35,14 +37,18 @@ export function Homepage() {
     () => [
       { index: 0, card: <IntroCard key="introCard" /> },
       { index: 0, card: <MapPreviewCard key="mapx" turnOnAnimation={turnOnAnimation} /> },
-      { index: 2, card: <SpotifyCard key="spotify" /> },
+      { index: 1, card: <SpotifyCard key="spotify" /> },
       {
         index: 2,
-        card: <ResumeCard key="resume2" turnOnAnimation={turnOnAnimation} resume={resumeCard} />,
+        card: <ResumeCard key="resume" turnOnAnimation={turnOnAnimation} resume={resumeCard} />,
       },
       {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
+      },
+      {
+        index: 4,
+        card: <LetterboxdCard key="letterboxd" />,
       },
       // { index: 4, card: <PhotosCard key="photos" /> },
     ],
