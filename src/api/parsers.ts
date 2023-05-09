@@ -6,7 +6,7 @@ import type {
   TextBlock,
 } from 'api/types/generated/contentfulApi.generated';
 
-import type { Review, ReviewQuery } from './types/letterboxd/Review';
+import type { Review } from './types/letterboxd/Review';
 
 export const isLink = (item: Link | undefined | Record<string, unknown>): item is Link =>
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
