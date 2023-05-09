@@ -6,6 +6,8 @@ import type {
   TextBlock,
 } from 'api/types/generated/contentfulApi.generated';
 
+import type { Review, ReviewQuery } from './types/letterboxd/Review';
+
 export const isLink = (item: Link | undefined | Record<string, unknown>): item is Link =>
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   !!(item as Link)?.title;
@@ -29,6 +31,11 @@ export const isIntroBlock = (
   item: IntroBlock | undefined | Record<string, unknown>,
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 ): item is IntroBlock => !!(item as IntroBlock)?.headshot;
+
+export const isReview = (
+  item: Review | undefined | Record<string, unknown>,
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+): item is Review => !!(item as Review)?.title;
 
 export const isDefinedItem = <Type>(item: Type | undefined | null): item is Type =>
   item !== undefined && item !== null;
