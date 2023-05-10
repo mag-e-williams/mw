@@ -1,15 +1,16 @@
 // import AWS, { AWSError } from 'aws-sdk';
 // import { ListObjectsOutput } from 'aws-sdk/clients/s3';
+import AWS from 'aws-sdk';
 
-// const AWS_CONFIG_VERSION = 'v4';
+const AWS_CONFIG_VERSION = 'v4';
 // const BUCKET_NAME = process.env.S3_BUCKET;
 
-// AWS.config.update({
-//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//   secretAccessKey: process.env.AWS_SECRET_KEY_ID,
-//   region: process.env.AWS_BUCKET_REGION,
-//   signatureVersion: AWS_CONFIG_VERSION,
-// });
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
+  region: process.env.AWS_BUCKET_REGION,
+  signatureVersion: AWS_CONFIG_VERSION,
+});
 
 // const s3 = new AWS.S3({
 //   apiVersion: '2006-03-01',
