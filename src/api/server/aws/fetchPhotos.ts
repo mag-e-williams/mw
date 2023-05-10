@@ -16,7 +16,7 @@ const s3 = new AWS.S3({
   params: { Bucket: BUCKET_NAME },
 });
 
-export function fetchPhotos(): Promise<string[] | undefined> {
+export function fetchPhotos(): null {
   const photoUrls = new Promise<string[] | undefined>((resolve, reject) => {
     s3.listObjects((err: AWSError, data: ListObjectsOutput) => {
       if (err) {
@@ -31,5 +31,8 @@ export function fetchPhotos(): Promise<string[] | undefined> {
       return resolve(photos);
     });
   });
-  return photoUrls;
+
+  // eslint-disable-next-line no-console
+  console.log(photoUrls);
+  return null;
 }
