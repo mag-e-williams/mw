@@ -44,6 +44,11 @@ async function parseReview(item: ReviewQuery): Promise<Review> {
   return parsedReview;
 }
 
+/*
+The Letterboxd API is not yet Public, so I am using the letetrboxd RSS feed to 
+access my account's movie review history and then using xml2js to parse the 
+returned xml
+*/
 export async function fetchRecentlyReviewed(): Promise<Array<Review> | []> {
   return axios
     .get<AxiosResponse>(LETTERBOXD_RSS_FEED)

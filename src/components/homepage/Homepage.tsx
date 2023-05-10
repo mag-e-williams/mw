@@ -11,8 +11,7 @@ import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
 import { LetterboxdCard } from './LetterboxdCard';
-
-// import { PhotosCard } from './PhotosCard';
+import { PhotosCard } from './PhotosCard';
 import { ResumeCard } from './ResumeCard';
 
 export function Homepage() {
@@ -32,7 +31,6 @@ export function Homepage() {
 
   const resumeCard = findProjectWithName(projects, 'Resume') ?? undefined;
 
-  // These index into projectCards to splice in other cards
   const otherCards = useMemo(
     () => [
       { index: 0, card: <IntroCard key="introCard" /> },
@@ -46,11 +44,11 @@ export function Homepage() {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
+      { index: 4, card: <PhotosCard key="photos" /> },
       {
         index: 4,
         card: <LetterboxdCard key="letterboxd" />,
       },
-      // { index: 4, card: <PhotosCard key="photos" /> },
     ],
     [resumeCard, turnOnAnimation],
   );
