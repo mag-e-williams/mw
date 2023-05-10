@@ -14,6 +14,7 @@ type PageProps = {
     | 'latest/track'
     | 'version'
     | 'photos'
+    | 'movies'
   >;
 };
 
@@ -27,6 +28,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () =>
     'latest/track',
     'version',
     'photos',
+    'movies',
   ]);
 
 function Page() {
