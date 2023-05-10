@@ -1,27 +1,26 @@
-import { Box, Button, Modal, Typography } from '@mui/material';
 import { useData } from 'api/useData';
-import { ContentCard } from 'components/ContentCard';
+import { FullExpandableCard } from 'components/FullExpandableCard';
 import * as React from 'react';
+import type { ContentCardProps } from 'components/ContentCard';
+import { PhotographyBanner } from 'components/photography/PhotographyBanner';
+import { PhotographyContent } from 'components/photography/PhotographyContent';
 
-export function PhotosCard() {
+type PhotosCardProps = Pick<ContentCardProps, 'turnOnAnimation'>;
+
+export function PhotosCard({ turnOnAnimation }: PhotosCardProps) {
   const { data: photos } = useData('photos');
-  console.log('PHOTOS', photos);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   if (!photos) {
     return null;
   }
   return (
-    <ContentCard
+    <FullExpandableCard
       overlay="Photography"
-      sx={{
-        padding: 2.5,
-        display: 'flex',
-      }}
-    >
-      Hello
-    </ContentCard>
+      turnOnAnimation={turnOnAnimation}
+      bannerContent={<PhotographyBanner />}
+      expandedContent={<PhotographyContent photos={photos} />}
+      expandHeight={2}
+      expandWidth={3}
+    />
   );
 }

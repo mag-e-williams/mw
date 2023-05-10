@@ -10,6 +10,8 @@ type CertificationCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   expandedContent: React.ReactNode;
   additionalControls?: React.ReactNode;
   overlay: string | undefined;
+  expandWidth?: number;
+  expandHeight?: number;
 };
 
 export function FullExpandableCard({
@@ -17,12 +19,17 @@ export function FullExpandableCard({
   expandedContent,
   additionalControls,
   overlay,
+  expandWidth,
+  expandHeight,
   turnOnAnimation,
 }: CertificationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const theme = useTheme();
-  const expandedWidth = 2;
-  const expandedHeight = 3;
+  const expandedWidth = expandWidth ?? 2;
+  const expandedHeight = expandHeight ?? 3;
+
+  // const expandedWidth = 2;
+  // const expandedHeight = 3;
   const isExpandable = true;
 
   const expansionControl = useMemo(

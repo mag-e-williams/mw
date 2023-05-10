@@ -44,7 +44,7 @@ export function Homepage() {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
-      { index: 4, card: <PhotosCard key="photos" /> },
+      { index: 4, card: <PhotosCard key="photos" turnOnAnimation={turnOnAnimation} /> },
     ],
     [resumeCard, turnOnAnimation],
   );
