@@ -10,7 +10,7 @@ import { findProjectWithName } from 'api/parsers';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
-// import { PhotosCard } from './PhotosCard';
+import { PhotosCard } from './PhotosCard';
 import { ResumeCard } from './ResumeCard';
 
 export function Homepage() {
@@ -44,7 +44,7 @@ export function Homepage() {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
-      // { index: 4, card: <PhotosCard key="photos" /> },
+      { index: 4, card: <PhotosCard key="photos" /> },
     ],
     [resumeCard, turnOnAnimation],
   );
