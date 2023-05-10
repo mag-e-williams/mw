@@ -16,7 +16,7 @@ const s3 = new AWS.S3({
   params: { Bucket: BUCKET_NAME },
 });
 
-export function fetchPhotos(): Promise<Array<string> | []> {
+export function fetchPhotos(): Promise<Array<string> | undefined> {
   const photoUrls = new Promise<Array<string> | undefined>((resolve, reject) => {
     s3.listObjects((err: AWSError, data: ListObjectsOutput) => {
       if (err) {
@@ -31,6 +31,5 @@ export function fetchPhotos(): Promise<Array<string> | []> {
       return resolve(photos);
     });
   });
-  const result = photoUrls ?? [];
-  return result;
+  return photoUrls;
 }
