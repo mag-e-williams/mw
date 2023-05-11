@@ -23,7 +23,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
       }}
     >
       <Masonry columns={4} spacing={2}>
-        {photos.map((item, index) => (
+        {photos.map((item) => (
           <div key={item}>
             <Image
               src={`${item}?w=162&auto=format`}
