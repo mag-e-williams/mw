@@ -1,5 +1,5 @@
+import type { Photo } from 'api/types/photos/Photo';
 import AWS from 'aws-sdk';
-import type { Photo } from 'api/types/photos/photo';
 
 const AWS_CONFIG_VERSION = 'v4';
 const BUCKET_NAME = 'film-photos';

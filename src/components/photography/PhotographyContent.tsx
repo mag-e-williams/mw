@@ -2,7 +2,7 @@ import type { ContentCardProps } from 'components/ContentCard';
 import { Masonry } from '@mui/lab';
 import { Box } from '@mui/material';
 import Image from 'next/image';
-import { Photo } from 'api/types/photos/photo';
+import type { Photo } from 'api/types/photos/Photo';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo> | undefined;
