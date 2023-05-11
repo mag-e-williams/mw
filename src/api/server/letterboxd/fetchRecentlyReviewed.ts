@@ -6,7 +6,8 @@
 
 import axios, { AxiosResponse } from 'axios';
 import { parseStringPromise } from 'xml2js';
-import type { Review, ReviewQuery } from 'api/types/letterboxd/Review';
+import type { Review } from 'api/types/letterboxd/Review';
+import type { ReviewQuery } from 'api/types/letterboxd/ReviewQuery';
 import { isReview } from 'api/parsers';
 import { isEmpty } from 'helpers/isNotEmpty';
 

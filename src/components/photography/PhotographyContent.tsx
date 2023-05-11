@@ -2,16 +2,16 @@ import type { ContentCardProps } from 'components/ContentCard';
 import { Masonry } from '@mui/lab';
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import { Photo } from 'api/types/photos/photo';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  photos: Array<string> | undefined;
+  photos: Array<Photo> | undefined;
 };
 
 export function PhotographyContent({ photos }: PhotographyCardProps) {
   if (!photos) {
     return null;
   }
-
   return (
     <Box
       sx={{
@@ -24,10 +24,10 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
     >
       <Masonry columns={4} spacing={2}>
         {photos.map((item) => (
-          <div key={item}>
+          <div key={item.title}>
             <Image
-              src={`${item}?w=162&auto=format`}
-              alt={item}
+              src={`${item.url}?w=162&auto=format`}
+              alt={item.title || ''}
               loading="lazy"
               width={0}
               height={0}

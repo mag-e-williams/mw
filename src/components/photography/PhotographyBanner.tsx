@@ -19,7 +19,7 @@ export function PhotographyBanner({ photos }: PhotographyCardProps) {
         overflow: 'hidden',
         aspectRatio: '1 / 1',
         height: '100%',
-        backgroundImage: `url('${bannerImage}')`,
+        // backgroundImage: `url('${bannerImage}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
