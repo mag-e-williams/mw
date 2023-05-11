@@ -13,7 +13,10 @@ AWS.config.update({
 
 export async function fetchPhotos(): Promise<Photo[]> {
   // Configure AWS SDK
-  const s3 = new AWS.S3();
+  const s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    signatureVersion: 'v4',
+  });
 
   // Set parameters for listing objects in the bucket
   const params: AWS.S3.ListObjectsV2Request = {
