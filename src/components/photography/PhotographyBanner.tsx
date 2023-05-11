@@ -1,27 +1,28 @@
-import { Stack, Typography } from '@mui/material';
-import { FaIcon } from 'components/FaIcon';
-import { COLORS } from 'ui/theme/color';
-import { faAward } from '@fortawesome/free-solid-svg-icons/faAward';
+import { Card } from '@mui/material';
+import { ContentCardProps } from 'components/ContentCard';
 
-export function PhotographyBanner() {
+type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
+  photos: Array<string>;
+};
+
+export function PhotographyBanner({ photos }: PhotographyCardProps) {
+  const bannerImage = photos[Math.floor(Math.random() * photos.length)];
+
+  if (!bannerImage) {
+    return null;
+  }
   return (
-    <Stack
+    <Card
       sx={{
-        flex: 1,
-        gap: 1,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        margin: 0,
+        padding: 0,
+        overflow: 'hidden',
+        aspectRatio: '1 / 1',
+        height: '100%',
+        backgroundImage: `url('${bannerImage}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
-    >
-      <Typography
-        sx={{
-          color: COLORS.SECONDARY,
-          paddingTop: 2,
-          paddingRight: 0,
-        }}
-      >
-        <FaIcon icon={faAward} size="11em" />
-      </Typography>
-    </Stack>
+    />
   );
 }

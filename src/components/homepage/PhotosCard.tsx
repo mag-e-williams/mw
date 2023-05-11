@@ -17,7 +17,7 @@ export function PhotosCard({ turnOnAnimation }: PhotosCardProps) {
     <FullExpandableCard
       overlay="Photography"
       turnOnAnimation={turnOnAnimation}
-      bannerContent={<PhotographyBanner />}
+      bannerContent={<PhotographyBanner photos={photos} />}
       expandedContent={<PhotographyContent photos={photos} />}
       expandHeight={2}
       expandWidth={3}

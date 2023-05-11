@@ -2,7 +2,7 @@ import { useData } from 'api/useData';
 import { ContentCard } from 'components/ContentCard';
 import { MovieListing } from 'components/letterboxd/MovieListing';
 /**
- * Shows a card with the latest data from Spotify
+ * Shows a card with the latest data from Letterboxd
  */
 export function LetterboxdCard() {
   const { data: movies } = useData('movies');
