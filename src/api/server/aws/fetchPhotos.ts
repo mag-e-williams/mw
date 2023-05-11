@@ -2,12 +2,13 @@ import AWS, { AWSError } from 'aws-sdk';
 import { ListObjectsOutput } from 'aws-sdk/clients/s3';
 
 const AWS_CONFIG_VERSION = 'v4';
-const BUCKET_NAME = process.env.S3_BUCKET;
+const BUCKET_NAME = 'film-photos';
+const AWS_REGION = 'us-east-2';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_KEY_ID,
-  region: process.env.AWS_BUCKET_REGION,
+  region: AWS_REGION,
   signatureVersion: AWS_CONFIG_VERSION,
 });
 
