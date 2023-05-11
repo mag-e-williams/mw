@@ -11,6 +11,10 @@ AWS.config.update({
   signatureVersion: AWS_CONFIG_VERSION,
 });
 
+/*
+Retrieve Photos from AWS S3 Storage
+*/
+
 export async function fetchPhotos(): Promise<Photo[]> {
   // Configure AWS SDK
   const s3 = new AWS.S3({

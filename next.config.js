@@ -14,11 +14,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.ctfassets.net',
+        hostname: 'a.ltrbxd.com',
       },
       {
         protocol: 'https',
-        hostname: 'a.ltrbxd.com',
+        hostname: 'images.ctfassets.net',
       },
       {
         protocol: 'https',

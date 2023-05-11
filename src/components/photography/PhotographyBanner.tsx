@@ -1,29 +1,26 @@
-import { Card } from '@mui/material';
 import { ContentCardProps } from 'components/ContentCard';
-import type { Photo } from 'api/types/photos/Photo';
+import { Project } from 'api/types/generated/contentfulApi.generated';
+import { Image } from 'components/Image';
+import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  photos: Array<Photo>;
+  photoBanner?: Project;
 };
 
-export function PhotographyBanner({ photos }: PhotographyCardProps) {
-  const bannerImage = photos[Math.floor(Math.random() * photos.length)];
-
+export function PhotographyBanner({ photoBanner }: PhotographyCardProps) {
+  const { width, height, sizes } = useCurrentImageSizes();
+  const bannerImage = photoBanner?.thumbnail;
   if (!bannerImage) {
     return null;
   }
   return (
-    <Card
-      sx={{
-        margin: 0,
-        padding: 0,
-        overflow: 'hidden',
-        aspectRatio: '1 / 1',
-        height: '100%',
-        // backgroundImage: `url('${bannerImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+    <Image
+      url={bannerImage.url}
+      width={width}
+      height={height}
+      alt={bannerImage.title ?? 'Photography Banner'}
+      priority
+      sizes={sizes}
     />
   );
 }

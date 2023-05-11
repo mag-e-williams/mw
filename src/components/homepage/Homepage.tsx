@@ -30,6 +30,7 @@ export function Homepage() {
       )) ?? [];
 
   const resumeCard = findProjectWithName(projects, 'Resume') ?? undefined;
+  const photographyCard = findProjectWithName(projects, 'Photography') ?? undefined;
 
   // These index into projectCards to splice in other cards
   const otherCards = useMemo(
@@ -45,13 +46,22 @@ export function Homepage() {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
-      { index: 4, card: <PhotosCard key="photos" turnOnAnimation={turnOnAnimation} /> },
+      {
+        index: 4,
+        card: (
+          <PhotosCard
+            key="photos"
+            turnOnAnimation={turnOnAnimation}
+            photoBanner={photographyCard}
+          />
+        ),
+      },
       {
         index: 4,
         card: <LetterboxdCard key="letterboxd" />,
       },
     ],
-    [resumeCard, turnOnAnimation],
+    [photographyCard, resumeCard, turnOnAnimation],
   );
 
   return (
