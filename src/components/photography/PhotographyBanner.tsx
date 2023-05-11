@@ -1,8 +1,9 @@
 import { Card } from '@mui/material';
 import { ContentCardProps } from 'components/ContentCard';
+import type { Photo } from 'api/types/photos/Photo';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
-  photos: Array<string>;
+  photos: Array<Photo>;
 };
 
 export function PhotographyBanner({ photos }: PhotographyCardProps) {
