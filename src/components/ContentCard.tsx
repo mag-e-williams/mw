@@ -178,11 +178,11 @@ export function ContentCard({
   const isClickable = !!link || expandOnClick;
 
   const toggleExpansion =
-    expandable && onExpansion
+    expandable && onExpansion && !isExpanded
       ? () => {
           turnOnAnimation?.();
-          setIsExpanded(!isExpanded);
-          onExpansion(!isExpanded);
+          setIsExpanded(true);
+          onExpansion(true);
         }
       : undefined;
 
