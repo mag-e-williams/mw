@@ -10,9 +10,8 @@ import { findProjectWithName } from 'api/parsers';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
+import { PhotosCard } from './PhotosCard';
 import { LetterboxdCard } from './LetterboxdCard';
-
-// import { PhotosCard } from './PhotosCard';
 import { ResumeCard } from './ResumeCard';
 
 export function Homepage() {
@@ -31,6 +30,7 @@ export function Homepage() {
       )) ?? [];
 
   const resumeCard = findProjectWithName(projects, 'Resume') ?? undefined;
+  const photographyCard = findProjectWithName(projects, 'Photography') ?? undefined;
 
   // These index into projectCards to splice in other cards
   const otherCards = useMemo(
@@ -48,11 +48,20 @@ export function Homepage() {
       },
       {
         index: 4,
+        card: (
+          <PhotosCard
+            key="photos"
+            turnOnAnimation={turnOnAnimation}
+            photoBanner={photographyCard}
+          />
+        ),
+      },
+      {
+        index: 4,
         card: <LetterboxdCard key="letterboxd" />,
       },
-      // { index: 4, card: <PhotosCard key="photos" /> },
     ],
-    [resumeCard, turnOnAnimation],
+    [photographyCard, resumeCard, turnOnAnimation],
   );
 
   return (

@@ -3,7 +3,7 @@ import { HorizontalStack } from 'ui/HorizontalStack';
 import type { Review } from 'api/types/letterboxd/Review';
 import { MovieImage } from './MovieImage';
 import { MovieReview } from './MovieReview';
-import { LetterboxdLogo } from './LetterboxdLogo';
+import { ReviewedTime } from './ReviewedTime';
 import { MovieTitle } from './MovieTitle';
 import { ReviewStars } from './ReviewStars';
 
@@ -30,7 +30,7 @@ export function MovieListing({ movie }: MovieListingProps) {
           alignItems: 'flex-start',
         }}
       >
-        <LetterboxdLogo movie={movie} />
+        <ReviewedTime movie={movie} />
         <MovieImage movieImage={movieImage} movieTitle={movieTitle} />
       </HorizontalStack>
       <Stack>

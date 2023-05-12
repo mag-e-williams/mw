@@ -1,35 +1,48 @@
-// import AWS, { AWSError } from 'aws-sdk';
-// import { ListObjectsOutput } from 'aws-sdk/clients/s3';
+import type { Photo } from 'api/types/photos/Photo';
+import AWS from 'aws-sdk';
 
-// const AWS_CONFIG_VERSION = 'v4';
-// const BUCKET_NAME = process.env.S3_BUCKET;
+const AWS_CONFIG_VERSION = 'v4';
+const BUCKET_NAME = 'film-photos';
 
-// AWS.config.update({
-//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//   secretAccessKey: process.env.AWS_SECRET_KEY_ID,
-//   region: process.env.AWS_BUCKET_REGION,
-//   signatureVersion: AWS_CONFIG_VERSION,
-// });
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+  signatureVersion: AWS_CONFIG_VERSION,
+});
 
-// const s3 = new AWS.S3({
-//   apiVersion: '2006-03-01',
-//   params: { Bucket: BUCKET_NAME },
-// });
+/*
+Retrieve Photos from AWS S3 Storage
+*/
 
-export function fetchPhotos(): null {
-  // const photoUrls = new Promise<string[] | undefined>((resolve, reject) => {
-  //   s3.listObjects((err: AWSError, data: ListObjectsOutput) => {
-  //     if (err) {
-  //       return reject(err);
-  //     }
-  //     const photos = data.Contents?.map((photo) => {
-  //       const photoKey = photo.Key;
-  //       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  //       const url = `https://${BUCKET_NAME}.s3.amazonaws.com/${photoKey}`;
-  //       return url;
-  //     });
-  //     return resolve(photos);
-  //   });
-  // });
-  return null;
+export async function fetchPhotos(): Promise<Photo[]> {
+  // Configure AWS SDK
+  const s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    signatureVersion: 'v4',
+  });
+
+  // Set parameters for listing objects in the bucket
+  const params: AWS.S3.ListObjectsV2Request = {
+    Bucket: BUCKET_NAME,
+  };
+
+  try {
+    // Retrieve the list of objects from the bucket
+    const response: AWS.S3.ListObjectsV2Output = await s3.listObjectsV2(params).promise();
+
+    // Extract the photo keys from the response
+    const photoKeys: Photo[] = response.Contents
+      ? response.Contents.map((photo) => ({
+          url: `https://${BUCKET_NAME}.s3.amazonaws.com/${photo.Key || ''}`,
+          title: photo.Key,
+        }))
+      : [];
+
+    return photoKeys;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error retrieving photos from S3:', error);
+    throw error;
+  }
 }

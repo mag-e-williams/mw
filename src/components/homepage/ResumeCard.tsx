@@ -10,11 +10,6 @@ type ResumeCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   resume?: Project;
 };
 
-// function ExportControl({ resume }: ResumeCardProps) {
-//   const url = resume?.file?.url;
-//   return <FileInput size="1em" onClick={() => window.open(url, '_blank')} />;
-// }
-
 export function ResumeCard({ turnOnAnimation, resume }: ResumeCardProps) {
   const url = resume?.file?.url;
 
