@@ -1,6 +1,5 @@
 import type { ContentCardProps } from 'components/ContentCard';
-import { Masonry } from '@mui/lab';
-import { Box, Container, Modal, useTheme } from '@mui/material';
+import { Box, Container, ImageList, ImageListItem, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useEffect } from 'react';
@@ -68,65 +67,89 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
     };
   }, [handlePrevPhoto, handleNextPhoto]);
 
+  const handleScroll = useCallback(() => {
+    const container = document.getElementById('photography-scroll-wrapper');
+    if (container) {
+      const scrollPosition = container.scrollTop;
+      const containerHeight = container.scrollHeight - container.clientHeight;
+
+      // Check if the user has scrolled to the bottom
+      if (scrollPosition >= containerHeight) {
+        // Fetch Additional Photos
+        console.log('Scrolled to the bottom');
+      }
+    }
+  }, []);
+
   return (
-    <Box
-      sx={{
-        padding: 4,
+    <div
+      id="photography-scroll-wrapper" // Add an id to the scroll wrapper
+      style={{
         overflowY: 'scroll',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        height: '700px',
       }}
+      onScroll={handleScroll} // Add the onScroll event listener
     >
-      <Masonry columns={4} spacing={2}>
-        {photos.map((item, index) => (
-          <Container key={item.title} onClick={() => handlePhotoClick(item, index)}>
-            <Image
-              src={`${item.url}?w=162&auto=format`}
-              alt={item.title || ''}
-              loading="lazy"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                borderRadius: 6,
-                display: 'block',
-                width: '100%',
-                height: 'auto',
-              }}
-            />
-          </Container>
-        ))}
-      </Masonry>
+      <Box
+        id="photography-container" // Add an id to the Box component
+        sx={{
+          padding: 4,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <ImageList variant="masonry" cols={3} gap={8}>
+          {photos.map((item, index) => (
+            <ImageListItem key={item.title}>
+              <Container onClick={() => handlePhotoClick(item, index)}>
+                <Image
+                  src={`${item.url}?w=162&auto=format`}
+                  alt={item.title || ''}
+                  loading="lazy"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{
+                    borderRadius: 6,
+                    display: 'block',
+                    width: '100%',
+                    height: 'auto',
+                  }}
+                />
+              </Container>
+            </ImageListItem>
+          ))}
+        </ImageList>
 
-      <Modal open={Boolean(selectedPhoto)} onClose={handleCloseModal}>
-        <Box sx={style}>
-          <Control onClick={handlePrevPhoto} position="left" theme={theme}>
-            <FaIcon icon={faChevronLeft} />
-          </Control>
+        <Modal open={Boolean(selectedPhoto)} onClose={handleCloseModal}>
+          <Box sx={style}>
+            <Control onClick={handlePrevPhoto} position="left" theme={theme}>
+              <FaIcon icon={faChevronLeft} />
+            </Control>
 
-          {selectedPhoto && (
-            <Image
-              src={`${selectedPhoto.url}?w=162&auto=format`}
-              alt={selectedPhoto.title || ''}
-              loading="lazy"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                borderRadius: 6,
-                display: 'block',
-                width: '100%',
-                height: 'auto',
-              }}
-            />
-          )}
+            {selectedPhoto && (
+              <Image
+                src={`${selectedPhoto.url}?w=162&auto=format`}
+                alt={selectedPhoto.title || ''}
+                loading="lazy"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{
+                  borderRadius: 6,
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            )}
 
-          <Control onClick={handleNextPhoto} position="right" theme={theme}>
-            <FaIcon icon={faChevronRight} />
-          </Control>
-        </Box>
-      </Modal>
-    </Box>
+            <Control onClick={handleNextPhoto} position="right" theme={theme}>
+              <FaIcon icon={faChevronRight} />
+            </Control>
+          </Box>
+        </Modal>
+      </Box>
+    </div>
   );
 }
