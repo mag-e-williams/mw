@@ -51,6 +51,7 @@
     "dotenv": "16.0.3",
     "eslint-config-mw": "link:./eslint-plugin-mw",
     "eslint-plugin-mw": "link:./eslint-plugin-mw",
+    "eventemitter3": "5.0.1",
     "graphql": "16.6.0",
     "graphql-request": "5.0.0",
     "husky": "8.0.3",

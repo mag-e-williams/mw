@@ -1,9 +1,10 @@
 import { Link } from 'api/types/generated/contentfulApi.generated';
 import { truncated } from 'helpers/truncated';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Theme, Typography } from '@mui/material';
 import { mixinSx } from 'ui/helpers/mixinSx';
 import { SxProps } from 'ui/theme';
+import Emitter from 'services/Emitter';
 import { ContentWrappingLink } from './ContentWrappingLink';
 
 export type ContentCardProps = Pick<
@@ -178,13 +179,28 @@ export function ContentCard({
   const isClickable = !!link || expandOnClick;
 
   const toggleExpansion =
-    expandable && onExpansion && !isExpanded
+    expandable && onExpansion
       ? () => {
           turnOnAnimation?.();
-          setIsExpanded(true);
-          onExpansion(true);
+          setIsExpanded(!isExpanded);
+          onExpansion(!isExpanded);
         }
       : undefined;
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function toggle() {
+    if (expandable && onExpansion) {
+      setIsExpanded(false);
+      onExpansion(false);
+    }
+  }
+
+  useEffect(() => {
+    Emitter.on('TOGGLE', () => toggle());
+    return () => {
+      Emitter.off('TOGGLE', () => toggle());
+    };
+  }, [toggle]);
 
   return (
     <Card
@@ -193,7 +209,7 @@ export function ContentCard({
           getCardSx(theme, { isClickable, horizontalSpan: actualHSpan, verticalSpan: actualVSpan }),
         sx,
       )}
-      onClick={toggleExpansion}
+      onClick={!isExpanded ? toggleExpansion : undefined}
       {...props}
     >
       <LinkWrappedChildren

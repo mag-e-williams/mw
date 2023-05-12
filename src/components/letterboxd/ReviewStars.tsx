@@ -22,11 +22,7 @@ export function ReviewStars({ review }: ReviewStarsProps) {
   if (!Number.isInteger(rating)) stars.push(starIconHalf);
 
   return (
-    <Typography
-      variant="overline"
-      component={HorizontalStack}
-      sx={{ gap: 0, alignItems: 'center', marginBottom: 0.5 }}
-    >
+    <Typography variant="overline" component={HorizontalStack} sx={{ alignItems: 'center' }}>
       {stars.map((star, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <span key={index}>{star}</span>
