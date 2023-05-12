@@ -4,10 +4,10 @@ import { HorizontalStack } from 'ui/HorizontalStack';
 import { Review } from 'api/types/letterboxd/Review';
 import { useRelativeTimeFormat } from 'hooks/useRelativeTimeFormat';
 
-interface LetterboxdLogoProps {
+interface ReviewedTimeProps {
   movie?: Review;
 }
-export function LetterboxdLogo({ movie }: LetterboxdLogoProps) {
+export function ReviewedTime({ movie }: ReviewedTimeProps) {
   const link = useLinkWithName('Letterboxd');
 
   const formattedDate = useRelativeTimeFormat({
@@ -16,13 +16,12 @@ export function LetterboxdLogo({ movie }: LetterboxdLogoProps) {
   });
 
   return link ? (
-    <HorizontalStack
-      sx={{
-        alignItems: 'center',
-        gap: 0.5,
-      }}
+    <Typography
+      variant="overline"
+      component={HorizontalStack}
+      sx={{ gap: 1, alignItems: 'center' }}
     >
-      <Typography variant="caption">{formattedDate}</Typography>
-    </HorizontalStack>
+      {formattedDate}
+    </Typography>
   ) : null;
 }

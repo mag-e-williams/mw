@@ -12,14 +12,14 @@ type ReviewStarsProps = {
 
 export function ReviewStars({ review }: ReviewStarsProps) {
   const rating = Number(review?.rating);
-  const star = <FaIcon icon={faStar} />;
-  const starHalf = <FaIcon icon={faStarHalf} />;
+  const starIcon = <FaIcon icon={faStar} />;
+  const starIconHalf = <FaIcon icon={faStarHalf} />;
 
   const stars = [];
   for (let i = 1; i < rating; i += 1) {
-    stars.push(star);
+    stars.push(starIcon);
   }
-  if (!Number.isInteger(rating)) stars.push(starHalf);
+  if (!Number.isInteger(rating)) stars.push(starIconHalf);
 
   return (
     <Typography
@@ -27,7 +27,10 @@ export function ReviewStars({ review }: ReviewStarsProps) {
       component={HorizontalStack}
       sx={{ gap: 0, alignItems: 'center', marginBottom: 0.5 }}
     >
-      {stars}
+      {stars.map((star, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <span key={index}>{star}</span>
+      ))}
     </Typography>
   );
 }

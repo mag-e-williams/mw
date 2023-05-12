@@ -28,8 +28,6 @@ export function FullExpandableCard({
   const expandedWidth = expandWidth ?? 2;
   const expandedHeight = expandHeight ?? 3;
 
-  // const expandedWidth = 2;
-  // const expandedHeight = 3;
   const isExpandable = true;
 
   const expansionControl = useMemo(
