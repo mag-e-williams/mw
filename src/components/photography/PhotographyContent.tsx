@@ -1,12 +1,13 @@
 import type { ContentCardProps } from 'components/ContentCard';
 import { Masonry } from '@mui/lab';
-import { Box, IconButton, Container, Modal } from '@mui/material';
+import { Box, Container, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useEffect } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/FaIcon';
+import { Control } from 'components/baseControls/Control';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -20,9 +21,12 @@ const style = {
   border: 'none',
   display: 'flex',
   justifyContent: 'center',
+  outline: 'none',
 };
 
 export function PhotographyContent({ photos }: PhotographyCardProps) {
+  const theme = useTheme();
+
   const [selectedPhoto, setSelectedPhoto] = React.useState<Photo | null>(null);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
@@ -97,9 +101,9 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
 
       <Modal open={Boolean(selectedPhoto)} onClose={handleCloseModal}>
         <Box sx={style}>
-          <IconButton onClick={handlePrevPhoto}>
+          <Control onClick={handlePrevPhoto} position="left" theme={theme}>
             <FaIcon icon={faChevronLeft} />
-          </IconButton>
+          </Control>
 
           {selectedPhoto && (
             <Image
@@ -118,9 +122,9 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
             />
           )}
 
-          <IconButton onClick={handleNextPhoto}>
+          <Control onClick={handleNextPhoto} position="right" theme={theme}>
             <FaIcon icon={faChevronRight} />
-          </IconButton>
+          </Control>
         </Box>
       </Modal>
     </Box>

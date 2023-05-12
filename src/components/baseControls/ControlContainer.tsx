@@ -10,7 +10,7 @@ export type ControlContainerProps = Pick<React.ComponentProps<'div'>, 'className
       }
     | {
         onClick?: never;
-        children: Array<React.ReactElement<{ onClick: () => void }>> | Array<any>;
+        children: Array<React.ReactElement<{ onClick: () => void }>> | Array<unknown>;
         theme: Theme;
       }
   );
@@ -23,15 +23,19 @@ function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme })
         boxShadow: theme.vars.extraShadows.map.control,
         position: 'absolute',
         zIndex: 1,
-        top: 0,
-        right: 0,
+        top: props?.className?.includes('top-right') ? 0 : '50%',
+        right: props?.className?.includes('right') ? 0 : undefined,
+        left: props?.className?.includes('left') ? 0 : undefined,
         overflow: 'hidden',
         display: 'flex',
+        justifyContent: 'center',
         width: 'fit-content',
-        margin: '26px',
+        margin: props?.className?.includes('top') ? '26px' : undefined,
+        marginX: props?.className?.includes('top') ? undefined : '10px',
         borderRadius: theme.spacing(6),
         fontSize: '1rem',
         lineHeight: '1',
+        transform: props?.className?.includes('top') ? undefined : 'translateY(-50%)',
       }}
     />
   );

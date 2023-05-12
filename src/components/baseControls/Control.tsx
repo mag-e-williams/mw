@@ -3,24 +3,20 @@ import { useTheme } from '@mui/material';
 import { ControlContainer, ControlContainerProps } from './ControlContainer';
 
 type ControlProps = ControlContainerProps & {
-  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'right' | 'left';
 };
 
 const CLASSNAME = 'content-card-ctrl';
 
-/**
- * Returns a no-op component that adds a control to the map in a given
- * position of the map (corners).
- */
 export function Control({ position, ...props }: ControlProps) {
-  const theme = useTheme(); // as much of this is class based, we need to grab the theme this way
+  const theme = useTheme();
   const properProps = useMemo(
     () => ({
       ...props,
       theme,
-      className: props.className ? `${props.className} ${CLASSNAME}` : CLASSNAME,
+      className: props.className ? `${props.className} ${CLASSNAME}` : `${CLASSNAME}-${position}`,
     }),
-    [props, theme],
+    [props, theme, position],
   );
 
   return <ControlContainer {...properProps} />;
