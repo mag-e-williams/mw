@@ -1,5 +1,5 @@
 import type { ContentCardProps } from 'components/ContentCard';
-import { Box, Container, ImageList, ImageListItem, Modal, useTheme } from '@mui/material';
+import { Box, Container, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useEffect } from 'react';
@@ -7,6 +7,8 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/FaIcon';
 import { Control } from 'components/baseControls/Control';
+import { Masonry } from '@mui/lab';
+import Emitter from 'services/Emitter';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -76,7 +78,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
       // Check if the user has scrolled to the bottom
       if (scrollPosition >= containerHeight) {
         // Fetch Additional Photos
-        console.log('Scrolled to the bottom');
+        Emitter.emit('SCROLL', true);
       }
     }
   }, []);
@@ -95,31 +97,28 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
         sx={{
           padding: 4,
           display: 'flex',
-          flexDirection: 'column',
         }}
       >
-        <ImageList variant="masonry" cols={3} gap={8}>
+        <Masonry columns={3} spacing={1}>
           {photos.map((item, index) => (
-            <ImageListItem key={item.title}>
-              <Container onClick={() => handlePhotoClick(item, index)}>
-                <Image
-                  src={`${item.url}?w=162&auto=format`}
-                  alt={item.title || ''}
-                  loading="lazy"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    borderRadius: 6,
-                    display: 'block',
-                    width: '100%',
-                    height: 'auto',
-                  }}
-                />
-              </Container>
-            </ImageListItem>
+            <Container key={item.title} onClick={() => handlePhotoClick(item, index)}>
+              <Image
+                src={`${item.url}?w=162&auto=format`}
+                alt={item.title || ''}
+                loading="lazy"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{
+                  borderRadius: 6,
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Container>
           ))}
-        </ImageList>
+        </Masonry>
 
         <Modal open={Boolean(selectedPhoto)} onClose={handleCloseModal}>
           <Box sx={style}>
