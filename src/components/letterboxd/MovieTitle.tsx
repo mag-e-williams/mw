@@ -19,6 +19,7 @@ export function MovieTitle({ movie, url }: MovieTitleProps) {
       direction="row"
       sx={{
         alignItems: 'baseline',
+        marginBottom: 0.5,
       }}
     >
       <Link
@@ -46,6 +47,7 @@ export function MovieTitle({ movie, url }: MovieTitleProps) {
       direction="row"
       sx={{
         alignItems: 'baseline',
+        marginBottom: 0.5,
       }}
     >
       <Typography variant="h5" component="span">
