@@ -2,13 +2,8 @@ import { endpoints, isValid } from 'api/endpoints';
 import { handleApiError, methodNotAllowedError } from 'api/handleApiError';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-// Just a shorthand for this function type
 type Processor = (request: NextApiRequest, response: NextApiResponse) => Promise<void>;
 
-/**
- * Takes a request and transforms the endpoint key out of it, joining any
- * sub paths with forward slashes to form a valid key.
- */
 const parseEndpointKey = (request: NextApiRequest) => {
   const {
     query: { endpointKey: rawKey },

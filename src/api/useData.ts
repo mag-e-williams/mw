@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import type { AwaitedType, EndpointKey, EndpointType, EndpointParams } from './endpoints';
+import type { EndpointKey, EndpointType, EndpointParams, AwaitedType } from './endpoints';
 
-const endpointUrl = (key: EndpointKey, params: EndpointParams) => {
+const endpointUrl = (key: EndpointKey, params?: EndpointParams) => {
   let baseUrl = `/api/${key}`;
   if (params) {
     const paramString = Object.entries(params)
@@ -16,18 +16,18 @@ const endpointUrl = (key: EndpointKey, params: EndpointParams) => {
  * Uses a well-typed `fetch` to call an API endpoint using the api
  * key given, then grabs the JSON data from it.
  */
-const fetchData = async <Key extends EndpointKey>(key: Key): Promise<EndpointType<Key>> => {
-  const result = await fetch<EndpointType<Key>>(`/api/${key}`);
+const fetchData = async <Key extends EndpointKey, Params extends EndpointParams>(
+  keyParams: [Key, Params],
+): Promise<EndpointType<Key>> => {
+  const url = endpointUrl(...keyParams);
+  const result = await fetch<EndpointType<Key>>(url);
   return result.json();
 };
 
 const fetchDataWithParams = async <Key extends EndpointKey>(
-  keyParams: [EndpointKey, EndpointParams],
+  key: Key,
 ): Promise<EndpointType<Key>> => {
-  const key: EndpointKey = keyParams[0];
-  const params: EndpointParams = keyParams[1];
-  const url = endpointUrl(key, params);
-
+  const url = endpointUrl(key);
   const result = await fetch<EndpointType<Key>>(url);
   return result.json();
 };
@@ -38,12 +38,25 @@ const fetchDataWithParams = async <Key extends EndpointKey>(
  * revalidates and refetches if the key starts with `latest`.
  * So other keys like `version` will only be fetched once on build.
  */
+
 export const useData = <Key extends EndpointKey>(key: Key) => {
   const isImmutable = !key.startsWith('latest');
-  return useSWR<AwaitedType<Key>, Error>(key, fetchData);
+  return useSWR<AwaitedType<Key>, Error>(key, fetchData, {
+    revalidateIfStale: !isImmutable,
+    revalidateOnFocus: !isImmutable,
+    revalidateOnReconnect: !isImmutable,
+  });
 };
 
-export const useDataWithParams = <Key extends EndpointKey>(key: Key, params: EndpointParams) => {
+export const useDataWithParams = <Key extends EndpointKey, Params extends EndpointParams>(
+  key: Key,
+  params?: Params,
+) => {
   const isImmutable = !key.startsWith('latest');
-  return useSWR<AwaitedType<Key>, Error>([key, params], fetchDataWithParams);
+  const keyParams: [Key, Params?] = params ? [key, params] : [key];
+  return useSWR<AwaitedType<Key>, Error>(keyParams, fetchData, {
+    revalidateIfStale: !isImmutable,
+    revalidateOnFocus: !isImmutable,
+    revalidateOnReconnect: !isImmutable,
+  });
 };

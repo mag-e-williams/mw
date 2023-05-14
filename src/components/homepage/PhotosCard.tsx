@@ -1,4 +1,4 @@
-import { useDataWithParams } from 'api/useData';
+import { useData } from 'api/useData';
 import { FullExpandableCard } from 'components/FullExpandableCard';
 import * as React from 'react';
 import type { ContentCardProps } from 'components/ContentCard';
@@ -16,7 +16,7 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
     page: 0,
   };
 
-  const { data: photos } = useDataWithParams('photos', params);
+  const { data: photos } = useData('photos', params);
 
   if (!photos) {
     return null;

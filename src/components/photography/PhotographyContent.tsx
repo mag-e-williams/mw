@@ -53,6 +53,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
     setSelectedIndex(nextIndex);
   }, [selectedIndex, photos]);
 
+  // Arrow Key Navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -63,7 +64,6 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
