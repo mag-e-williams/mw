@@ -8,6 +8,11 @@ import { fetchRepoVersion } from './server/github/fetchRepoVersion';
 import { fetchPhotos } from './server/aws/fetchPhotos';
 import { fetchRecentlyReviewed } from './server/letterboxd/fetchRecentlyReviewed';
 
+export type EndpointParams = {
+  page?: number;
+  perPage?: number;
+};
+
 /**
  * All possible types of endpoints we could request
  */
@@ -31,7 +36,7 @@ export const endpoints = {
   certifications: fetchCertifications,
   'latest/track': fetchRecentlyPlayed,
   version: fetchRepoVersion,
-  photos: fetchPhotos,
+  photos: (page?: number) => fetchPhotos(page),
   movies: fetchRecentlyReviewed,
 } as const;
 

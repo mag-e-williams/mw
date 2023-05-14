@@ -16,6 +16,17 @@ const parseEndpointKey = (request: NextApiRequest) => {
   return typeof rawKey === 'string' ? rawKey : rawKey?.join('/');
 };
 
+const parseEndpointParams = (request: NextApiRequest) => {
+  const { query } = request;
+  const { page } = query;
+
+  if (Array.isArray(page)) {
+    return { page: page[0] };
+  }
+
+  return { page };
+};
+
 /**
  * For a GET request, awaits data from the fetcher function or returns a 500 if there's no
  * query specified in the body.
@@ -27,6 +38,12 @@ const handleGet: Processor = async (request, response) => {
     return;
   }
   try {
+    if (endpointKey === 'photos') {
+      const endpointParams = parseEndpointParams(request);
+      const { page } = endpointParams;
+      const data = await endpoints[endpointKey](parseInt(page || '0', 10));
+      response.json(data);
+    }
     const data = await endpoints[endpointKey]();
     response.json(data);
   } catch (error) {

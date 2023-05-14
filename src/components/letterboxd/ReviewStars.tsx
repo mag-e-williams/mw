@@ -16,7 +16,7 @@ export function ReviewStars({ review }: ReviewStarsProps) {
   const starIconHalf = <FaIcon icon={faStarHalf} />;
 
   const stars = [];
-  for (let i = 1; i < rating; i += 1) {
+  for (let i = 1; i <= rating; i += 1) {
     stars.push(starIcon);
   }
   if (!Number.isInteger(rating)) stars.push(starIconHalf);

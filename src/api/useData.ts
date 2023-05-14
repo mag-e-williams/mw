@@ -1,5 +1,16 @@
 import useSWR from 'swr';
-import type { AwaitedType, EndpointKey, EndpointType } from './endpoints';
+import type { AwaitedType, EndpointKey, EndpointType, EndpointParams } from './endpoints';
+
+const endpointUrl = (key: EndpointKey, params: EndpointParams) => {
+  let baseUrl = `/api/${key}`;
+  if (params) {
+    const paramString = Object.entries(params)
+      .map(([k, v]) => `${k}=${v}`)
+      .join('&');
+    baseUrl = [baseUrl, paramString].join('?');
+  }
+  return baseUrl;
+};
 
 /**
  * Uses a well-typed `fetch` to call an API endpoint using the api
@@ -7,6 +18,17 @@ import type { AwaitedType, EndpointKey, EndpointType } from './endpoints';
  */
 const fetchData = async <Key extends EndpointKey>(key: Key): Promise<EndpointType<Key>> => {
   const result = await fetch<EndpointType<Key>>(`/api/${key}`);
+  return result.json();
+};
+
+const fetchDataWithParams = async <Key extends EndpointKey>(
+  keyParams: [EndpointKey, EndpointParams],
+): Promise<EndpointType<Key>> => {
+  const key: EndpointKey = keyParams[0];
+  const params: EndpointParams = keyParams[1];
+  const url = endpointUrl(key, params);
+
+  const result = await fetch<EndpointType<Key>>(url);
   return result.json();
 };
 
@@ -18,9 +40,10 @@ const fetchData = async <Key extends EndpointKey>(key: Key): Promise<EndpointTyp
  */
 export const useData = <Key extends EndpointKey>(key: Key) => {
   const isImmutable = !key.startsWith('latest');
-  return useSWR<AwaitedType<Key>, Error>(key, fetchData, {
-    revalidateIfStale: !isImmutable,
-    revalidateOnFocus: !isImmutable,
-    revalidateOnReconnect: !isImmutable,
-  });
+  return useSWR<AwaitedType<Key>, Error>(key, fetchData);
+};
+
+export const useDataWithParams = <Key extends EndpointKey>(key: Key, params: EndpointParams) => {
+  const isImmutable = !key.startsWith('latest');
+  return useSWR<AwaitedType<Key>, Error>([key, params], fetchDataWithParams);
 };
