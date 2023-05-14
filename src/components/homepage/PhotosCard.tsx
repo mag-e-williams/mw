@@ -1,4 +1,4 @@
-import { useData } from 'api/useData';
+import { useDataWithParams } from 'api/useData';
 import { FullExpandableCard } from 'components/FullExpandableCard';
 import * as React from 'react';
 import type { ContentCardProps } from 'components/ContentCard';
@@ -6,6 +6,7 @@ import { PhotographyBanner } from 'components/photography/PhotographyBanner';
 import { PhotographyContent } from 'components/photography/PhotographyContent';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { EndpointParams } from 'api/endpoints';
+import { Photo } from 'api/types/photos/Photo';
 
 type PhotosCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photoBanner?: Project;
@@ -16,7 +17,7 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
     page: 0,
   };
 
-  const { data: photos } = useData('photos', params);
+  const { data: photos } = useDataWithParams('photos', params);
 
   if (!photos) {
     return null;
@@ -26,7 +27,8 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
       overlay="Photography"
       turnOnAnimation={turnOnAnimation}
       bannerContent={<PhotographyBanner photoBanner={photoBanner} />}
-      expandedContent={<PhotographyContent photos={photos} />}
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      expandedContent={<PhotographyContent photos={photos as unknown as Photo[]} />}
       expandHeight={2}
       expandWidth={3}
     />

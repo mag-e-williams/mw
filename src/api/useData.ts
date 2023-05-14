@@ -16,22 +16,19 @@ const endpointUrl = (key: EndpointKey, params?: EndpointParams) => {
  * Uses a well-typed `fetch` to call an API endpoint using the api
  * key given, then grabs the JSON data from it.
  */
-const fetchData = async <Key extends EndpointKey, Params extends EndpointParams>(
+const fetchData = async <Key extends EndpointKey>(key: Key): Promise<EndpointType<Key>> => {
+  const url = endpointUrl(key);
+  const result = await fetch<EndpointType<Key>>(url);
+  return result.json();
+};
+
+const fetchDataWithParams = async <Key extends EndpointKey, Params extends EndpointParams>(
   keyParams: [Key, Params],
 ): Promise<EndpointType<Key>> => {
   const url = endpointUrl(...keyParams);
   const result = await fetch<EndpointType<Key>>(url);
   return result.json();
 };
-
-const fetchDataWithParams = async <Key extends EndpointKey>(
-  key: Key,
-): Promise<EndpointType<Key>> => {
-  const url = endpointUrl(key);
-  const result = await fetch<EndpointType<Key>>(url);
-  return result.json();
-};
-
 /**
  * For client use only! Exposes a useSWR hook for fetching data
  * from one endpoint key that maps to an /api endpoint. Only
@@ -54,7 +51,7 @@ export const useDataWithParams = <Key extends EndpointKey, Params extends Endpoi
 ) => {
   const isImmutable = !key.startsWith('latest');
   const keyParams: [Key, Params?] = params ? [key, params] : [key];
-  return useSWR<AwaitedType<Key>, Error>(keyParams, fetchData, {
+  return useSWR(keyParams, fetchDataWithParams, {
     revalidateIfStale: !isImmutable,
     revalidateOnFocus: !isImmutable,
     revalidateOnReconnect: !isImmutable,
