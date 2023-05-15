@@ -48,9 +48,9 @@ function PhotoGridModal({
     [onSelectedIndex, onSelectedPhoto],
   );
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setSelected(null, 0);
-  };
+  }, [setSelected]);
 
   const handlePrevPhoto = useCallback(() => {
     const prevIndex = (selectedIndex + photos.length - 1) % photos.length;
@@ -77,6 +77,7 @@ function PhotoGridModal({
       } else if (event.key === 'ArrowRight') {
         handleNextPhoto();
       } else if (event.key === 'Escape') {
+        // close modal on 'esc'
         handleCloseModal();
       }
     };
