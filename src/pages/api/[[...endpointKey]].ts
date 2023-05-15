@@ -13,13 +13,13 @@ const parseEndpointKey = (request: NextApiRequest) => {
 
 const parseEndpointParams = (request: NextApiRequest) => {
   const { query } = request;
-  const { page } = query;
+  const { startAfter } = query;
 
-  if (Array.isArray(page)) {
-    return { page: page[0] };
+  if (Array.isArray(startAfter)) {
+    return { startAfter: startAfter[0] };
   }
 
-  return { page };
+  return { startAfter };
 };
 
 /**
@@ -35,8 +35,8 @@ const handleGet: Processor = async (request, response) => {
   try {
     if (endpointKey === 'photos') {
       const endpointParams = parseEndpointParams(request);
-      const { page } = endpointParams;
-      const data = await endpoints[endpointKey](parseInt(page || '0', 10));
+      const { startAfter } = endpointParams;
+      const data = await endpoints[endpointKey](startAfter);
       response.json(data);
     }
     const data = await endpoints[endpointKey]();

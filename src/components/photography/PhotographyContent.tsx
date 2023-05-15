@@ -62,7 +62,6 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
         handleNextPhoto();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -99,12 +98,12 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
           display: 'flex',
         }}
       >
-        <Masonry columns={3} spacing={1}>
+        <Masonry columns={3} spacing={1} defaultColumns={3} defaultSpacing={1}>
           {photos.map((item, index) => (
-            <Container key={item.title} onClick={() => handlePhotoClick(item, index)}>
+            <Container key={item.key} onClick={() => handlePhotoClick(item, index)}>
               <Image
                 src={`${item.url}?w=162&auto=format`}
-                alt={item.title || ''}
+                alt={item.key}
                 loading="lazy"
                 width={0}
                 height={0}
@@ -129,7 +128,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
             {selectedPhoto && (
               <Image
                 src={`${selectedPhoto.url}?w=162&auto=format`}
-                alt={selectedPhoto.title || ''}
+                alt={selectedPhoto.key}
                 loading="lazy"
                 width={0}
                 height={0}

@@ -11,6 +11,7 @@ import { fetchRecentlyReviewed } from './server/letterboxd/fetchRecentlyReviewed
 export type EndpointParams = {
   page?: number;
   perPage?: number;
+  startAfter?: string;
 };
 
 /**
@@ -36,7 +37,7 @@ export const endpoints = {
   certifications: fetchCertifications,
   'latest/track': fetchRecentlyPlayed,
   version: fetchRepoVersion,
-  photos: (page?: number) => fetchPhotos(page),
+  photos: (startAfter?: string) => fetchPhotos(startAfter),
   movies: fetchRecentlyReviewed,
 } as const;
 
