@@ -59,6 +59,7 @@
     "mapbox-gl": "2.11.0",
     "material-ui-image": "3.3.2",
     "micromatch": "4.0.5",
+    "mui-chips-input": "2.0.1",
     "mysql2": "2.3.3",
     "next": "13.0.6",
     "node-fetch": "3.3.0",

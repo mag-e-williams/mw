@@ -87,7 +87,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
       id="photography-scroll-wrapper" // Add an id to the scroll wrapper
       style={{
         overflowY: 'scroll',
-        height: '700px',
+        height: '100%',
       }}
       onScroll={handleScroll} // Add the onScroll event listener
     >
@@ -112,6 +112,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
                   display: 'block',
                   width: '100%',
                   height: 'auto',
+                  minHeight: 10, // Since masonry lists depend on the height of the element, minHeight serves as a placeholder value while the img has not yet loaded.
                 }}
               />
             </Container>
