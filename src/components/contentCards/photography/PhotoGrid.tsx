@@ -1,11 +1,11 @@
 import type { ContentCardProps } from 'components/contentCards/ContentCard';
 import { Box, Container } from '@mui/material';
-import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useState } from 'react';
 import { Masonry } from '@mui/lab';
 import Emitter from 'services/Emitter';
 import { PhotoGridModal } from './PhotoGridModal';
+import { LoadingImage } from './LoadingImage';
 
 type PhotoGridProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -62,22 +62,7 @@ export function PhotoGrid({ photos, modal }: PhotoGridProps) {
         >
           {photos.map((item, index) => (
             <Container key={item.key} onClick={() => handlePhotoClick(item, index)}>
-              <Image
-                src={`${item.url}?w=162&auto=format`}
-                alt={item.key}
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{
-                  borderRadius: 6,
-                  display: 'block',
-                  width: '100%',
-                  height: 'auto',
-                  // Since masonry lists depend on the height of the element,
-                  // minHeight serves as a placeholder value while the img has not yet loaded.
-                  minHeight: 10,
-                }}
-              />
+              <LoadingImage image={item} />
             </Container>
           ))}
         </Masonry>
