@@ -2,7 +2,7 @@ import type { ContentCardProps } from 'components/ContentCard';
 import { Box, Container, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/FaIcon';
@@ -28,8 +28,8 @@ const style = {
 export function PhotographyContent({ photos }: PhotographyCardProps) {
   const theme = useTheme();
 
-  const [selectedPhoto, setSelectedPhoto] = React.useState<Photo | null>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handlePhotoClick = (photo: Photo, index: number) => {
     setSelectedPhoto(photo);
@@ -104,7 +104,6 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
               <Image
                 src={`${item.url}?w=162&auto=format`}
                 alt={item.key}
-                loading="lazy"
                 width={0}
                 height={0}
                 sizes="100vw"
