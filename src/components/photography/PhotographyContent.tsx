@@ -1,12 +1,14 @@
 import type { ContentCardProps } from 'components/ContentCard';
-import { Box, Container, ImageList, ImageListItem, Modal, useTheme } from '@mui/material';
+import { Box, Container, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/FaIcon';
 import { Control } from 'components/baseControls/Control';
+import { Masonry } from '@mui/lab';
+import Emitter from 'services/Emitter';
 
 type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -26,8 +28,8 @@ const style = {
 export function PhotographyContent({ photos }: PhotographyCardProps) {
   const theme = useTheme();
 
-  const [selectedPhoto, setSelectedPhoto] = React.useState<Photo | null>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handlePhotoClick = (photo: Photo, index: number) => {
     setSelectedPhoto(photo);
@@ -51,6 +53,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
     setSelectedIndex(nextIndex);
   }, [selectedIndex, photos]);
 
+  // Arrow Key Navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -59,9 +62,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
         handleNextPhoto();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -76,7 +77,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
       // Check if the user has scrolled to the bottom
       if (scrollPosition >= containerHeight) {
         // Fetch Additional Photos
-        console.log('Scrolled to the bottom');
+        Emitter.emit('SCROLL', true);
       }
     }
   }, []);
@@ -95,31 +96,27 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
         sx={{
           padding: 4,
           display: 'flex',
-          flexDirection: 'column',
         }}
       >
-        <ImageList variant="masonry" cols={3} gap={8}>
+        <Masonry columns={3} spacing={1} defaultColumns={3} defaultSpacing={1}>
           {photos.map((item, index) => (
-            <ImageListItem key={item.title}>
-              <Container onClick={() => handlePhotoClick(item, index)}>
-                <Image
-                  src={`${item.url}?w=162&auto=format`}
-                  alt={item.title || ''}
-                  loading="lazy"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    borderRadius: 6,
-                    display: 'block',
-                    width: '100%',
-                    height: 'auto',
-                  }}
-                />
-              </Container>
-            </ImageListItem>
+            <Container key={item.key} onClick={() => handlePhotoClick(item, index)}>
+              <Image
+                src={`${item.url}?w=162&auto=format`}
+                alt={item.key}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{
+                  borderRadius: 6,
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Container>
           ))}
-        </ImageList>
+        </Masonry>
 
         <Modal open={Boolean(selectedPhoto)} onClose={handleCloseModal}>
           <Box sx={style}>
@@ -130,7 +127,7 @@ export function PhotographyContent({ photos }: PhotographyCardProps) {
             {selectedPhoto && (
               <Image
                 src={`${selectedPhoto.url}?w=162&auto=format`}
-                alt={selectedPhoto.title || ''}
+                alt={selectedPhoto.key}
                 loading="lazy"
                 width={0}
                 height={0}

@@ -2,18 +2,24 @@ import { endpoints, isValid } from 'api/endpoints';
 import { handleApiError, methodNotAllowedError } from 'api/handleApiError';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-// Just a shorthand for this function type
 type Processor = (request: NextApiRequest, response: NextApiResponse) => Promise<void>;
 
-/**
- * Takes a request and transforms the endpoint key out of it, joining any
- * sub paths with forward slashes to form a valid key.
- */
 const parseEndpointKey = (request: NextApiRequest) => {
   const {
     query: { endpointKey: rawKey },
   } = request;
   return typeof rawKey === 'string' ? rawKey : rawKey?.join('/');
+};
+
+const parseEndpointParams = (request: NextApiRequest) => {
+  const { query } = request;
+  const { startAfter } = query;
+
+  if (Array.isArray(startAfter)) {
+    return { startAfter: startAfter[0] };
+  }
+
+  return { startAfter };
 };
 
 /**
@@ -27,6 +33,12 @@ const handleGet: Processor = async (request, response) => {
     return;
   }
   try {
+    if (endpointKey === 'photos') {
+      const endpointParams = parseEndpointParams(request);
+      const { startAfter } = endpointParams;
+      const data = await endpoints[endpointKey](startAfter);
+      response.json(data);
+    }
     const data = await endpoints[endpointKey]();
     response.json(data);
   } catch (error) {

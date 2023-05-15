@@ -38,7 +38,8 @@ async function parseReview(item: ReviewQuery): Promise<Review> {
       .filter((e) => !e.includes('img') && !isEmpty(e))
       .join()
       .replace('<p>', '')
-      .trim(),
+      .trim()
+      .replace(/,\s*$/, ''),
     creator: item['dc:creator'],
   };
 

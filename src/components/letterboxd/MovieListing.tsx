@@ -35,7 +35,7 @@ export function MovieListing({ movie }: MovieListingProps) {
       </HorizontalStack>
       <Stack>
         <ReviewStars review={movie} />
-        <MovieTitle movie={movie} url={movieUrl} sx={{ marginBottom: 0.5 }} />
+        <MovieTitle movie={movie} url={movieUrl} />
         <MovieReview movieReview={movie} />
       </Stack>
     </Stack>
