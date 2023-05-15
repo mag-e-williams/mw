@@ -7,5 +7,5 @@ type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
 };
 
 export function PhotographyContent({ photos }: PhotographyCardProps) {
-  return <PhotoGrid photos={photos} />;
+  return <PhotoGrid photos={photos} modal />;
 }
