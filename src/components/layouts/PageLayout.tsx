@@ -1,9 +1,9 @@
 import type { EndpointKey } from 'api/endpoints';
 import { FetchedFallbackData } from 'api/fetchFallbackData';
-import { Footer } from 'components/Footer';
-import { Header } from 'components/Header';
-import { Meta } from 'components/Meta';
-import { ScrollIndicatorContext } from 'components/ScrollIndicatorContext';
+import { Footer } from 'components/nav/Footer';
+import { Header } from 'components/nav/Header';
+import { Meta } from 'components/utilComponents/Meta';
+import { ScrollIndicatorContext } from 'components/nav/ScrollIndicatorContext';
 import { useShowScrollIndicator } from 'hooks/useShowScrollIndicator';
 import { useRef } from 'react';
 import { SWRConfig } from 'swr';

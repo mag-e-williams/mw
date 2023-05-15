@@ -1,7 +1,7 @@
 import { useData } from 'api/useData';
-import { ContentGrid } from 'components/ContentGrid';
+import { ContentGrid } from 'components/homepage/ContentGrid';
 import { MapPreviewCard } from 'components/homepage/MapPreviewCard';
-import { HOMEPAGE_TITLE, Meta } from 'components/Meta';
+import { HOMEPAGE_TITLE, Meta } from 'components/utilComponents/Meta';
 import { useGridAnimation } from 'hooks/useGridAnimation';
 import { useMemo, useRef } from 'react';
 import { CertificationsCard } from 'components/homepage/CertificationsCard';

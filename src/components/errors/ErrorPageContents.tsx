@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { Link } from 'components/Link';
+import { Link } from 'components/utilComponents/Link';
 import { useLinkWithName } from 'hooks/useLinkWithName';
 import { useRouter } from 'next/router';
 
