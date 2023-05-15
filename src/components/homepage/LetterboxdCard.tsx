@@ -1,6 +1,6 @@
 import { useData } from 'api/useData';
-import { ContentCard } from 'components/ContentCard';
-import { MovieListing } from 'components/letterboxd/MovieListing';
+import { ContentCard } from 'components/contentCards/ContentCard';
+import { MovieListing } from 'components/contentCards/letterboxd/MovieListing';
 /**
  * Shows a card with the latest data from Letterboxd
  */

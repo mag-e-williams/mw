@@ -1,5 +1,5 @@
-import { Meta } from 'components/Meta';
-import { Link } from 'components/Link';
+import { Meta } from 'components/utilComponents/Meta';
+import { Link } from 'components/utilComponents/Link';
 import { Section } from 'ui/Section';
 import { Stack } from '@mui/material';
 

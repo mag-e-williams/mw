@@ -1,7 +1,7 @@
-import type { ContentCardProps } from 'components/ContentCard';
-import { FullExpandableCard } from 'components/FullExpandableCard';
-import { ResumeContent } from 'components/resume/ResumeContent';
-import { ResumeBanner } from 'components/resume/ResumeBanner';
+import type { ContentCardProps } from 'components/contentCards/ContentCard';
+import { FullExpandableCard } from 'components/contentCards/FullExpandableCard';
+import { ResumeContent } from 'components/contentCards/resume/ResumeContent';
+import { ResumeBanner } from 'components/contentCards/resume/ResumeBanner';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { FileInput } from 'lucide-react';
 import { useMemo } from 'react';

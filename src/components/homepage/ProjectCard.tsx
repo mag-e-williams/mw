@@ -1,9 +1,9 @@
 import type { Project } from 'api/types/generated/contentfulApi.generated';
-import type { ContentCardProps } from 'components/ContentCard';
-import { ContentCard } from 'components/ContentCard';
-import { HoverableContainer } from 'components/HoverableContainer';
+import type { ContentCardProps } from 'components/contentCards/ContentCard';
+import { ContentCard } from 'components/contentCards/ContentCard';
+import { HoverableContainer } from 'components/utilComponents/HoverableContainer';
 import { useState } from 'react';
-import { Image } from 'components/Image';
+import { Image } from 'components/utilComponents/Image';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
 type ProjectCardProps = Project & Pick<ContentCardProps, 'turnOnAnimation'>;

@@ -1,6 +1,6 @@
 import { useData } from 'api/useData';
-import type { ContentCardProps } from 'components/ContentCard';
-import { FullMapCard } from 'components/maps/FullMapCard';
+import type { ContentCardProps } from 'components/contentCards/ContentCard';
+import { FullMapCard } from 'components/contentCards/maps/FullMapCard';
 
 type MapPreviewCardProps = Pick<ContentCardProps, 'turnOnAnimation'>;
 

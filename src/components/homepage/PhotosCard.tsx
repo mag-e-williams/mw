@@ -1,9 +1,9 @@
 import { useDataWithParams } from 'api/useData';
-import { FullExpandableCard } from 'components/FullExpandableCard';
+import { FullExpandableCard } from 'components/contentCards/FullExpandableCard';
 import * as React from 'react';
-import type { ContentCardProps } from 'components/ContentCard';
-import { PhotographyBanner } from 'components/photography/PhotographyBanner';
-import { PhotographyContent } from 'components/photography/PhotographyContent';
+import type { ContentCardProps } from 'components/contentCards/ContentCard';
+import { PhotographyBanner } from 'components/contentCards/photography/PhotographyBanner';
+import { PhotographyContent } from 'components/contentCards/photography/PhotographyContent';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { Photo } from 'api/types/photos/Photo';
 import { useEffect, useState } from 'react';

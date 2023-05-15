@@ -1,8 +1,8 @@
 import { useData } from 'api/useData';
-import type { ContentCardProps } from 'components/ContentCard';
-import { FullExpandableCard } from 'components/FullExpandableCard';
-import { CertificationsContent } from 'components/certifications/CertificationsContent';
-import { CertificationsBanner } from 'components/certifications/CertificationsBanner';
+import type { ContentCardProps } from 'components/contentCards/ContentCard';
+import { FullExpandableCard } from 'components/contentCards/FullExpandableCard';
+import { CertificationsContent } from 'components/contentCards/certifications/CertificationsContent';
+import { CertificationsBanner } from 'components/contentCards/certifications/CertificationsBanner';
 
 type CertificationsCardProps = Pick<ContentCardProps, 'turnOnAnimation'>;
 
