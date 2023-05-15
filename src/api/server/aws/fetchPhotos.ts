@@ -3,7 +3,7 @@ import AWS from 'aws-sdk';
 
 const AWS_CONFIG_VERSION = 'v4';
 const BUCKET_NAME = 'film-photos';
-const PHOTOS_PER_PAGE = 10; // Number of photos to retrieve per page
+const PHOTOS_PER_PAGE = 20; // Number of photos to retrieve per page
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
