@@ -38,6 +38,7 @@
     "@mui/lab": "5.0.0-alpha.129",
     "@mui/material": "5.10.16",
     "@next/bundle-analyzer": "13.0.6",
+    "@uiball/loaders": "1.2.6",
     "@vercel/og": "0.0.21",
     "animate-css-grid": "1.4.3",
     "aws-sdk": "2.1362.0",
