@@ -75,21 +75,6 @@
     "db:connect": {
       "cache": false
     },
-    "webhooks": {
-      "cache": false
-    },
-    "webhooks:local": {
-      "cache": false
-    },
-    "webhooks:create": {
-      "cache": false
-    },
-    "webhooks:list": {
-      "cache": false
-    },
-    "webhooks:delete": {
-      "cache": false
-    },
     "clean": {
       "cache": false
     }
