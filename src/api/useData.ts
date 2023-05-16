@@ -50,5 +50,10 @@ export const useDataWithParams = <Key extends EndpointKey, Params extends Endpoi
   params?: Params,
 ) => {
   const keyParams: [Key, Params?] = params ? [key, params] : [key];
-  return useSWR(keyParams, fetchDataWithParams);
+  const isImmutable = !key.startsWith('latest');
+  return useSWR(keyParams, fetchDataWithParams, {
+    revalidateIfStale: !isImmutable,
+    revalidateOnFocus: !isImmutable,
+    revalidateOnReconnect: !isImmutable,
+  });
 };
