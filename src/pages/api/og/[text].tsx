@@ -6,12 +6,12 @@ export const config = {
   runtime: 'experimental-edge',
 };
 
-const normalFont = fetch(new URL('../../../og/SFProText.ttf', import.meta.url)).then((res) =>
-  res.arrayBuffer(),
-);
-const boldFont = fetch(new URL('../../../og/SFProDisplayHeavy.ttf', import.meta.url)).then((res) =>
-  res.arrayBuffer(),
-);
+const normalFont = fetch(
+  new URL('../../../og/SpaceGrotesk-VariableFont_wght.ttf', import.meta.url),
+).then((res) => res.arrayBuffer());
+const boldFont = fetch(
+  new URL('../../../og/SpaceGrotesk-VariableFont_wght.ttf', import.meta.url),
+).then((res) => res.arrayBuffer());
 
 /**
  * For GETs, returns an Open Graph image for the text in the query string.

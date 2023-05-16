@@ -22,7 +22,6 @@ function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme })
     <Box
       {...props}
       sx={{
-        boxShadow: theme.vars.extraShadows.map.control,
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
@@ -43,7 +42,7 @@ export function ControlContainer({ onClick, children, className, theme }: Contro
     padding: '0.5rem',
     cursor: 'pointer',
     color: theme.vars.palette.text.primary,
-    backgroundColor: theme.vars.palette.background.default,
+    backgroundColor: theme.vars.palette.card.background,
     transition: theme.transitions.create(['background-color', 'color']),
     ':hover': {
       backgroundColor: theme.vars.palette.secondary.main,

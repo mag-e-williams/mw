@@ -4,9 +4,11 @@ import { TypographyOptions } from '@mui/material/styles/createTypography';
 /**
  * Get typography styles for a certain color mode.
  */
+
 export function getTypography(theme: Theme): TypographyOptions {
   return {
     fontFamily: [
+      'Space Grotesk',
       'system-ui',
       '-apple-system',
       'BlinkMacSystemFont',
@@ -49,7 +51,7 @@ export function getTypography(theme: Theme): TypographyOptions {
       fontWeight: 700,
     },
     body1: {
-      fontSize: 17,
+      fontSize: 16,
     },
     body2: {
       fontSize: 15,
@@ -61,7 +63,6 @@ export function getTypography(theme: Theme): TypographyOptions {
     },
     caption: {
       fontSize: 13,
-      fontWeight: 600,
     },
     button: {
       fontSize: 17,

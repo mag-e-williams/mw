@@ -3,15 +3,9 @@ import { Moon, Sun, RefreshCw } from 'lucide-react';
 import { Box, IconButton, Theme, Tooltip } from '@mui/material';
 
 interface ColorSchemeIconProps {
-  /**
-   * The color scheme mode to switch to on click
-   */
   mode: ColorSchemeMode;
 }
 
-/**
- * Tooltips for the different states
- */
 const TOOLTIPS: Record<ColorSchemeMode | 'reset', string> = {
   light: 'Turn on light mode',
   dark: 'Enter dark mode',
@@ -21,10 +15,6 @@ const TOOLTIPS: Record<ColorSchemeMode | 'reset', string> = {
 const ICON_SIZE = 16;
 const DELAY_MS = 300;
 
-/**
- * Creates an icon that is clickable to update to a preferred color scheme
- * if we have one that's set already. Otherwise, renders a disabled icon.
- */
 export function ColorSchemeIcon({ mode }: ColorSchemeIconProps) {
   const { colorScheme, updatePreferredMode } = useColorScheme();
   const isCurrentMode = mode === colorScheme.mode;
