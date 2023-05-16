@@ -35,7 +35,7 @@ Required Node 18+ and pnpm 7+ installed. Run `pnpm install` to get started once 
 
 - [Adobe PDF Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) JS API to embed high-fidelity PDFs.
 
-- [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not yet Public, so I am using the letetrboxd RSS feed to access my account's movie review history.
+- [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not Public, so I'm using the letterboxd RSS feed to access my account's movie review history for a homepage widget.
 
 - [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/api/) shows the map on the homepage.
 
