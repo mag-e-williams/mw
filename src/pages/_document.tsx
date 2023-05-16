@@ -3,6 +3,7 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 
 /**
  * Make sure no SSR flash for color scheme - as we use system on startup
+ * enable Adobe PDF viewer
  */
 export default class MyDocument extends Document {
   render() {
