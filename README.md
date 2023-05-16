@@ -1,7 +1,9 @@
 ![GitHub version](https://badgen.net/github/release/mag-e-williams/mw?cache=600) [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dg)](https://vercel.com/mag-e-williams/mw)
 # Margret (Maggie) Williams
 
-Welcome to my portfolio site. It's a fun way for me to show off my portfolio + try out some new technology in a lightweight and mobile-friendly React + TypeScript web-app. This site is created with [Next](https://nextjs.org/docs/getting-started) and hosted on [Vercel](https://vercel.com).
+Welcome to my portfolio site. It's a fun way for me to show off my portfolio + try out some new technology in a lightweight and mobile-friendly React + TypeScript web-app. This site is created with [Next](https://nextjs.org/docs/getting-started) and hosted on [Vercel](https://vercel.com). 
+
+It's using [Contentful](https://www.contentful.com/) for some of the content management and also utilizes the AWS SDK, PlanetScale, MapboxGL, and GraphQL to deliver the features.
 
 ## Commands
 
@@ -34,6 +36,8 @@ Required Node 18+ and pnpm 7+ installed. Run `pnpm install` to get started once 
 - [AWS SDK](https://aws.amazon.com/sdk-for-javascript/) my photography portfolio is stored and accessed through S3. I'm using the AWS SDK to retrieve and process these images.
 
 - [Adobe PDF Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) JS API to embed high-fidelity PDFs.
+
+- [Spotify Web API]([https://developer.adobe.com/document-services/apis/pdf-embed/](https://developer.spotify.com/documentation/web-api)).
 
 - [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not Public, so I'm using the letterboxd RSS feed to access my account's movie review history for a homepage widget.
 
