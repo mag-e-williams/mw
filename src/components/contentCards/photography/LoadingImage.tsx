@@ -14,12 +14,11 @@ export function LoadingImage({ image }: LoadingImageProps) {
     <>
       {isLoading && (
         <Skeleton
-          variant="rectangular"
+          variant="rounded"
           sx={{
-            borderRadius: 6,
             display: 'block',
             width: '100%',
-            height: 10,
+            height: 20,
           }}
         />
       )}

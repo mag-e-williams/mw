@@ -1,8 +1,8 @@
 import type { ContentCardProps } from 'components/contentCards/ContentCard';
-import { Box, Modal, useTheme } from '@mui/material';
+import { Box, CircularProgress, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/utilComponents/FaIcon';
@@ -26,6 +26,13 @@ const style = {
   maxHeight: '100vh',
 };
 
+const centerStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+};
+
 export function PhotoGridModal({
   photos,
   selectedPhoto,
@@ -34,6 +41,8 @@ export function PhotoGridModal({
   onSelectedIndex,
 }: PhotoGridModalProps) {
   const theme = useTheme();
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const setSelected = useCallback(
     (photo: Photo | null, index: number) => {
@@ -89,8 +98,11 @@ export function PhotoGridModal({
           <FaIcon icon={faChevronLeft} />
         </Control>
 
+        {isLoading && <CircularProgress sx={centerStyle} />}
+
         {selectedPhoto && (
           <Image
+            onLoad={() => setIsLoading(false)}
             src={`${selectedPhoto.url}?w=162&auto=format`}
             alt={selectedPhoto.key}
             loading="lazy"
