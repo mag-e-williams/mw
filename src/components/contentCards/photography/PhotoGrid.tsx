@@ -28,7 +28,7 @@ export function PhotoGrid({ photos, modal }: PhotoGridProps) {
       const containerHeight = container.scrollHeight - container.clientHeight;
 
       // Check if the user has scrolled to the bottom
-      if (scrollPosition >= containerHeight) {
+      if (scrollPosition + 200 >= containerHeight) {
         // Fetch Additional Photos
         Emitter.emit('SCROLL', true);
       }
