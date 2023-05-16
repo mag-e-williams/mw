@@ -7,7 +7,7 @@ export const COLORS = {
   SECONDARY: '#168eac',
   MUTED_TEXT: '#73828c',
   LIGHT: {
-    DEFAULT_BACKGROUND: 'hsl(206, 60%, 96%)',
+    DEFAULT_BACKGROUND: '#F5F5F5',
     PAPER_BACKGROUND: 'hsl(206, 60%, 96%)',
     CARD_BACKGROUND: 'rgb(255, 255, 255)',
     CARD_BORDER: 'rgba(89,107,120,.125)',

@@ -10,7 +10,7 @@ const normalFont = fetch(
   new URL('../../../og/SpaceGrotesk-VariableFont_wght.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 const boldFont = fetch(
-  new URL('../../../og/paceGrotesk-VariableFont_wght.ttf', import.meta.url),
+  new URL('../../../og/SpaceGrotesk-VariableFont_wght.ttf', import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 /**

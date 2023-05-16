@@ -20,7 +20,6 @@ function Container({ theme, ...props }: Omit<BoxProps, 'sx'> & { theme: Theme })
     <Box
       {...props}
       sx={{
-        // boxShadow: theme.vars.extraShadows.map.control,
         position: 'absolute',
         zIndex: 1,
         top: props?.className?.includes('top-right') ? 0 : '50%',
