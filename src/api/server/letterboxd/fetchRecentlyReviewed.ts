@@ -47,7 +47,7 @@ async function parseReview(item: ReviewQuery): Promise<Review> {
 }
 
 /*
-The Letterboxd API is not yet Public, so I am using the letetrboxd RSS feed to 
+The Letterboxd API is not yet Public, so I am using the lettrboxd RSS feed to 
 access my account's movie review history and then using xml2js to parse the 
 returned xml
 */
