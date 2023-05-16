@@ -24,11 +24,6 @@
     "db:migrate:undo": "sequelize db:migrate:undo",
     "db:generate": "sequelize migration:generate",
     "db:connect": "pscale connect mw --port 3306",
-    "webhooks": "NODE_ENV=development node --require tsm scripts/webhooks.ts",
-    "webhooks:local": "cloudflared tunnel run mw",
-    "webhooks:create": "pnpm -s webhooks create",
-    "webhooks:list": "pnpm -s webhooks list",
-    "webhooks:delete": "pnpm -s webhooks delete",
     "clean": "rm -r .next"
   },
   "dependencies": {
