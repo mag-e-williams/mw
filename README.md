@@ -37,7 +37,7 @@ Required Node 18+ and pnpm 7+ installed. Run `pnpm install` to get started once 
 
 - [Adobe PDF Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) JS API to embed high-fidelity PDFs.
 
-- [Spotify Web API]([https://developer.adobe.com/document-services/apis/pdf-embed/](https://developer.spotify.com/documentation/web-api)).
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api).
 
 - [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not Public, so I'm using the letterboxd RSS feed to access my account's movie review history for a homepage widget.
 
