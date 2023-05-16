@@ -1,5 +1,4 @@
-![GitHub version](https://badgen.net/github/release/mag-e-williams/mw?cache=600) ![GitHub checks](https://badgen.net/github/checks/mag-e-williams/mw) [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dg)](https://vercel.com/mag-e-williams/mw) ![Last commit](https://badgen.net/github/last-commit/mag-e-williams/mw/main)
-
+![GitHub version](https://badgen.net/github/release/mag-e-williams/mw?cache=600) [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dg)](https://vercel.com/mag-e-williams/mw)
 # Margret (Maggie) Williams
 
 Welcome to my portfolio site. It's a fun way for me to show off my portfolio + try out some new technology in a lightweight and mobile-friendly React + TypeScript web-app. This site is created with [Next](https://nextjs.org/docs/getting-started) and hosted on [Vercel](https://vercel.com).
