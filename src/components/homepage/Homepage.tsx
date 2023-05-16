@@ -36,7 +36,7 @@ export function Homepage() {
   const otherCards = useMemo(
     () => [
       { index: 0, card: <IntroCard key="introCard" /> },
-      { index: 0, card: <MapPreviewCard key="mapx" turnOnAnimation={turnOnAnimation} /> },
+      { index: 0, card: <MapPreviewCard key="map" turnOnAnimation={turnOnAnimation} /> },
       { index: 1, card: <SpotifyCard key="spotify" /> },
       {
         index: 2,
