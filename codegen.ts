@@ -110,30 +110,6 @@ const contentfulGenerators = createApiGenerator('contentful', {
   },
 });
 
-// // For the Github API
-// const githubGenerators = createApiGenerator('github', {
-//   schemaEndpoint: 'https://api.github.com/graphql',
-//   token: process.env.GITHUB_AUTHENTICATION_TOKEN ?? '',
-//   onlyOperationTypes: true,
-//   scalars: {
-//     Base64String: 'string',
-//     Date: 'string',
-//     DateTime: 'string',
-//     GitObjectID: 'string',
-//     GitSSHRemote: 'string',
-//     GitTimestamp: 'string',
-//     HTML: 'string',
-//     PreciseDateTime: 'string',
-//     URI: 'string',
-//     X509Certificate: 'string',
-//   },
-// });
-
-/**
- * These are all the options for codegen itself. We format with
- * prettier after running generation for Contentful and Github,
- * and overwrite existing files.
- */
 const config: CodegenConfig = {
   overwrite: true,
   hooks: {
@@ -141,7 +117,6 @@ const config: CodegenConfig = {
   },
   generates: {
     ...contentfulGenerators,
-    // ...githubGenerators,
   },
 };
 

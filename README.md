@@ -34,6 +34,8 @@ Required Node 18+ and pnpm 7+ installed. Run `pnpm install` to get started once 
 
 - [AWS SDK](https://aws.amazon.com/sdk-for-javascript/) my photography portfolio is stored and accessed through S3. I'm using the AWS SDK to retrieve and process these images.
 
+- [Adobe PDF Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) JS API to embed high-fidelity PDFs.
+
 - [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not yet Public, so I am using the letetrboxd RSS feed to access my account's movie review history.
 
 - [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/api/) shows the map on the homepage.
