@@ -1,5 +1,5 @@
 import type { ContentCardProps } from 'components/contentCards/ContentCard';
-import { Box, CircularProgress, Modal, useTheme } from '@mui/material';
+import { Box, Container, Modal, useTheme } from '@mui/material';
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -8,6 +8,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FaIcon } from 'components/utilComponents/FaIcon';
 import { Control } from 'components/baseControls/Control';
 import Emitter from 'services/Emitter';
+import { Orbit } from '@uiball/loaders';
 
 type PhotoGridModalProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -27,10 +28,14 @@ const style = {
 };
 
 const centerStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
   top: '50%',
   left: '50%',
+  width: '100%',
   transform: 'translate(-50%, -50%)',
+  display: 'flex',
 };
 
 export function PhotoGridModal({
@@ -98,7 +103,11 @@ export function PhotoGridModal({
           <FaIcon icon={faChevronLeft} />
         </Control>
 
-        {isLoading && <CircularProgress sx={centerStyle} />}
+        {isLoading && (
+          <Container sx={centerStyle}>
+            <Orbit size={35} color="#fff" />
+          </Container>
+        )}
 
         {selectedPhoto && (
           <Image
