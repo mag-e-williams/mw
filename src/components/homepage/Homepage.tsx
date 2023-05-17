@@ -7,6 +7,7 @@ import { useMemo, useRef } from 'react';
 import { CertificationsCard } from 'components/homepage/CertificationsCard';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { findProjectWithName } from 'api/parsers';
+import { Container } from '@mui/material';
 import { IntroCard } from './IntroCard';
 import { ProjectCard } from './ProjectCard';
 import { SpotifyCard } from './SpotifyCard';
@@ -67,12 +68,14 @@ export function Homepage() {
   return (
     <>
       <Meta title={HOMEPAGE_TITLE} description={pageDescription} />
-      <ContentGrid gridRef={gridRef}>
-        {otherCards.map(({ index, card }, arrayIndex) => {
-          const nextItem = otherCards[arrayIndex + 1];
-          return [card, ...projectCards.slice(index, nextItem?.index)];
-        })}
-      </ContentGrid>
+      <Container sx={{ marginTop: 16 }}>
+        <ContentGrid gridRef={gridRef}>
+          {otherCards.map(({ index, card }, arrayIndex) => {
+            const nextItem = otherCards[arrayIndex + 1];
+            return [card, ...projectCards.slice(index, nextItem?.index)];
+          })}
+        </ContentGrid>
+      </Container>
     </>
   );
 }
