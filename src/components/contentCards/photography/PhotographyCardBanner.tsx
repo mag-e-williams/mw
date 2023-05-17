@@ -7,7 +7,7 @@ type PhotographyCardProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photoBanner?: Project;
 };
 
-export function PhotographyBanner({ photoBanner }: PhotographyCardProps) {
+export function PhotographyCardBanner({ photoBanner }: PhotographyCardProps) {
   const { width, height, sizes } = useCurrentImageSizes();
   const bannerImage = photoBanner?.thumbnail;
   if (!bannerImage) {

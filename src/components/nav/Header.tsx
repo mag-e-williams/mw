@@ -6,19 +6,14 @@ import { Nav, NavGroup, NavItem } from 'ui/Nav';
 import { ColorSchemeToggle } from 'components/nav/ColorSchemeToggle';
 import { SxProps } from 'ui/theme';
 import { useColorScheme } from 'hooks/useColorScheme';
-// import { ScrollUpButton } from './ScrollUpButton';
+import { ScrollUpButton } from './ScrollUpButton';
 import { Logo } from '../utilComponents/Logo';
 import { NavIcon } from './NavIcon';
 
 interface Props {
-  /**
-   * If provided, sets the ref on the `header` element for
-   * sizing/whatever else is needed
-   */
   headerRef?: React.RefObject<HTMLDivElement>;
 }
 
-// Makes the header bar sticky and not responsive to user events by default
 const stickyContainerSx: SxProps = {
   position: 'sticky',
   top: 0,
@@ -26,10 +21,6 @@ const stickyContainerSx: SxProps = {
   maxWidth: 'unset',
 };
 
-/**
- * Creates the site header component. It's a bar that spans across the
- * page and shows a logo + header links if they exist.
- */
 export function Header({ headerRef }: Props) {
   const isScrolled = useContext(ScrollIndicatorContext);
   const { colorScheme } = useColorScheme();
@@ -54,7 +45,9 @@ export function Header({ headerRef }: Props) {
               <NavItem>
                 <Logo />
               </NavItem>
-              <NavItem>{/* <ScrollUpButton /> */}</NavItem>
+              <NavItem>
+                <ScrollUpButton />
+              </NavItem>
             </NavGroup>
             <NavGroup>
               <NavItem>

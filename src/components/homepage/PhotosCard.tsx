@@ -2,8 +2,8 @@ import { useDataWithParams } from 'api/useData';
 import { FullExpandableCard } from 'components/contentCards/FullExpandableCard';
 import * as React from 'react';
 import type { ContentCardProps } from 'components/contentCards/ContentCard';
-import { PhotographyBanner } from 'components/contentCards/photography/PhotographyBanner';
-import { PhotographyContent } from 'components/contentCards/photography/PhotographyContent';
+import { PhotographyCardBanner } from 'components/contentCards/photography/PhotographyCardBanner';
+import { PhotographyCardContent } from 'components/contentCards/photography/PhotographyCardContent';
 import { Project } from 'api/types/generated/contentfulApi.generated';
 import { Photo } from 'api/types/photos/Photo';
 import { useEffect, useState } from 'react';
@@ -21,7 +21,7 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
   const { data: photos } = useDataWithParams<'photos', EndpointParams>('photos', params);
 
   useEffect(() => {
-    function scrollPhotos() {
+    function fetchPhotos() {
       if (fetchedPhotos) {
         const lastPhoto = fetchedPhotos[fetchedPhotos.length - 1];
         const lastPhotoKey = lastPhoto?.key;
@@ -31,9 +31,9 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
       }
     }
 
-    Emitter.on('SCROLL', scrollPhotos);
+    Emitter.on('FETCH_PHOTOS', fetchPhotos);
     return () => {
-      Emitter.off('SCROLL', scrollPhotos);
+      Emitter.off('FETCH_PHOTOS', fetchPhotos);
     };
   }, [fetchedPhotos, photos]);
 
@@ -52,8 +52,8 @@ export function PhotosCard({ turnOnAnimation, photoBanner }: PhotosCardProps) {
     <FullExpandableCard
       overlay="Photography"
       turnOnAnimation={turnOnAnimation}
-      bannerContent={<PhotographyBanner photoBanner={photoBanner} />}
-      expandedContent={<PhotographyContent photos={fetchedPhotos} />}
+      bannerContent={<PhotographyCardBanner photoBanner={photoBanner} />}
+      expandedContent={<PhotographyCardContent photos={fetchedPhotos} />}
       expandHeight={2}
       expandWidth={3}
     />
