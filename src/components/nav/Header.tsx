@@ -1,5 +1,4 @@
 import { ScrollIndicatorContext } from 'components/nav/ScrollIndicatorContext';
-// import { ScrollUpButton } from 'components/ScrollUpButton';
 import { useContext } from 'react';
 import { Box, alpha } from '@mui/material';
 import { Section } from 'ui/Section';
@@ -7,7 +6,9 @@ import { Nav, NavGroup, NavItem } from 'ui/Nav';
 import { ColorSchemeToggle } from 'components/nav/ColorSchemeToggle';
 import { SxProps } from 'ui/theme';
 import { useColorScheme } from 'hooks/useColorScheme';
+// import { ScrollUpButton } from './ScrollUpButton';
 import { Logo } from '../utilComponents/Logo';
+import { NavIcon } from './NavIcon';
 
 interface Props {
   /**
@@ -32,6 +33,7 @@ const stickyContainerSx: SxProps = {
 export function Header({ headerRef }: Props) {
   const isScrolled = useContext(ScrollIndicatorContext);
   const { colorScheme } = useColorScheme();
+
   return (
     <Section sx={stickyContainerSx}>
       <header ref={headerRef}>
@@ -41,8 +43,7 @@ export function Header({ headerRef }: Props) {
             backgroundColor: isScrolled
               ? alpha(theme.palette.card.background, 0.85)
               : theme.vars.palette.background.default,
-            boxShadow: isScrolled ? theme.vars.extraShadows.card.hovered : 'none',
-            willChange: 'box-shadow, background-color',
+            willChange: 'background-color',
             transition: colorScheme.isInitialized
               ? theme.transitions.create(['background-color', 'box-shadow'])
               : undefined,
@@ -56,6 +57,9 @@ export function Header({ headerRef }: Props) {
               <NavItem>{/* <ScrollUpButton /> */}</NavItem>
             </NavGroup>
             <NavGroup>
+              <NavItem>
+                <NavIcon page="photos" />
+              </NavItem>
               <NavItem>
                 <ColorSchemeToggle />
               </NavItem>

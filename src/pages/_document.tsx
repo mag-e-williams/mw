@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body>
+        <body id="mw-app">
           {getInitColorSchemeScript({ defaultMode: 'system' })}
           <Main />
           <NextScript />

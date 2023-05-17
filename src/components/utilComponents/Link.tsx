@@ -135,7 +135,7 @@ export function Link({
       case 'icon':
         return createIconElement({ icon, layout });
       case 'image':
-        return <Image src="/icons/mw-logo.svg" alt="mw." width={200} height={50} priority />;
+        return <Image src="/icons/mw-logo.svg" alt="mw." width={100} height={50} priority />;
       case 'iconText':
         return (
           <>

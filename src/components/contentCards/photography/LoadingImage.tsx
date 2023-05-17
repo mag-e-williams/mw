@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useState } from 'react';
-import { Skeleton } from '@mui/material';
+import { Container, Skeleton } from '@mui/material';
 
 type LoadingImageProps = {
   image: Photo;
@@ -11,7 +11,17 @@ export function LoadingImage({ image }: LoadingImageProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   return (
-    <>
+    <Container
+      sx={{
+        transform: 'initial',
+        cursor: 'pointer',
+        opacity: 1,
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.02)',
+        },
+      }}
+    >
       {isLoading && (
         <Skeleton
           variant="rounded"
@@ -41,6 +51,6 @@ export function LoadingImage({ image }: LoadingImageProps) {
           minHeight: 10,
         }}
       />
-    </>
+    </Container>
   );
 }

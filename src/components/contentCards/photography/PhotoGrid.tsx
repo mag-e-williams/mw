@@ -56,9 +56,9 @@ export function PhotoGrid({ photos, modal }: PhotoGridProps) {
       >
         <Masonry
           columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}
-          spacing={1}
+          spacing={1.5}
           defaultColumns={3}
-          defaultSpacing={1}
+          defaultSpacing={2}
         >
           {photos.map((item, index) => (
             <Container key={item.key} onClick={() => handlePhotoClick(item, index)}>
