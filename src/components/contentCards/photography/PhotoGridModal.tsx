@@ -69,7 +69,7 @@ export function PhotoGridModal({
   const handleNextPhoto = useCallback(() => {
     const nextIndex = (selectedIndex + 1) % photos.length;
     if (nextIndex + 3 >= photos.length) {
-      Emitter.emit('SCROLL', true);
+      Emitter.emit('FETCH_PHOTOS', true);
       setTimeout(() => {
         setSelected(photos[nextIndex] || null, nextIndex);
       }, 500);

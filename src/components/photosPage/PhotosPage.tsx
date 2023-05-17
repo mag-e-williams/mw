@@ -1,9 +1,9 @@
 import { EndpointParams } from 'api/endpoints';
 import { Photo } from 'api/types/photos/Photo';
 import { useDataWithParams } from 'api/useData';
-import { PhotographyContent } from 'components/contentCards/photography/PhotographyContent';
 import React, { useState, useEffect } from 'react';
 import Emitter from 'services/Emitter';
+import { PhotosPageContent } from './PhotosPageContent';
 
 export function PhotosPage() {
   const [params, setParams] = useState({ startAfter: '' });
@@ -22,9 +22,9 @@ export function PhotosPage() {
       }
     }
 
-    Emitter.on('SCROLL', scrollPhotos);
+    Emitter.on('FETCH_PHOTOS', scrollPhotos);
     return () => {
-      Emitter.off('SCROLL', scrollPhotos);
+      Emitter.off('FETCH_PHOTOS', scrollPhotos);
     };
   }, [fetchedPhotos, photos]);
 
@@ -39,5 +39,5 @@ export function PhotosPage() {
     return null;
   }
 
-  return <PhotographyContent photos={fetchedPhotos} />;
+  return <PhotosPageContent photos={fetchedPhotos} />;
 }

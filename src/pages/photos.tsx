@@ -1,5 +1,5 @@
 import { FetchedFallbackData, fetchFallbackData } from 'api/fetchFallbackData';
-import { PhotosPage } from 'components/homepage/PhotosPage';
+import { PhotosPage } from 'components/photosPage/PhotosPage';
 import { PageLayout } from 'components/layouts/PageLayout';
 import type { GetStaticProps } from 'next/types';
 import type { GetLayout } from 'types/Page';

@@ -1,6 +1,6 @@
 import { ArrowUp } from 'lucide-react';
 import { useContext } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, useTheme } from '@mui/material';
 import { SxProps } from 'ui/theme';
 import { ScrollIndicatorContext } from './ScrollIndicatorContext';
 
@@ -22,6 +22,7 @@ const scrolledSx: SxProps = {
 export function ScrollUpButton() {
   const isScrolled = useContext(ScrollIndicatorContext);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const theme = useTheme();
 
   return (
     <Button
@@ -30,7 +31,7 @@ export function ScrollUpButton() {
       color="secondary"
       onClick={scrollToTop}
       sx={{
-        color: (theme) => theme.vars.palette.text.primary,
+        color: theme.vars.palette.text.primary,
         display: 'flex',
         gap: 0.5,
         alignItems: 'center',
@@ -38,13 +39,24 @@ export function ScrollUpButton() {
         transform: 'translateY(-200%)',
         paddingX: 1.25,
         paddingY: 0.5,
-        transition: (theme) =>
-          theme.transitions.create(['opacity', 'transform', 'color', 'background-color']),
+        transition: theme.transitions.create(['opacity', 'transform', 'color', 'background-color']),
         willChange: 'transform',
         ...(isScrolled && scrolledSx),
+        [theme.breakpoints.down('md')]: {
+          paddingX: 0,
+        },
       }}
     >
-      <Typography variant="caption">To top</Typography>
+      <Typography
+        variant="caption"
+        sx={{
+          [theme.breakpoints.down('md')]: {
+            display: 'none',
+          },
+        }}
+      >
+        To top
+      </Typography>
       <ArrowUp size={16} />
     </Button>
   );
