@@ -55,6 +55,20 @@ export function getTheme(): Theme {
     components: {
       MuiCssBaseline: {
         styleOverrides: (theme) => ({
+          // body: {
+          //   background: 'url("https://assets.getpartiful.com/backgrounds/aquatica/mobile.jpg")',
+          //   animation: 'looping 15s infinite linear',
+          //   backgroundSize: '100% 200vh', // Ensure the background image covers the entire body height
+          //   backgroundAttachment: 'fixed', // Ensures the background stays fixed while animating
+          //   '@keyframes looping': {
+          //     'to': {
+          //       backgroundPosition: '0 200vh',
+          //     },
+          //     // '100%': {
+          //     //   backgroundPosition: '0 100%',
+          //     // },
+          //   },
+          // },
           ':root': {
             wordBreak: 'break-word',
             // Ensure while swapping themes, we have no animations
@@ -213,7 +227,15 @@ export function getTheme(): Theme {
             textTransform: 'initial',
             borderRadius: theme.spacing(6),
             padding: theme.spacing(1, 3),
+            boxShadow: 'none',
           }),
+        },
+      },
+      MuiSpeedDial: {
+        styleOverrides: {
+          fab: {
+            boxShadow: 'none',
+          },
         },
       },
       MuiCard: {
@@ -225,6 +247,7 @@ export function getTheme(): Theme {
             borderWidth: 1,
             borderStyle: 'solid',
             boxShadow: theme.vars.extraShadows.card.main,
+            backdropFilter: 'blur(20px)',
           }),
         },
       },
@@ -232,7 +255,7 @@ export function getTheme(): Theme {
         styleOverrides: {
           root: ({ theme }) => ({
             background: (theme.vars.palette.card.background, 0.5),
-            backdropFilter: 'blur(2px)',
+            backdropFilter: 'blur(5px)',
           }),
         },
       },

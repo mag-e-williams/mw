@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { Box, alpha } from '@mui/material';
 import { Section } from 'ui/Section';
 import { Nav, NavGroup, NavItem } from 'ui/Nav';
-import { ColorSchemeToggle } from 'components/nav/ColorSchemeToggle';
 import { SxProps } from 'ui/theme';
 import { useColorScheme } from 'hooks/useColorScheme';
+import { ColorSchemeSelector } from 'components/nav/ColorSchemeSelector';
 import { ScrollUpButton } from './ScrollUpButton';
 import { Logo } from '../utilComponents/Logo';
 import { NavIcon } from './NavIcon';
@@ -50,11 +50,19 @@ export function Header({ headerRef }: Props) {
               </NavItem>
             </NavGroup>
             <NavGroup>
-              <NavItem>
+              <NavItem
+                sx={(theme) => ({
+                  // anoying CSS to get around the weird positioning behavior with the MUI speed dial
+                  paddingRight: 10,
+                  [theme.breakpoints.down('md')]: {
+                    paddingRight: 8,
+                  },
+                })}
+              >
                 <NavIcon page="photos" />
               </NavItem>
               <NavItem>
-                <ColorSchemeToggle />
+                <ColorSchemeSelector />
               </NavItem>
             </NavGroup>
           </Nav>

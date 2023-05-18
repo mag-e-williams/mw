@@ -79,6 +79,13 @@ const darkPalette: PaletteOptions = {
   },
 };
 
+// const lightGradientPalette: PaletteOptions = {
+//   ...lightPalette,
+// };
+
+// const darkGradientPalette: PaletteOptions = {
+//   ...darkPalette,
+// };
 /**
  * Returns a palette options for theme creation based on the color mode.
  */

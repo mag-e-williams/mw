@@ -1,4 +1,4 @@
-import { Link as LinkIcon, Camera } from 'lucide-react';
+import { Link as LinkIcon, Camera, PartyPopper, Palette } from 'lucide-react';
 import { Box, IconButton, Theme, Tooltip } from '@mui/material';
 import { useRouter } from 'next/router';
 
@@ -12,7 +12,18 @@ const DELAY_MS = 300;
 export function NavIcon({ page }: NavIconProps) {
   const router = useRouter();
 
-  const icon = page === 'photos' ? <Camera size={ICON_SIZE} /> : <LinkIcon size={ICON_SIZE} />;
+  // const icon = page === 'photos' ? <Camera size={ICON_SIZE} /> : <LinkIcon size={ICON_SIZE} />;
+
+  const icon =
+    page === 'photos' ? (
+      <Camera size={ICON_SIZE} />
+    ) : page === 'party colors' ? (
+      <PartyPopper size={ICON_SIZE} />
+    ) : page === 'palette' ? (
+      <Palette size={ICON_SIZE} />
+    ) : (
+      <LinkIcon size={ICON_SIZE} />
+    );
 
   const iconColor = (theme: Theme) => {
     if (router.asPath.includes('photos')) {
