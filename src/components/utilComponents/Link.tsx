@@ -9,6 +9,7 @@ import { faQuestion } from '@fortawesome/free-solid-svg-icons/faQuestion';
 import { faFileLines } from '@fortawesome/free-solid-svg-icons/faFileLines';
 import { faFilm } from '@fortawesome/free-solid-svg-icons/faFilm';
 import { faAward } from '@fortawesome/free-solid-svg-icons/faAward';
+import { faHackerrank } from '@fortawesome/free-brands-svg-icons/faHackerrank';
 
 import NextLink from 'next/link';
 import {
@@ -71,6 +72,7 @@ const BUILT_IN_ICONS: Record<string, JSX.Element> = {
   resume: <FaIcon icon={faFileLines} />,
   film: <FaIcon icon={faFilm} />,
   award: <FaIcon icon={faAward} />,
+  hackerrank: <FaIcon icon={faHackerrank} />,
 };
 
 /**

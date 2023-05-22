@@ -1,7 +1,8 @@
 ![GitHub version](https://badgen.net/github/release/mag-e-williams/mw?cache=600) [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dg)](https://vercel.com/mag-e-williams/mw)
+
 # Margret (Maggie) Williams
 
-Welcome to my portfolio site. It's a fun way for me to show off my portfolio + try out some new technology in a lightweight and mobile-friendly React + TypeScript web-app. This site is created with [Next](https://nextjs.org/docs/getting-started) and hosted on [Vercel](https://vercel.com). 
+Welcome to my portfolio site. It's a fun way for me to show off my portfolio + try out some new technology in a lightweight and mobile-friendly React + TypeScript web-app. This site is created with [Next](https://nextjs.org/docs/getting-started) and hosted on [Vercel](https://vercel.com).
 
 It's using [Contentful](https://www.contentful.com/) for some of the content management and also utilizes the AWS SDK, PlanetScale, MapboxGL, and GraphQL to deliver the features.
 
