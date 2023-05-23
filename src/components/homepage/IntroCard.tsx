@@ -35,11 +35,10 @@ function IntroLink({ link }: { link?: LinkType }) {
           color: 'secondary',
         }}
         sx={{
-          minWidth: 48,
-          minHeight: 48,
+          marginRight: 3,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'left',
+          justifyContent: 'center',
         }}
       />
     </NavItem>
