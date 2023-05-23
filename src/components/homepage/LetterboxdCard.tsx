@@ -5,7 +5,7 @@ import { MovieListing } from 'components/contentCards/letterboxd/MovieListing';
  * Shows a card with the latest data from Letterboxd
  */
 export function LetterboxdCard() {
-  const { data: movies } = useData('movies');
+  const { data: movies } = useData('latest/movies');
 
   if (!movies) {
     return null;

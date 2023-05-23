@@ -38,7 +38,7 @@ export const endpoints = {
   'latest/track': fetchRecentlyPlayed,
   version: fetchRepoVersion,
   photos: (startAfter?: string) => fetchPhotos(startAfter),
-  movies: fetchRecentlyReviewed,
+  'latest/movies': fetchRecentlyReviewed,
 } as const;
 
 /**

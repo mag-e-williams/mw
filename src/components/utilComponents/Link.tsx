@@ -27,7 +27,20 @@ type BaseLinkProps = {
   href: string | undefined;
   img?: string | undefined;
   icon?: string;
-
+  tooltipPlacement?:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'left-end'
+    | 'left-start'
+    | 'right-end'
+    | 'right-start'
+    | 'top-end'
+    | 'top-start'
+    | undefined;
   /**
    * Can be missing for icon-only links
    */
@@ -100,6 +113,7 @@ export function Link({
   children,
   isButton,
   isExternal,
+  tooltipPlacement,
   layout: initialLayout = 'text',
   sx,
   linkProps,
@@ -127,10 +141,9 @@ export function Link({
   if (!href || !layout) {
     return null;
   }
-
   // Tooltip shows up when there's just an icon, otherwise not needed
   const tooltipTitle = layout === 'icon' ? title : null;
-
+  const iconTooltipPlacement = tooltipPlacement || 'top';
   // If there's a custom or built in icon, create a link around it
   const contents = (() => {
     switch (layout) {
@@ -159,7 +172,7 @@ export function Link({
     sx,
   };
   return (
-    <Tooltip title={tooltipTitle} placement="top">
+    <Tooltip title={tooltipTitle} placement={iconTooltipPlacement}>
       {isButton ? (
         <Button {...buttonProps} {...sharedProps}>
           {contents}

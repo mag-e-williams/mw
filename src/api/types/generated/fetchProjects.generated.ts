@@ -15,9 +15,19 @@ export type ProjectsQuery = {
                           readonly description: string | undefined;
                           readonly layout: string | undefined;
                           readonly creationDate: any | undefined;
+                          readonly visible: boolean | undefined;
                           readonly link: { readonly url: string | undefined } | undefined;
                           readonly thumbnail:
                             | {
+                                readonly url: string | undefined;
+                                readonly width: number | undefined;
+                                readonly height: number | undefined;
+                              }
+                            | undefined;
+                          readonly file:
+                            | {
+                                readonly title: string | undefined;
+                                readonly fileName: string | undefined;
                                 readonly url: string | undefined;
                                 readonly width: number | undefined;
                                 readonly height: number | undefined;
