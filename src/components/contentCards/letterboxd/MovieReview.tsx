@@ -9,7 +9,7 @@ type MovieReviewProps = {
 
 export function MovieReview({ movieReview }: MovieReviewProps) {
   return (
-    <Typography component="span" variant="body2" sx={truncated(3)}>
+    <Typography component="span" variant="body2" sx={truncated(2)}>
       <Link isExternal href={movieReview?.link} linkProps={{ variant: 'body2', color: 'body2' }}>
         {movieReview?.review}
       </Link>
