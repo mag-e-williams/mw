@@ -6,18 +6,53 @@ import { useLinkWithName } from 'hooks/useLinkWithName';
 import { useState } from 'react';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 import { RichText } from 'components/utilComponents/RichText';
+import { HorizontalStack } from 'ui/HorizontalStack';
+import { Link } from 'components/utilComponents/Link';
+import { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
+import { NavItem } from 'ui/Nav';
 
 /**
  * Width of the intro image on small screens
  */
 const SMALL_IMAGE_SIZE = '14em';
 
+function IntroLink({ link }: { link?: LinkType }) {
+  if (!link) {
+    return null;
+  }
+
+  return (
+    <NavItem sx={{ padding: 0 }}>
+      <Link
+        title={link.title}
+        icon={link.icon}
+        layout="icon"
+        href={link.url}
+        isExternal={link.url?.startsWith('http')}
+        aria-label={link.title}
+        tooltipPlacement="bottom"
+        linkProps={{
+          color: 'secondary',
+        }}
+        sx={{
+          minWidth: 48,
+          minHeight: 48,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'left',
+        }}
+      />
+    </NavItem>
+  );
+}
+
 export function IntroCard() {
   const { data: introBlock } = useData('intro');
-
   const linkedInLink = useLinkWithName('LinkedIn');
   const [isHovered, setIsHovered] = useState(false);
   const { width, height, sizes } = useCurrentImageSizes();
+
+  const introLinks = introBlock?.introLinksCollection?.items;
 
   if (!introBlock?.textBlock?.json) {
     return null;
@@ -67,6 +102,9 @@ export function IntroCard() {
         }}
       >
         <RichText {...introBlock.textBlock} />
+        <HorizontalStack>
+          {introLinks && introLinks?.map((link) => <IntroLink link={link} key={link?.url} />)}
+        </HorizontalStack>
       </ContentCard>
     </>
   );

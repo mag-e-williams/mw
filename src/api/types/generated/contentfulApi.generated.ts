@@ -833,6 +833,7 @@ export type ImageTransformOptions = {
 export type IntroBlock = Entry & {
   readonly contentfulMetadata: ContentfulMetadata;
   readonly headshot: Maybe<Asset>;
+  readonly introLinksCollection: Maybe<IntroBlockIntroLinksCollection>;
   readonly linkedFrom: Maybe<IntroBlockLinkingCollections>;
   readonly sys: Sys;
   readonly textBlock: Maybe<IntroBlockTextBlock>;
@@ -843,6 +844,14 @@ export type IntroBlock = Entry & {
 export type IntroBlockHeadshotArgs = {
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/introBlock) */
+export type IntroBlockIntroLinksCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/dmq2gxjoz3y8/content_types/introBlock) */
@@ -872,6 +881,8 @@ export type IntroBlockFilter = {
   readonly OR: InputMaybe<ReadonlyArray<InputMaybe<IntroBlockFilter>>>;
   readonly contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
   readonly headshot_exists: InputMaybe<Scalars['Boolean']>;
+  readonly introLinks: InputMaybe<CfLinkNestedFilter>;
+  readonly introLinksCollection_exists: InputMaybe<Scalars['Boolean']>;
   readonly sys: InputMaybe<SysFilter>;
   readonly textBlock_contains: InputMaybe<Scalars['String']>;
   readonly textBlock_exists: InputMaybe<Scalars['Boolean']>;
@@ -883,6 +894,13 @@ export type IntroBlockFilter = {
   readonly title_not: InputMaybe<Scalars['String']>;
   readonly title_not_contains: InputMaybe<Scalars['String']>;
   readonly title_not_in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+};
+
+export type IntroBlockIntroLinksCollection = {
+  readonly items: ReadonlyArray<Maybe<Link>>;
+  readonly limit: Scalars['Int'];
+  readonly skip: Scalars['Int'];
+  readonly total: Scalars['Int'];
 };
 
 export type IntroBlockLinkingCollections = {
@@ -998,6 +1016,7 @@ export type LinkLinkingCollections = {
   readonly certificationBadgeCollection: Maybe<CertificationBadgeCollection>;
   readonly certificationOrgCollection: Maybe<CertificationOrgCollection>;
   readonly entryCollection: Maybe<EntryCollection>;
+  readonly introBlockCollection: Maybe<IntroBlockCollection>;
   readonly projectCollection: Maybe<ProjectCollection>;
 };
 
@@ -1016,6 +1035,13 @@ export type LinkLinkingCollectionsCertificationOrgCollectionArgs = {
 };
 
 export type LinkLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export type LinkLinkingCollectionsIntroBlockCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale: InputMaybe<Scalars['String']>;
   preview: InputMaybe<Scalars['Boolean']>;

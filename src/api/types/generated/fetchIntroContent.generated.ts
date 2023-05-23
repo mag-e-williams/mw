@@ -58,6 +58,18 @@ export type IntroContentQuery = {
                                 };
                               }
                             | undefined;
+                          readonly introLinksCollection:
+                            | {
+                                readonly items: ReadonlyArray<
+                                  | {
+                                      readonly title: string | undefined;
+                                      readonly url: string | undefined;
+                                      readonly icon: string | undefined;
+                                    }
+                                  | undefined
+                                >;
+                              }
+                            | undefined;
                         }
                       | {}
                       | undefined

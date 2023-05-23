@@ -49,6 +49,15 @@ const QUERY = gql`
                   }
                 }
               }
+              introLinksCollection(limit: 100) {
+                items {
+                  ... on Link {
+                    title
+                    url
+                    icon
+                  }
+                }
+              }
             }
           }
         }
