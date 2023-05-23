@@ -20,7 +20,7 @@ function FooterLink({ link }: { link: LinkType }) {
           color: 'secondary',
         }}
         sx={{
-          minWidth: 48,
+          minWidth: 36,
           minHeight: 48,
           display: 'flex',
           alignItems: 'center',
