@@ -26,7 +26,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '*.s3.amazonaws.com',
+        hostname: 'film-photos.s3.amazonaws.com',
       },
     ],
   },

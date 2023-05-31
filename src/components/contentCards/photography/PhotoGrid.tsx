@@ -38,7 +38,8 @@ export function PhotoGrid({ photos, modal }: PhotoGridProps) {
         defaultSpacing={2}
       >
         {photos.map((item, index) => (
-          <Container key={item.key} onClick={() => handlePhotoClick(item, index)}>
+          // eslint-disable-next-line react/no-array-index-key
+          <Container key={`${item.key}_${index}`} onClick={() => handlePhotoClick(item, index)}>
             <LoadingImage image={item} />
           </Container>
         ))}

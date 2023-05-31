@@ -1,6 +1,6 @@
 import type { ContentCardProps } from 'components/contentCards/ContentCard';
 import { Box, Container, Modal, useTheme } from '@mui/material';
-import Image from 'next/image';
+import { Image } from 'components/utilComponents/Image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useCallback, useEffect, useState } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
@@ -9,6 +9,7 @@ import { FaIcon } from 'components/utilComponents/FaIcon';
 import { Control } from 'components/baseControls/Control';
 import Emitter from 'services/Emitter';
 import { Orbit } from '@uiball/loaders';
+import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
 type PhotoGridModalProps = Pick<ContentCardProps, 'turnOnAnimation'> & {
   photos: Array<Photo>;
@@ -48,6 +49,7 @@ export function PhotoGridModal({
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { width, height } = useCurrentImageSizes();
 
   const setSelected = useCallback(
     (photo: Photo | null, index: number) => {
@@ -60,6 +62,10 @@ export function PhotoGridModal({
   const handleCloseModal = useCallback(() => {
     setSelected(null, 0);
   }, [setSelected]);
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
   const handlePrevPhoto = useCallback(() => {
     const prevIndex = (selectedIndex + photos.length - 1) % photos.length;
@@ -81,7 +87,7 @@ export function PhotoGridModal({
   // Arrow Key Navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft') {
+      if (event.key === 'ArrowLeft' || event.key === ' ' || event.key === 'SpaceBar') {
         handlePrevPhoto();
       } else if (event.key === 'ArrowRight') {
         handleNextPhoto();
@@ -111,14 +117,13 @@ export function PhotoGridModal({
 
         {selectedPhoto && (
           <Image
-            onLoad={() => setIsLoading(false)}
-            src={`${selectedPhoto.url}?w=162&auto=format`}
+            onImageLoad={handleImageLoad}
+            url={selectedPhoto.url}
+            width={width}
+            height={height}
             alt={selectedPhoto.key}
-            loading="lazy"
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{
+            priority
+            sx={{
               borderRadius: 6,
               display: 'block',
               width: '100%',
