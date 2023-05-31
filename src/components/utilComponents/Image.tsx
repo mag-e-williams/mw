@@ -2,8 +2,11 @@ import { styled } from '@mui/material';
 import type { Asset } from 'api/types/generated/contentfulApi.generated';
 import { BREAKPOINT_MAX_SIZES } from 'constants/imageSizes';
 import NextImage from 'next/image';
+import { CSSProperties } from 'react';
 
 type ImageProps = Partial<Asset> & {
+  onImageLoad?: () => void;
+
   url: string | undefined;
 
   /**
@@ -20,7 +23,9 @@ type ImageProps = Partial<Asset> & {
    * Sizes are required and map from breakpoint to image width so
    * Next can automatically generate us some well-sized images!
    */
-  sizes: {
+  sx?: CSSProperties;
+
+  sizes?: {
     /**
      * Under 576px wide
      */
@@ -72,7 +77,10 @@ const MaxWidthImage = styled(NextImage)({
 /**
  * Turns the breakpoint -> width map into a sizes string
  */
-const generateSizesString = (sizes: ImageProps['sizes']): string => {
+const generateSizesString = (sizes?: ImageProps['sizes']): string => {
+  if (!sizes) {
+    return '100vw';
+  }
   const sizesString = Object.entries(sizes)
     .map(([breakpoint, width]) => {
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -93,11 +101,19 @@ const generateSizesString = (sizes: ImageProps['sizes']): string => {
  * Shows a Next Image with the contents of the Asset and custom
  * sizes as needed.
  */
-export function Image({ url, title, alt, sizes, ...props }: ImageProps) {
+export function Image({ onImageLoad, url, title, alt, sizes, sx, ...props }: ImageProps) {
   if (!url) {
     return null;
   }
+
   return (
-    <MaxWidthImage src={url} alt={title ?? alt} sizes={generateSizesString(sizes)} {...props} />
+    <MaxWidthImage
+      onLoad={onImageLoad}
+      src={url}
+      alt={title ?? alt}
+      sizes={generateSizesString(sizes)}
+      {...props}
+      style={{ ...sx }}
+    />
   );
 }

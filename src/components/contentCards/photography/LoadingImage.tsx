@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import type { Photo } from 'api/types/photos/Photo';
 import React, { useState } from 'react';
 import { Container, Skeleton } from '@mui/material';
+import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
+import { Image } from 'components/utilComponents/Image';
 
 type LoadingImageProps = {
   image: Photo;
@@ -9,6 +10,11 @@ type LoadingImageProps = {
 
 export function LoadingImage({ image }: LoadingImageProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { width, height, sizes } = useCurrentImageSizes();
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
   return (
     <Container
@@ -28,27 +34,27 @@ export function LoadingImage({ image }: LoadingImageProps) {
           sx={{
             display: 'block',
             width: '100%',
-            height: 20,
+            height: '170px',
           }}
         />
       )}
 
       <Image
-        onLoad={() => setIsLoading(false)}
-        src={`${image.url}?w=100&auto=format`}
+        onImageLoad={handleImageLoad}
+        url={image.url}
+        width={width}
+        height={height}
         alt={image.key}
-        width={0}
-        height={0}
-        loading="lazy"
-        sizes="100vw"
-        style={{
+        priority
+        sizes={sizes}
+        sx={{
           borderRadius: 6,
           display: 'block',
-          width: '100%',
-          height: 'auto',
+          height: isLoading ? 0 : 'auto',
+          width: isLoading ? 0 : '100%',
           // Since masonry lists depend on the height of the element,
           // minHeight serves as a placeholder value while the img has not yet loaded.
-          minHeight: 10,
+          minHeight: 1,
         }}
       />
     </Container>
