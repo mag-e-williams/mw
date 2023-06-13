@@ -13,11 +13,12 @@ export function MovieTitle({ movie, url }: MovieTitleProps) {
   const link = useLinkWithName('Spotify', { title: movie?.filmTitle, url });
   const movieTitle = movie?.filmTitle;
   const movieYear = movie?.filmYear;
-  return link ? (
+  return (
     <Stack
       spacing={1}
       direction="row"
       sx={{
+        justifyContent: 'space-between',
         alignItems: 'baseline',
         marginBottom: 0.5,
       }}
@@ -25,7 +26,7 @@ export function MovieTitle({ movie, url }: MovieTitleProps) {
       <Link
         isExternal
         {...link}
-        href={link.url}
+        href={link?.url}
         linkProps={{ variant: 'h5', color: 'h5' }}
         sx={truncated(1)}
       >
@@ -35,29 +36,7 @@ export function MovieTitle({ movie, url }: MovieTitleProps) {
         variant="caption"
         component="span"
         sx={{
-          width: '40px',
-        }}
-      >
-        {movieYear}
-      </Typography>
-    </Stack>
-  ) : (
-    <Stack
-      spacing={1}
-      direction="row"
-      sx={{
-        alignItems: 'baseline',
-        marginBottom: 0.5,
-      }}
-    >
-      <Typography variant="h5" component="span">
-        {movieTitle}
-      </Typography>
-      <Typography
-        variant="caption"
-        component="span"
-        sx={{
-          width: '40px',
+          minWidth: '35px',
         }}
       >
         {movieYear}
