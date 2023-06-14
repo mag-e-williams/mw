@@ -42,6 +42,8 @@ Required Node 18+ and pnpm 7+ installed. Run `pnpm install` to get started once 
 
 - [Letterboxd RSS](https://letterboxd.com/magoo_willems/rss/) The Letterboxd API is not Public, so I'm using the letterboxd RSS feed to access my account's movie review history for a homepage widget.
 
+- [Goodreads RSS](https://www.goodreads.com/review/list_rss/158756856?key=0AQM1USqi8y2v2kK68ffOVWeBa2c4XrzCMH3zWIx__QVd9wQ&shelf=read) I'm using the Goodreads RSS feed to access my account's reading history for a homepage widget.
+
 - [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/api/) shows the map on the homepage.
 
 - [MUI System](https://mui.com/system/getting-started/overview/) provides the styling system.
