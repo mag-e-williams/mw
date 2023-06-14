@@ -1,16 +1,17 @@
 import { useData } from 'api/useData';
 import { ContentCard } from 'components/contentCards/ContentCard';
-import { MovieListing } from 'components/contentCards/letterboxd/MovieListing';
+import { BookListing } from 'components/contentCards/goodreads/BookListing';
 /**
  * Shows a card with the latest data from Goodreads
  */
 export function GoodreadsCard() {
-  const { data: movies } = useData('latest/movies');
+  const { data: books } = useData('latest/goodreads');
 
-  if (!movies) {
+  if (!books || !books[0]) {
     return null;
   }
-  const movie = movies[0];
+
+  const book = books[0];
   return (
     <ContentCard
       sx={{
@@ -18,7 +19,7 @@ export function GoodreadsCard() {
         display: 'flex',
       }}
     >
-      <MovieListing movie={movie} />
+      <BookListing book={book} />
     </ContentCard>
   );
 }

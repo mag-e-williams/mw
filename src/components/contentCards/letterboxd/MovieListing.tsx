@@ -5,7 +5,7 @@ import { MovieImage } from './MovieImage';
 import { MovieReview } from './MovieReview';
 import { ReviewedTime } from './ReviewedTime';
 import { MovieTitle } from './MovieTitle';
-import { ReviewStars } from './ReviewStars';
+import { ReviewStars } from 'components/contentCards/goodreads/ReviewStars';
 
 interface MovieListingProps {
   movie?: Review;
@@ -15,6 +15,7 @@ export function MovieListing({ movie }: MovieListingProps) {
   const movieUrl = movie?.link || '';
   const movieTitle = movie?.filmTitle || '';
   const movieImage = movie?.img || '';
+  const rating = movie?.rating || '';
 
   return (
     <Stack
@@ -34,7 +35,7 @@ export function MovieListing({ movie }: MovieListingProps) {
         <MovieImage movieImage={movieImage} movieTitle={movieTitle} />
       </HorizontalStack>
       <Stack>
-        <ReviewStars review={movie} />
+        <ReviewStars numStars={rating} />
         <MovieTitle movie={movie} url={movieUrl} />
         <MovieReview movieReview={movie} />
       </Stack>

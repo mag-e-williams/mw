@@ -10,7 +10,7 @@ export type GoodreadsReviewContent = {
   averageRating: Number;
   bookPublishedYear: Number;
   userRating: number;
-  dateAdded: Date;
+  dateAdded: string;
   shelves: string;
   review: string;
 };
@@ -18,9 +18,14 @@ export type GoodreadsReviewContent = {
 export type GoodreadsItem = {
   title: string;
   link: string;
+  author: string;
+  bookImgUrl: string;
+  bookLargeImgUrl: string;
   pubDate: string;
-  content: string | GoodreadsReviewContent;
+  bookContent: GoodreadsReviewContent;
   contentSnippet: string;
   guid: string;
   isoDate: string;
+  userReadAt: string;
+  userRating: string;
 };

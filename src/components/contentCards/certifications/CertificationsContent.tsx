@@ -19,12 +19,12 @@ export function CertificationsContent({ certifications }: CertificationCardProps
       {certifications
         ?.filter((cert) => cert.visible)
         .map((cert, i) => (
-          <>
+          <div key={cert.title}>
             <Certification key={cert.title} certification={cert} />
             {i < certifications.length - 1 ? (
               <Divider variant="inset" flexItem sx={{ m: '-1px', width: '100%' }} />
             ) : undefined}
-          </>
+          </div>
         ))}
     </Grid>
   );

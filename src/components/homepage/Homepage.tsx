@@ -50,6 +50,10 @@ export function Homepage() {
       },
       {
         index: 4,
+        card: <GoodreadsCard key="goodreads" />,
+      },
+      {
+        index: 4,
         card: (
           <PhotosCard
             key="photos"
@@ -58,10 +62,7 @@ export function Homepage() {
           />
         ),
       },
-      {
-        index: 4,
-        card: <GoodreadsCard key="goodreads" />,
-      },
+
       {
         index: 4,
         card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,

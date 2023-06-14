@@ -1,9 +1,7 @@
-import Parser from 'rss-parser';
-import {
-  GoodreadsItem,
-  GoodreadsFeed,
-  GoodreadsReviewContent,
-} from 'api/types/goodreads/GoodreadsFeed';
+import { GoodreadsItem, GoodreadsReviewContent } from 'api/types/goodreads/GoodreadsFeed';
+
+import axios from 'axios';
+import { parseStringPromise } from 'xml2js';
 
 const LETTERBOXD_RSS_FEED = 'https://www.goodreads.com/review/list_rss/158756856?shelf=read';
 
@@ -56,22 +54,76 @@ const parsedContent = (contentString: string): GoodreadsReviewContent => {
     averageRating: rating,
     bookPublishedYear: publishedYear,
     userRating: userRating,
-    dateAdded: new Date(dateAdded),
+    dateAdded: dateAdded,
     shelves: shelves,
     review: review,
   };
 };
 
-export async function fetchRecentlyRead(): Promise<GoodreadsFeed> {
-  const parser: Parser<GoodreadsFeed, GoodreadsItem> = new Parser();
-  const rss_feed = await parser.parseURL(LETTERBOXD_RSS_FEED);
-  const feed_items = rss_feed.items.map((item) => {
-    return {
-      ...item,
-      content: parsedContent(item.content as string),
-    };
-  });
+export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
+  try {
+    // Fetch the RSS feed
+    const response = await axios.get(LETTERBOXD_RSS_FEED);
+    const rssData = response.data;
+    console.log(rssData);
+    // Parse the XML data into JavaScript objects
+    const parsedData = await parseStringPromise(rssData, {
+      trim: true,
+      explicitArray: false,
+      ignoreAttrs: true,
+    });
 
-  console.log(feed_items);
-  return rss_feed;
+    // Access the relevant data from the parsed object
+    const { rss } = parsedData;
+    const { channel } = rss;
+    const { item } = channel;
+
+    // Iterate over the items and extract the desired fields
+    const parsedItems: GoodreadsItem[] = item.map((rssItem: any) => {
+      const title = rssItem.title;
+      const bookId = rssItem.book_id;
+      const userRating = rssItem.user_rating;
+      const userReadAt = rssItem.user_read_at;
+      const link = rssItem.link;
+      const author = rssItem.author_name;
+      const bookImgUrl = rssItem.book_image_url;
+      const bookSmallImgUrl = rssItem.book_small_image_url;
+      const bookMediumImgUrl = rssItem.book_medium_image_url;
+      const bookLargeImgUrl = rssItem.book_large_image_url;
+      const bookDescription = rssItem.book_description;
+
+      const content = parsedContent(rssItem.description);
+
+      return {
+        title: title,
+        bookId: bookId,
+        bookDescription: bookDescription,
+        bookImgUrl: bookImgUrl,
+        bookSmallImgUrl: bookSmallImgUrl,
+        bookMediumImgUrl: bookMediumImgUrl,
+        bookLargeImgUrl: bookLargeImgUrl,
+        userRating: userRating,
+        userReadAt: userReadAt,
+        link: link,
+        author: author,
+        bookContent: content,
+      };
+    });
+
+    return parsedItems.sort((a, b) => {
+      const valueA = new Date(a.userReadAt);
+      const valueB = new Date(b.userReadAt);
+
+      if (valueA < valueB) {
+        return 1;
+      }
+      if (valueA > valueB) {
+        return -1;
+      }
+      return 0;
+    });
+  } catch (error) {
+    console.error('Error fetching or parsing the Goodreads RSS feed:', error);
+    return [];
+  }
 }
