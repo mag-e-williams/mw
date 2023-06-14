@@ -7,6 +7,7 @@ import { fetchCertifications } from './server/contentful/fetchCertifications';
 import { fetchRepoVersion } from './server/github/fetchRepoVersion';
 import { fetchPhotos } from './server/aws/fetchPhotos';
 import { fetchRecentlyReviewed } from './server/letterboxd/fetchRecentlyReviewed';
+import { fetchRecentlyRead } from './server/goodreads/fetchRecentlyRead';
 
 export type EndpointParams = {
   page?: number;
@@ -39,6 +40,7 @@ export const endpoints = {
   version: fetchRepoVersion,
   photos: (startAfter?: string) => fetchPhotos(startAfter),
   'latest/movies': fetchRecentlyReviewed,
+  'latest/goodreads': fetchRecentlyRead,
 } as const;
 
 /**

@@ -28,6 +28,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'film-photos.s3.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.gr-assets.com',
+      },
     ],
   },
   i18n: {
