@@ -3,6 +3,7 @@ import { useRelativeTimeFormat } from 'hooks/useRelativeTimeFormat';
 import { Music } from 'lucide-react';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { Typography } from '@mui/material';
+import { Headphones } from 'lucide-react';
 
 type PlaybackStatusProps = {
   playedAt?: Track['played_at'];
@@ -24,10 +25,13 @@ export function PlaybackStatus({ playedAt }: PlaybackStatusProps) {
       {isNowPlaying ? (
         <>
           Now Playing
-          <Music size="1.25em" />
+          <Headphones size="1.25em" />
         </>
       ) : (
-        `Played ${relativeLastPlayed}`
+        <>
+          `Played ${relativeLastPlayed}`
+          <Music size="1.25em" />
+        </>
       )}
     </Typography>
   );

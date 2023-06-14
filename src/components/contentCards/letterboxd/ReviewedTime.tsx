@@ -3,6 +3,7 @@ import { Typography } from '@mui/material';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { Review } from 'api/types/letterboxd/Review';
 import { useRelativeTimeFormat } from 'hooks/useRelativeTimeFormat';
+import { Clapperboard } from 'lucide-react';
 
 interface ReviewedTimeProps {
   movie?: Review;
@@ -22,6 +23,7 @@ export function ReviewedTime({ movie }: ReviewedTimeProps) {
       sx={{ gap: 1, alignItems: 'center' }}
     >
       {formattedDate}
+      <Clapperboard size="1.25em" />
     </Typography>
   ) : null;
 }
