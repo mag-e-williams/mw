@@ -20,18 +20,17 @@ export function FullMapCard({ turnOnAnimation, location }: FullMapCardProps) {
   const expandedHeight = 1;
   const isExpandable = true;
 
-  const expansionControl = useMemo(
-    () => (
-      <Control
-        onClick={isExpanded ? () => setIsExpanded(false) : undefined}
-        position="top-right"
-        theme={theme}
-      >
+  const expansionControl = useMemo(() => {
+    const toggleExpanded = () => {
+      setIsExpanded(!isExpanded);
+    };
+
+    return (
+      <Control onClick={toggleExpanded} position="top-right" theme={theme}>
         {isExpanded ? <Minimize2 size="1em" /> : <Maximize2 size="1em" />}
       </Control>
-    ),
-    [isExpanded, theme],
-  );
+    );
+  }, [isExpanded, theme]);
 
   return (
     <MapContentCard

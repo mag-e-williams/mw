@@ -3,8 +3,7 @@ import { ContentCard, ContentCardProps } from 'components/contentCards/ContentCa
 import { mixinSx } from 'ui/helpers/mixinSx';
 
 // In px, the min/max size of the card - matches standard size
-// const MIN_DIMENSION = 297;
-const MIN_DIMENSION = undefined;
+const MIN_DIMENSION = 297;
 
 // In px, the height of the expanded card
 const EXPANDED_HEIGHT = 500;
@@ -19,8 +18,8 @@ export function MapContentCard({ isExpanded, sx, ...props }: ContentCardProps & 
           minHeight: isExpanded ? EXPANDED_HEIGHT : MIN_DIMENSION,
           height: isExpanded ? EXPANDED_HEIGHT : undefined,
           [theme.breakpoints.down('md')]: {
-            minHeight: isExpanded ? 360 : 200,
-            height: isExpanded ? 360 : 200,
+            minHeight: isExpanded ? '90vh' : 200,
+            height: isExpanded ? '90vh' : 200,
           },
         }),
         sx,

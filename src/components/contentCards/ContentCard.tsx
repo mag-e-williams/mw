@@ -189,6 +189,7 @@ export function ContentCard({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function toggle() {
+    // console.log(expandable, onExpansion, isExpanded);
     if (expandable && onExpansion) {
       setIsExpanded(false);
       onExpansion(false);
