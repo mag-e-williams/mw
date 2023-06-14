@@ -14,6 +14,7 @@ import { SpotifyCard } from './SpotifyCard';
 import { PhotosCard } from './PhotosCard';
 import { LetterboxdCard } from './LetterboxdCard';
 import { ResumeCard } from './ResumeCard';
+import { GoodreadsCard } from './GoodreadsCard';
 
 export function Homepage() {
   const { data: projects } = useData('projects');
@@ -44,8 +45,8 @@ export function Homepage() {
         card: <ResumeCard key="resume" turnOnAnimation={turnOnAnimation} resume={resumeCard} />,
       },
       {
-        index: 4,
-        card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
+        index: 2,
+        card: <LetterboxdCard key="letterboxd" />,
       },
       {
         index: 4,
@@ -59,7 +60,11 @@ export function Homepage() {
       },
       {
         index: 4,
-        card: <LetterboxdCard key="letterboxd" />,
+        card: <GoodreadsCard key="goodreads" />,
+      },
+      {
+        index: 4,
+        card: <CertificationsCard key="certs" turnOnAnimation={turnOnAnimation} />,
       },
     ],
     [photographyCard, resumeCard, turnOnAnimation],

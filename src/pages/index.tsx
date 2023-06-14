@@ -15,6 +15,7 @@ type PageProps = {
     | 'version'
     | 'photos'
     | 'latest/movies'
+    | 'latest/goodreads'
   >;
 };
 
@@ -29,6 +30,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () =>
     'version',
     'photos',
     'latest/movies',
+    'latest/goodreads',
   ]);
 
 function Page() {

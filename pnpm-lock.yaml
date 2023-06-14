@@ -121,6 +121,9 @@ importers:
       reflect-metadata:
         specifier: 0.1.13
         version: 0.1.13
+      rss-parser:
+        specifier: 3.13.0
+        version: 3.13.0
       sequelize:
         specifier: 6.26.0
         version: 6.26.0(mysql2@2.3.3)
@@ -5092,6 +5095,10 @@ packages:
       graceful-fs: 4.2.10
       tapable: 2.2.1
 
+  /entities@2.2.0:
+    resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
+    dev: false
+
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
@@ -9264,6 +9271,13 @@ packages:
     dependencies:
       glob: 7.2.3
     dev: true
+
+  /rss-parser@3.13.0:
+    resolution: {integrity: sha512-7jWUBV5yGN3rqMMj7CZufl/291QAhvrrGpDNE4k/02ZchL0npisiYYqULF71jCEKoIiHvK/Q2e6IkDwPziT7+w==}
+    dependencies:
+      entities: 2.2.0
+      xml2js: 0.5.0
+    dev: false
 
   /run-async@2.4.1:
     resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}
