@@ -59,13 +59,17 @@ const isRelativeTimeUnit = (unit: string): unit is Intl.RelativeTimeFormatUnit =
 const relativeTimeFromMs = (
   elapsedMs: number,
   formatter: Intl.RelativeTimeFormat,
-): RelativeTime => {
+): RelativeTime | null => {
   const [unit, value] =
     Object.entries(UNITS).find((entry) => Math.abs(elapsedMs) > entry[1]) ?? FALLBACK;
+
   const formattedUnit = isRelativeTimeUnit(unit) ? unit : FALLBACK[0];
   const amount = Math.round(elapsedMs / value);
-  const formatted = formatter.format(amount, formattedUnit);
-  return { unit: formattedUnit, amount, formatted };
+  if (!Number.isNaN(elapsedMs) && !Number.isNaN(amount)) {
+    const formatted = formatter.format(amount, formattedUnit);
+    return { unit: formattedUnit, amount, formatted };
+  }
+  return null;
 };
 
 /**
@@ -102,7 +106,9 @@ export const useRelativeTimeFormat = ({
 
   useEffect(() => {
     const relativeTime = relativeTimeFromMs(elapsedMs, relativeTimeFormatter);
-    setFormattedValue(overriddenFormatString(relativeTime) ?? relativeTime.formatted);
+    if (relativeTime) {
+      setFormattedValue(overriddenFormatString(relativeTime) ?? relativeTime.formatted);
+    }
   }, [elapsedMs]);
 
   if (capitalized) {
