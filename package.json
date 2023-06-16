@@ -27,6 +27,10 @@
     "clean": "rm -r .next"
   },
   "dependencies": {
+    "@babel/core": "7.22.5",
+    "@babel/generator": "7.22.5",
+    "@babel/parser": "7.22.5",
+    "@babel/types": "7.22.5",
     "@contentful/rich-text-react-renderer": "15.16.2",
     "@contentful/rich-text-types": "16.0.2",
     "@emotion/react": "11.10.5",
