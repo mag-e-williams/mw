@@ -1,3 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+
+// TODO: Fix ^^ typecasting on file and remove es lint disables
+
 import { GoodreadsItem, GoodreadsReviewContent } from 'api/types/goodreads/GoodreadsFeed';
 
 import axios from 'axios';
@@ -28,11 +37,11 @@ const parsedContent = (contentString: string): GoodreadsReviewContent => {
 
   // Extracting book published year
   const publishedMatch = contentString.match(/book published: (\d+)<br\/>/);
-  const publishedYear = publishedMatch ? parseInt(publishedMatch[1] as string) : 0;
+  const publishedYear = publishedMatch ? parseInt(publishedMatch[1] as string, 10) : 0;
 
   // Extracting rating
   const userRatingMatch = contentString.match(/rating: (\d+)<br\/>/);
-  const userRating = userRatingMatch ? parseInt(userRatingMatch[1] as string) : 0;
+  const userRating = userRatingMatch ? parseInt(userRatingMatch[1] as string, 10) : 0;
 
   // Extracting date added
   const dateAddedMatch = contentString.match(/date added: ([\d/]+)<br\/>/);
@@ -49,14 +58,14 @@ const parsedContent = (contentString: string): GoodreadsReviewContent => {
   return {
     bookUrl: bookLink,
     imgUrl: imageLink,
-    author: author,
-    name: name,
+    author,
+    name,
     averageRating: rating,
     bookPublishedYear: publishedYear,
-    userRating: userRating,
-    dateAdded: dateAdded,
-    shelves: shelves,
-    review: review,
+    userRating,
+    dateAdded,
+    shelves,
+    review,
   };
 };
 
@@ -65,7 +74,7 @@ export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
     // Fetch the RSS feed
     const response = await axios.get(LETTERBOXD_RSS_FEED);
     const rssData = response.data;
-    console.log(rssData);
+
     // Parse the XML data into JavaScript objects
     const parsedData = await parseStringPromise(rssData, {
       trim: true,
@@ -79,12 +88,13 @@ export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
     const { item } = channel;
 
     // Iterate over the items and extract the desired fields
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const parsedItems: GoodreadsItem[] = item.map((rssItem: any) => {
-      const title = rssItem.title;
+      const { title } = rssItem;
       const bookId = rssItem.book_id;
       const userRating = rssItem.user_rating;
       const userReadAt = rssItem.user_read_at;
-      const link = rssItem.link;
+      const { link } = rssItem;
       const author = rssItem.author_name;
       const bookImgUrl = rssItem.book_image_url;
       const bookSmallImgUrl = rssItem.book_small_image_url;
@@ -95,17 +105,17 @@ export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
       const content = parsedContent(rssItem.description);
 
       return {
-        title: title,
-        bookId: bookId,
-        bookDescription: bookDescription,
-        bookImgUrl: bookImgUrl,
-        bookSmallImgUrl: bookSmallImgUrl,
-        bookMediumImgUrl: bookMediumImgUrl,
-        bookLargeImgUrl: bookLargeImgUrl,
-        userRating: userRating,
-        userReadAt: userReadAt,
-        link: link,
-        author: author,
+        title,
+        bookId,
+        bookDescription,
+        bookImgUrl,
+        bookSmallImgUrl,
+        bookMediumImgUrl,
+        bookLargeImgUrl,
+        userRating,
+        userReadAt,
+        link,
+        author,
         bookContent: content,
       };
     });
