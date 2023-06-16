@@ -4,6 +4,7 @@ import { Nav, NavGroup, NavItem } from 'ui/Nav';
 import { Container } from '@mui/material';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
+import { Copyright } from 'lucide-react';
 import { Link } from '../utilComponents/Link';
 
 function FooterLink({ link }: { link: LinkType }) {
@@ -57,7 +58,9 @@ export function Footer() {
               },
             })}
           >
-            <NavItem>© {new Date().getFullYear()} Maggie Williams</NavItem>
+            <NavItem>
+              <Copyright size=".8em" /> {new Date().getFullYear()} Maggie Williams
+            </NavItem>
             <NavItem sx={{ padding: 0 }}>•</NavItem>
             <NavItem>
               <Link

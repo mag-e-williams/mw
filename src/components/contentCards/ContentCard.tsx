@@ -187,20 +187,19 @@ export function ContentCard({
         }
       : undefined;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function toggle() {
-    if (expandable && onExpansion) {
-      setIsExpanded(false);
-      onExpansion(false);
-    }
-  }
-
   useEffect(() => {
+    function toggle() {
+      if (expandable && onExpansion) {
+        setIsExpanded(false);
+        onExpansion(false);
+      }
+    }
+
     Emitter.on('TOGGLE', () => toggle());
     return () => {
       Emitter.off('TOGGLE', () => toggle());
     };
-  }, [toggle]);
+  }, [expandable, onExpansion]);
 
   return (
     <Card
