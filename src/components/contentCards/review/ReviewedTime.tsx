@@ -1,28 +1,25 @@
-import { useLinkWithName } from 'hooks/useLinkWithName';
 import { Typography } from '@mui/material';
 import { HorizontalStack } from 'ui/HorizontalStack';
 import { useRelativeTimeFormat } from 'hooks/useRelativeTimeFormat';
-import { GoodreadsItem } from 'api/types/goodreads/GoodreadsFeed';
-import { Library } from 'lucide-react';
 
 interface ReviewedTimeProps {
-  book?: GoodreadsItem;
+  time: string;
+  icon?: React.ReactNode;
 }
-export function ReviewedTime({ book }: ReviewedTimeProps) {
-  const link = useLinkWithName('Goodreads');
+export function ReviewedTime({ time, icon }: ReviewedTimeProps) {
   const formattedDate = useRelativeTimeFormat({
-    fromDate: book?.userReadAt,
+    fromDate: time,
     capitalized: true,
   });
 
-  return link ? (
+  return (
     <Typography
       variant="overline"
       component={HorizontalStack}
       sx={{ gap: 1, alignItems: 'center' }}
     >
       {`Read ${formattedDate}`}
-      <Library size="1.25em" />
+      {icon}
     </Typography>
-  ) : null;
+  );
 }
