@@ -52,9 +52,13 @@ export async function fetchRecentlyRead(): Promise<Array<ReviewItem> | []> {
         year,
       };
     });
-    console.log(parsedItems);
 
-    return parsedItems;
+    const sortedItems = parsedItems.sort((a, b) => {
+      if (a.reviewDate === '' || new Date(b.reviewDate) > new Date(a.reviewDate)) return 1;
+      if (b.reviewDate === '' || new Date(b.reviewDate) < new Date(a.reviewDate)) return -1;
+      return -1;
+    });
+    return sortedItems;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error fetching or parsing the Goodreads RSS feed:', error);
