@@ -16,15 +16,15 @@ export interface ReviewItemProps {
   title: string;
   rating: number | string;
   year: string;
-  time: string;
-  icon: React.ReactNode;
+  reviewDate: string;
   imageUrl: string;
-  link?: Link;
-  reviewLink: string;
+  profileLink?: Link;
+  link: string;
+  type: string;
 }
 
 export function ReviewCard({ reviewItem }: ReviewCardProps) {
-  const { content, title, rating, year, time, icon, imageUrl, link, reviewLink } = reviewItem;
+  const { content, title, rating, year, reviewDate, imageUrl, link, type } = reviewItem;
   return (
     <Stack
       sx={{
@@ -39,13 +39,13 @@ export function ReviewCard({ reviewItem }: ReviewCardProps) {
           alignItems: 'flex-start',
         }}
       >
-        <ReviewedTime time={time} icon={icon} />
-        <ReviewImage link={reviewLink} title={title} imageUrl={imageUrl} />
+        <ReviewedTime time={reviewDate} type={type} />
+        <ReviewImage link={link} title={title} imageUrl={imageUrl} />
       </HorizontalStack>
       <Stack>
         <ReviewStars numStars={rating} />
-        <ReviewTitle title={title} year={year} url={reviewLink} />
-        <ReviewSubTitle content={content} url={reviewLink} />
+        <ReviewTitle title={title} year={year} url={link} />
+        <ReviewSubTitle content={content} url={link} />
       </Stack>
     </Stack>
   );

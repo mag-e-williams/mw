@@ -1,31 +1,14 @@
 export type GoodreadsFeed = {
-  items: GoodreadsItem[];
+  items: ReviewItem[];
 };
 
-export type GoodreadsReviewContent = {
-  bookUrl: string;
-  imgUrl: string;
-  author: string;
-  name: string;
-  averageRating: Number;
-  bookPublishedYear: Number;
-  userRating: number;
-  dateAdded: string;
-  shelves: string;
-  review: string;
-};
-
-export type GoodreadsItem = {
+export type ReviewItem = {
   title: string;
   link: string;
   author: string;
-  bookImgUrl: string;
-  bookLargeImgUrl: string;
-  pubDate: string;
-  bookContent: GoodreadsReviewContent;
-  contentSnippet: string;
-  guid: string;
-  isoDate: string;
-  userReadAt: string;
-  userRating: string;
+  year: string;
+  reviewDate: string;
+  rating: string;
+  imageUrl: string;
+  review?: string;
 };

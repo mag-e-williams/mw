@@ -2,7 +2,6 @@ import { Image } from 'components/utilComponents/Image';
 import { Link } from 'components/utilComponents/Link';
 import { Card } from '@mui/material';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
-import type { Link as LinkType } from 'api/types/generated/contentfulApi.generated';
 
 type ReviewImageProps = {
   link?: string;
