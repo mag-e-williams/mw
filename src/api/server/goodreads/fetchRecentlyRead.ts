@@ -1,75 +1,17 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-
-// TODO: Fix ^^ typecasting on file and remove es lint disables
-
-import { GoodreadsItem, GoodreadsReviewContent } from 'api/types/goodreads/GoodreadsFeed';
+import { ReviewItem } from 'api/types/goodreads/GoodreadsFeed';
 
 import axios from 'axios';
 import { parseStringPromise } from 'xml2js';
 
 const LETTERBOXD_RSS_FEED = 'https://www.goodreads.com/review/list_rss/158756856?shelf=read';
 
-const parsedContent = (contentString: string): GoodreadsReviewContent => {
-  // Extracting image source URL
-  const imageLinkMatch = contentString.match(/src="(.*?)"/);
-  const imageLink = imageLinkMatch ? (imageLinkMatch[1] as string) : '';
-
-  // Extracting book link URL
-  const bookLinkMatch = contentString.match(/href="(.*?)"/);
-  const bookLink = bookLinkMatch ? (bookLinkMatch[1] as string) : '';
-
-  // Extracting author
-  const authorMatch = contentString.match(/author: (.+)<br\/>/);
-  const author = authorMatch ? (authorMatch[1] as string) : '';
-
-  // Extracting name
-  const nameMatch = contentString.match(/name: (.+)<br\/>/);
-  const name = nameMatch ? (nameMatch[1] as string) : '';
-
-  // Extracting average rating
-  const ratingMatch = contentString.match(/average rating: (.+)<br\/>/);
-  const rating = ratingMatch ? parseFloat(ratingMatch[1] as string) : 0;
-
-  // Extracting book published year
-  const publishedMatch = contentString.match(/book published: (\d+)<br\/>/);
-  const publishedYear = publishedMatch ? parseInt(publishedMatch[1] as string, 10) : 0;
-
-  // Extracting rating
-  const userRatingMatch = contentString.match(/rating: (\d+)<br\/>/);
-  const userRating = userRatingMatch ? parseInt(userRatingMatch[1] as string, 10) : 0;
-
-  // Extracting date added
-  const dateAddedMatch = contentString.match(/date added: ([\d/]+)<br\/>/);
-  const dateAdded = dateAddedMatch ? (dateAddedMatch[1] as string) : '';
-
-  // Extracting shelves
-  const shelvesMatch = contentString.match(/shelves: (.+)<br\/>/);
-  const shelves = shelvesMatch ? (shelvesMatch[1] as string) : '';
-
-  // Extracting review
-  const reviewMatch = contentString.match(/review: (.+)<br\/>/);
-  const review = reviewMatch ? (reviewMatch[1] as string) : '';
-
-  return {
-    bookUrl: bookLink,
-    imgUrl: imageLink,
-    author,
-    name,
-    averageRating: rating,
-    bookPublishedYear: publishedYear,
-    userRating,
-    dateAdded,
-    shelves,
-    review,
-  };
-};
-
-export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
+export async function fetchRecentlyRead(): Promise<Array<ReviewItem> | []> {
   try {
     // Fetch the RSS feed
     const response = await axios.get(LETTERBOXD_RSS_FEED);
@@ -83,56 +25,42 @@ export async function fetchRecentlyRead(): Promise<Array<GoodreadsItem> | []> {
     });
 
     // Access the relevant data from the parsed object
-    const { rss } = parsedData;
-    const { channel } = rss;
-    const { item } = channel;
+    const reviewItems = parsedData.rss.channel.item;
 
     // Iterate over the items and extract the desired fields
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parsedItems: GoodreadsItem[] = item.map((rssItem: any) => {
+    const parsedItems: ReviewItem[] = reviewItems.map((rssItem: any) => {
       const { title } = rssItem;
-      const bookId = rssItem.book_id;
-      const userRating = rssItem.user_rating;
-      const userReadAt = rssItem.user_read_at;
       const { link } = rssItem;
+      const reviewDate = rssItem.user_read_at;
+      const rating = rssItem.user_rating;
       const author = rssItem.author_name;
-      const bookImgUrl = rssItem.book_image_url;
-      const bookSmallImgUrl = rssItem.book_small_image_url;
-      const bookMediumImgUrl = rssItem.book_medium_image_url;
-      const bookLargeImgUrl = rssItem.book_large_image_url;
-      const bookDescription = rssItem.book_description;
+      const imageUrl = rssItem.book_large_image_url;
 
-      const content = parsedContent(rssItem.description);
+      const contentString = rssItem.description;
+
+      // Extracting book published year
+      const publishedMatch = contentString.match(/book published: (\d+)<br\/>/);
+      const year = publishedMatch ? parseInt(publishedMatch[1] as string, 10) : 0;
 
       return {
         title,
-        bookId,
-        bookDescription,
-        bookImgUrl,
-        bookSmallImgUrl,
-        bookMediumImgUrl,
-        bookLargeImgUrl,
-        userRating,
-        userReadAt,
         link,
+        reviewDate,
+        rating,
         author,
-        bookContent: content,
+        imageUrl,
+        year,
       };
     });
 
-    return parsedItems.sort((a, b) => {
-      const valueA = new Date(a.userReadAt);
-      const valueB = new Date(b.userReadAt);
-
-      if (valueA < valueB) {
-        return 1;
-      }
-      if (valueA > valueB) {
-        return -1;
-      }
-      return 0;
+    const sortedItems = parsedItems.sort((a, b) => {
+      if (a.reviewDate === '' || new Date(b.reviewDate) > new Date(a.reviewDate)) return 1;
+      if (b.reviewDate === '' || new Date(b.reviewDate) < new Date(a.reviewDate)) return -1;
+      return -1;
     });
+    return sortedItems;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error fetching or parsing the Goodreads RSS feed:', error);
     return [];
   }

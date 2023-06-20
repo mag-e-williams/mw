@@ -1,12 +1,12 @@
 import { Image } from 'components/utilComponents/Image';
 import { Link } from 'components/utilComponents/Link';
-import { useLinkWithName } from 'hooks/useLinkWithName';
 import { Card } from '@mui/material';
 import { useCurrentImageSizes } from 'hooks/useCurrentImageSizes';
 
-type MovieImageProps = {
-  movieImage: string;
-  movieTitle: string;
+type ReviewImageProps = {
+  link?: string;
+  imageUrl: string;
+  title: string;
 };
 
 const IMAGE_SIZE = 160;
@@ -14,14 +14,13 @@ const IMAGE_SIZE = 160;
 /**
  * Creates an album image that links to the album directly
  */
-export function MovieImage({ movieImage, movieTitle }: MovieImageProps) {
-  const movieUrl = useLinkWithName('Letterboxd');
+export function ReviewImage({ link, imageUrl, title }: ReviewImageProps) {
   const { width, height, sizes } = useCurrentImageSizes('tall');
 
   return (
     <Link
       isExternal
-      href={movieUrl?.url}
+      href={link}
       sx={{
         transition: (theme) => theme.transitions.create(['transform']),
         '&:hover': {
@@ -51,7 +50,7 @@ export function MovieImage({ movieImage, movieTitle }: MovieImageProps) {
           },
         })}
       >
-        <Image alt={movieTitle} url={movieImage} width={width} height={height} sizes={sizes} />
+        <Image alt={title} url={imageUrl} width={width} height={height} sizes={sizes} />
       </Card>
     </Link>
   );

@@ -1,6 +1,7 @@
 import { useData } from 'api/useData';
 import { ContentCard } from 'components/contentCards/ContentCard';
-import { BookListing } from 'components/contentCards/goodreads/BookListing';
+import { ReviewCard, ReviewItemProps } from 'components/contentCards/review/ReviewCard';
+
 /**
  * Shows a card with the latest data from Goodreads
  */
@@ -10,8 +11,14 @@ export function GoodreadsCard() {
   if (!books || !books[0]) {
     return null;
   }
-
   const book = books[0];
+
+  const bookData: ReviewItemProps = {
+    content: book.author,
+    type: 'goodreads',
+    ...book,
+  };
+
   return (
     <ContentCard
       sx={{
@@ -19,7 +26,7 @@ export function GoodreadsCard() {
         display: 'flex',
       }}
     >
-      <BookListing book={book} />
+      <ReviewCard reviewItem={bookData} />
     </ContentCard>
   );
 }

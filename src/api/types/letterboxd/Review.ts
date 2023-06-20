@@ -1,13 +1,10 @@
 export type Review = {
-  title?: string;
-  link?: string;
-  pubDate?: string;
-  watchedDate?: string;
-  rewatch?: string;
-  filmTitle?: string;
-  filmYear?: string;
-  rating?: string;
-  img?: string;
+  title: string;
+  link: string;
+  reviewDate: string;
+  year: string;
+  rating: string;
+  imageUrl: string;
   review?: string;
-  creator?: string;
+  author?: string;
 };
