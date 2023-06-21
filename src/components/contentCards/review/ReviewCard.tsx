@@ -21,10 +21,11 @@ export interface ReviewItemProps {
   profileLink?: Link;
   link: string;
   type: string;
+  rewatch?: boolean;
 }
 
 export function ReviewCard({ reviewItem }: ReviewCardProps) {
-  const { content, title, rating, year, reviewDate, imageUrl, link, type } = reviewItem;
+  const { content, title, rating, year, reviewDate, imageUrl, link, type, rewatch } = reviewItem;
   return (
     <Stack
       sx={{
@@ -39,7 +40,7 @@ export function ReviewCard({ reviewItem }: ReviewCardProps) {
           alignItems: 'flex-start',
         }}
       >
-        <ReviewedTime time={reviewDate} type={type} />
+        <ReviewedTime time={reviewDate} type={type} rewatch={rewatch} />
         <ReviewImage link={link} title={title} imageUrl={imageUrl} />
       </HorizontalStack>
       <Stack>

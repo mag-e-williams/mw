@@ -7,4 +7,5 @@ export type Review = {
   imageUrl: string;
   review?: string;
   author?: string;
+  rewatch?: boolean;
 };
