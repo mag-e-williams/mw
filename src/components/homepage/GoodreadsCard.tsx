@@ -17,6 +17,7 @@ export function GoodreadsCard() {
     content: book.author,
     type: 'goodreads',
     ...book,
+    rewatch: false,
   };
 
   return (

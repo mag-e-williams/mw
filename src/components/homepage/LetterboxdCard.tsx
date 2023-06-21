@@ -13,7 +13,6 @@ export function LetterboxdCard() {
   }
 
   const movie = movies[0];
-
   const movieData: ReviewItemProps = {
     content: movie.review || '',
     type: 'letterboxd',

@@ -27,6 +27,7 @@ async function parseReview(item: ReviewQuery): Promise<Review> {
     reviewDate: item['letterboxd:watchedDate'],
     year: item['letterboxd:filmYear'],
     rating: item['letterboxd:memberRating'],
+    rewatch: item['letterboxd:rewatch'] !== 'No',
     imageUrl,
     review: item.description
       .split('</p>')
