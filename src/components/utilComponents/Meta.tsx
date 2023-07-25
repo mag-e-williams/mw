@@ -145,9 +145,9 @@ export function Meta({ title, description }: Props) {
         name="msapplication-TileColor"
         content={theme.vars.palette.background.default}
       />
-      {Object.values(ICONS).flatMap(({ variants, element }) =>
+      {/* {Object.values(ICONS).flatMap(({ variants, element }) =>
         variants.map((variant) => element(String(variant), theme)),
-      )}
+      )} */}
     </Head>
   );
 }
