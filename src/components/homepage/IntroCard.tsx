@@ -61,7 +61,6 @@ export function IntroCard() {
     <>
       <ContentCard
         link={linkedInLink}
-        overlay="About"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
         sx={(theme) => ({

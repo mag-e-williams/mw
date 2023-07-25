@@ -5,9 +5,6 @@ import type { NextPage } from 'next';
 export type GetLayout<PropsType> = (page: ReactElement, pageProps: PropsType) => ReactNode;
 
 export type NextPageWithLayout<PropsType> = NextPage & {
-  /**
-   * All layouts must take a props from the page
-   */
   getLayout?: GetLayout<PropsType>;
 };
 
