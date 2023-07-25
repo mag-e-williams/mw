@@ -3,7 +3,7 @@ import { Project } from 'api/types/generated/contentfulApi.generated';
 import React, { useMemo } from 'react';
 import ReactViewAdobe from 'react-adobe-embed';
 
-const ADOBE_CLIENT_ID = 'e14e630439794f9aa456b0f89615c3a4';
+const ADOBE_CLIENT_ID = '6f973dadbb224093b507f02f2f7297d4';
 const divId = 'pdf-div';
 
 type ResumeCardProps = {
